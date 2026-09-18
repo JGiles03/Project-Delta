@@ -44,17 +44,27 @@ As a single parent, I want to read reviews from other solo parents, so that I ca
 
 As a parent, I want to be able to contribute by sharing my own experience of a particular place, so that other parents can see how my experience really was.
 
-As a venue owner, I want to add and update details about my venue — age suitability and facilities — so that parents can see how child-friendly it is and choose to visit with confidence.
+As a parent, I wnat to be able to filter by my child age range, so that i can find places that are suitable for them
 
-As a wheelchair user, I want to see if a venue is fully accessible to me, so that I can plan my trips in advance.
+As a parent, I want to connect with other local parents through the platform, so that I can build a support network and arrange shared activities.
+
+As a parent, I want to see live information about venue opening hours and availability, so that I can avoid wasted journeys.
+
+As a parent, I want to create and share lists of recommended places, so that other families can benefit from my experiences.
+
+As a parent, I want to be able to report inaccurate or otdated informatuon about a venue, so that teh platform remains trustworthy and reliable
+
+As a venue owner, I want to add and update details about my venue — age suitability and facilities — so that parents can see how child-friendly it is and choose to visit with confidence.
 
 As a user I want to access a working interface so that I can see a map of accessible locations
 
-As a user, I want to be able to sign-up and sign in , so that post reviews on my expericen at a particular venue
+As a user, I want to be able to create an account and sign in , so that post reviews on my expericen at a particular venue
 
-As a user, I want to be able to favourite a venue, so that I can easily access the infomation and reviews about a the venue
+As a user, I want to be able to  rate a venue, so that i can quickly contribute to to average of that venue
 
+As a user, I would like to see an average rating score, so that I can quickly judge how good a venue is without reading the reviews
 
+As a wheelchair user, I want to see if a venue is fully accessible to me, so that I can plan my trips in advance.
 
 ## Risk
 

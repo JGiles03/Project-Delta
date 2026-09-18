@@ -34,7 +34,7 @@ As a single parent, I want to read reviews from other solo parents, so that I ca
 
 As a parent, I want to be able to contribute by sharing my own experience of a particular place, so that other parents can see how my experience really was.
 
-As a parent, I wnat to be able to filter by my child age range, so that i can find places that are suitable for them
+As a parent, I want to be able to filter by my child age range, so that i can find places that are suitable for them
 
 As a parent, I want to connect with other local parents through the platform, so that I can build a support network and arrange shared activities.
 
@@ -101,6 +101,7 @@ The MVP will include:
 
 
 ## Stretch Goals
-#### - AI implemenation - We would use a chatbot to help plan itineraries based on input from the user and results from the api. Culminate that into a structured output. 
+- AI implemenation - We would use a chatbot to help plan itineraries based on input from the user and results from the api. Culminate that into a structured output.
+- Car service - so you don't have to leave your car with young child inside
 ## Technologies
 

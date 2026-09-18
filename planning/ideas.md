@@ -48,15 +48,32 @@ As a venue owner, I want to add and update details about my venue — age suitab
 
 As a user I want to access a working interface so that I can see a map of accessible locations
 
-As a user, I want to be able to create an account and sign in , so that post reviews on my expericen at a particular venue
+## Risk/stakeholder analysis diagram
+!['Risk analysis diagram'](image.png)
 
-As a user, I want to be able to  rate a venue, so that i can quickly contribute to to average of that venue
+- Insufficient venue data at launch: Without enough venue information, users may struggle to find useful results which will effect the quality of the app.
 
-As a user, I would like to see an average rating score, so that I can quickly judge how good a venue is without reading the reviews
+- Inaccurate/outdated venue data: Facilities can change over time, meaning users could make plans based on incorrect accessibility information.
 
-As a wheelchair user, I want to see if a venue is fully accessible to me, so that I can plan my trips in advance.
+- Project scope becomes too wide: The two week timeframe and feature freeze means trying to work on too many features could prevent the main MVP from being completed.
 
-## Risk
+- Map API failure: The map is essential to finding venues, so an integration issue could significantly affect the application's core functionality.
+
+
+!['Stakeholder analysis'](image-1.png)
+
+- Parents & carers: They are the primary users, so their needs and feedback directly influence whether the app is useful.
+
+- Venue owners/managers They can provide and verify information about their facilities and their level of accessibility can attract business.
+
+- Developers: They have significant influence because they design and build the solution but they don't really use the product.
+
+- Local councils: They may have influence over local accessibility initiatives and venue information but aren't directly involved in everyday use of the app.
+
+- Community/family organisations: They have a strong interest in improving services for families and could help promote the platform, but have limited direct influence over its development.
+
+
+
 
 ## USP
 

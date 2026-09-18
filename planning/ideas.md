@@ -42,7 +42,32 @@ As a wheelchair user, I want to see if a venue is fully accessible to me, so tha
 
 As a user I want to access a working interface so that I can see a map of accessible locations
 
-## Risk
+## Risk/stakeholder analysis diagram
+!['Risk analysis diagram'](image.png)
+
+- Insufficient venue data at launch: Without enough venue information, users may struggle to find useful results which will effect the quality of the app.
+
+- Inaccurate/outdated venue data: Facilities can change over time, meaning users could make plans based on incorrect accessibility information.
+
+- Project scope becomes too wide: The two week timeframe and feature freeze means trying to work on too many features could prevent the main MVP from being completed.
+
+- Map API failure: The map is essential to finding venues, so an integration issue could significantly affect the application's core functionality.
+
+
+!['Stakeholder analysis'](image-1.png)
+
+- Parents & carers: They are the primary users, so their needs and feedback directly influence whether the app is useful.
+
+- Venue owners/managers They can provide and verify information about their facilities and their level of accessibility can attract business.
+
+- Developers: They have significant influence because they design and build the solution but they don't really use the product.
+
+- Local councils: They may have influence over local accessibility initiatives and venue information but aren't directly involved in everyday use of the app.
+
+- Community/family organisations: They have a strong interest in improving services for families and could help promote the platform, but have limited direct influence over its development.
+
+
+
 
 ## USP
 

@@ -51,6 +51,6 @@ As a user I want to access a working interface so that I can see a map of access
 ## Wireframes - Mudathir
 
 ## Stretch Goals
- # - AI implemenation - We would use a chatbot to help plan itineraries based on input from the user and results from the api. Culminate that into a structured output. 
+ ### - AI implemenation - We would use a chatbot to help plan itineraries based on input from the user and results from the api. Culminate that into a structured output. 
 ## Technologies
 

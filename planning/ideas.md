@@ -7,14 +7,14 @@ Solo Parenting often comes with the struggle to find suitable places to visit wi
 ## Solution
 
 Our solution for this problem is to build a platform that helps parents
-disocover and confidently plan family-friendly outings, The platform will provide recommendations for venues and actvities,
-along with detailed parent focused information such as baby-changing facilites, pushchair access, parking opitions, affordabilty
-and age suitability. Our uniqueness is our particular focus of the challenges of solo parenting. Parents can view real reveiws and rating from other
-families giving a greater undertanding on the manageability of a location when caring for a child independently.
+discover and confidently plan family-friendly outings, The platform will provide recommendations for venues and activities,
+along with detailed parent focused information such as baby-changing facilities, pushchair access, parking options, affordability
+and age suitability. Our uniqueness is our particular focus of the challenges of solo parenting. Parents can view real reviews and rating from other
+families giving a greater understanding on the manageability of a location when caring for a child independently.
 
 Not only is our platform for recommendations but it also aims to create a supportive community where parents can connect,
 share advice and overall support one another with just everyday parenting challenges.
-And by combinig all of these aspects we aim to reduce the stresses of planning outings and help families feel confident exploring new places together.
+And by combining all of these aspects we aim to reduce the stresses of planning outings and help families feel confident exploring new places together.
 
 ## User Profiles
 
@@ -41,7 +41,7 @@ As a parent, I want to see live information about venue opening hours and availa
 
 As a parent, I want to create and share lists of recommended places, so that other families can benefit from my experiences.
 
-As a parent, I want to be able to report inaccurate or otdated informatuon about a venue, so that teh platform remains trustworthy and reliable
+As a parent, I want to be able to report inaccurate or outdated information about a venue, so that the platform remains trustworthy and reliable
 
 As a venue owner, I want to add and update details about my venue — age suitability and facilities — so that parents can see how child-friendly it is and choose to visit with confidence.
 
@@ -73,7 +73,7 @@ As a user I want to access a working interface so that I can see a map of access
 
 ## USP
 
-Our product offers a comprehensive, filterable map that shows users all facilites that are suitable for their individual needs.
+Our product offers a comprehensive, filterable map that shows users all facilities that are suitable for their individual needs.
 
 ## MVP Reqs
 
@@ -101,11 +101,7 @@ The MVP will include:
 ![Lo-fi wireframe](assets/pages%204%20lo-fi%20wireframe.png "Lo-fi wireframe 4")
 
 ## Stretch Goals
-- AI implemenation - We would use a chatbot to help plan itineraries based on input from the user and results from the api. Culminate that into a structured output.
+- AI implementation - We would use a chatbot to help plan itineraries based on input from the user and results from the api. Culminate that into a structured output.
 - Car service - so you don't have to leave your car with young child inside
-
-## Technologies
-
-#### - AI implemenation - We would use a chatbot to help plan itineraries based on input from the user and results from the api. Culminate that into a structured output.
 
 ## Technologies

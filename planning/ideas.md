@@ -1,18 +1,8 @@
-# Project Idea list
-- Tutor finder
-- Meal tracker 
-- Accessability locator
-- Honk delivery
-- Legal App
+# Appcessable Maps
 
 ## Problem statement
 
 Solo Parenting often comes with the struggle to find suitable places to visit with their children because essential information—such as baby-changing facilities, pushchair access, parking, affordability and age suitability is scattered, unclear or unavailable. Existing platforms may describe venues as “family-friendly,” but rarely show how manageable they are for one adult caring for children alone. 
-
-As a result, planning family outings can become stressful, time consuming and hoestly discouraging, especially for single-parent families who may 
-already be facing additionally challenges when orgainsign daily activities. Parent aslo lack a dedicated community wherr tehy can share experiences , recommendation and 
-support with itheres facing similar situations
-
 
 ## Solution
 Our solution for this problem is to build a platform that helps parents 
@@ -70,9 +60,28 @@ As a wheelchair user, I want to see if a venue is fully accessible to me, so tha
 
 ## USP
 
+Our product offers a comprehensive, filterable map that shows users all facilites that are suitable for their individual needs.
+
 ## MVP Reqs
 
-## Wireframes - Mudathir
+A functioning mobile based application that has a map view where users can search for specific facilities near them. Each facility should have a list of amenities and a rating to allow users to gauge how suitable it is for them to travel there. 
+
+It will have the capability to allow users to leave and read reviews and update available amenities provided by locations.
+
+It will allow users to filter the map search to only include places with given amenities.
+
+The MVP will include:
+
+- A Mobile based frontend application
+- A database storing Users, Locations (Amenities and ratings), ?Frequently used maps?
+- Backend API that will be deployed and accessible to the frontend
+
+#### Trello
+
+![Trello Board](trello.png "Trello Board")
+
+## Wireframes
+
 
 ## Stretch Goals
 #### - AI implemenation - We would use a chatbot to help plan itineraries based on input from the user and results from the api. Culminate that into a structured output. 

@@ -34,16 +34,42 @@ function handleSubmit(e : React.SubmitEvent){
 }
 
   return (
-    <div>
-      SignupPage
-    <form onSubmit={handleSubmit} >
-      <input type="text" placeholder="username" required value={usernameText} onChange={(e) => setUsernameText(e.target.value)}/>
-      <input type="password" placeholder="Password" required value={passwordText} onChange={(e) => setPasswordText(e.target.value)} />
-      <input type="password" placeholder="confirm Password" required value={conPasswordText} onChange={(e) => setConPasswordText(e.target.value)}/>
-      <button>Submit</button>
-    </form>
-    <div className="message-box" >{messageBox}</div>
-    <p>Already have an Account! Please login <Link to='/login'>here</Link> </p>
+    <div className="auth-container">
+      <div className="auth-card">
+        <h1>Create your account</h1>
+        <p>Join Child & Me to start planning your next adventure</p>
+
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Username"
+            required
+            value={usernameText}
+            onChange={(e) => setUsernameText(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            required
+            value={passwordText}
+            onChange={(e) => setPasswordText(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Confirm password"
+            required
+            value={conPasswordText}
+            onChange={(e) => setConPasswordText(e.target.value)}
+          />
+          <button type="submit" className="btn-primary">Sign up</button>
+        </form>
+
+        {messageBox && <div className="message-box">{messageBox}</div>}
+
+        <p className="auth-switch">
+          Already have an account? <Link to="/login">Log in here</Link>
+        </p>
+      </div>
     </div>
-  )
+  );
 }

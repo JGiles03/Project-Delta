@@ -16,7 +16,7 @@ nav {
     grid-template-columns: 1fr 1fr 1fr;
 }
 
-.navlink {
+.nav-links {
     color: #f2f2f2;
     text-align: center;
     padding: 1rem 2rem;

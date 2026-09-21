@@ -6,8 +6,8 @@ export default function Header() {
     <header>
         <nav>
             <NavLink className="nav-links" to='/home'>Map</NavLink>
-            <NavLink className="nav-links" to='/list'>List</NavLink>
-            <NavLink className="nav-links" to='/account'>Account</NavLink>
+            <NavLink className="nav-links" to='/home/list'>List</NavLink>
+            <NavLink className="nav-links" to='/home/account'>Account</NavLink>
         </nav>
     </header>
     <Outlet/>

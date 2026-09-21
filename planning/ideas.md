@@ -1,4 +1,4 @@
-# Baby & Me
+# Child & Me
 
 ## Problem statement
 

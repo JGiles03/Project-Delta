@@ -1,0 +1,18 @@
+.map-image {
+    display: flex;
+    flex: 1
+}
+
+img {
+    max-width: 100%;
+}
+
+.searchbar {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+}
+
+.map-page {
+    display: grid;
+}

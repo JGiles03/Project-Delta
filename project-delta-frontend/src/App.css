@@ -1,0 +1,12 @@
+em {
+    color: grey;
+}
+
+a {
+    text-decoration: none;
+    color: blue;
+}
+
+.active {
+    text-decoration: underline;
+}

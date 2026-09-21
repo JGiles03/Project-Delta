@@ -24,6 +24,19 @@ Here is a list of the main things needed to be researched or decided upon before
     - Needs extra time to learn?
     - Any differences in programming setup
 
+### Results
+
+- Mobile:
+    - Best to do web based (for mobile)
+    - PWA to create app-like interactability
+
+- Map API:
+    - 
+
+- Accessibility criteria:
+    - 
+
+
 ## MVP Checklist
 
 This is the bare minimum we'll need to get done for the presentation:
@@ -86,20 +99,15 @@ This is the bare minimum we'll need to get done for the presentation:
 
 TBD
 
-Role 1, Frontend 1:
-- Lead Frontend
+Jayden - Lead Frontend
 
-Role 2, Frontend 2:
-- Frontend + testing
+Mudathir - Lead Backend
 
-Role 3, Backend 1:
-- Lead Backend
+Zainab - Data - Frontend design
 
-Role 4, Backend 2:
-- Backend + testing
+Yonathan - Data - Backend
 
-Role 5, Data:
-- Database + data visualisation
+Joseph - Testing
 
 ## Timeline
 

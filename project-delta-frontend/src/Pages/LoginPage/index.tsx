@@ -26,7 +26,7 @@ function handleSubmit(e : React.SubmitEvent){
   setMessageBox('login successful')
   setTimeout(()=>{
       navigate('/home')
-  })
+  }, 2000)
 
 }
 

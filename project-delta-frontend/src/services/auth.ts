@@ -2,15 +2,20 @@ import type { User, SignUpPayload, LogInPayload} from "./types";
 
 const USER_KEY:string = 'mock_user'
 
-
-
-
 export function usernameExists(username: string): boolean {
-  const raw = localStorage.getItem(USER_KEY);
-  if (!raw) return false;
+    const str = localStorage.getItem(USER_KEY);
+    if (!str) return false;
+    
+    const item: User & { password: string } = JSON.parse(str);
+    return item.username === username;
+}
 
-  const item: User & { password: string } = JSON.parse(raw);
-  return item.username === username;
+export function validPassword(password : string): boolean{
+     const str = localStorage.getItem(USER_KEY);
+    if (!str) return false;
+    const item: User & { password: string } = JSON.parse(str);
+    return item.password === password;
+
 }
 
 export function mockSignUp({username, password}: SignUpPayload): User{

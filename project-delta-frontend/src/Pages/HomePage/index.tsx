@@ -1,7 +1,7 @@
 export default function HomePage() {
   return (
     <div>
-      <h1>Welcome to <em>insert project name here</em>!</h1>
+      <h1>Welcome to <em>Solo Parenting</em>!</h1>
       <p>This is a project to give solo parents peace of mind when they are planning any activites involving a 3rd party
         <br/> Log in or sign in below to access the map and planner
       </p>
@@ -12,6 +12,5 @@ export default function HomePage() {
 }
 
 //TODO
-//Make navbar hidden on this page
 //Styling
 //Flesh out intro text

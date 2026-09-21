@@ -8,13 +8,13 @@ function App() {
   return (
     <>
       <Routes>
+        <Route path='/' element={<HomePage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/signup' element={<SignupPage />} />
-        <Route index element={<HomePage />} />
-        <Route path='/' element={<Header />}>
-          <Route path='/account' element={<AccountPage />} />
-          <Route path='/map' element={<MapPage />} />
-          <Route path='/list' element={<ListPage />} />
+        <Route path='/home' element={<Header />}>
+          <Route index element={<MapPage />} />
+          <Route path='list' element={<ListPage />} />
+          <Route path='account' element={<AccountPage />}/>
         </Route>
       </Routes>
     </>

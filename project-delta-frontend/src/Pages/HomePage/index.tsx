@@ -1,12 +1,14 @@
+import { Link } from "react-router-dom"
+
 export default function HomePage() {
   return (
     <div>
-      <h1>Welcome to <em>Solo Parenting</em>!</h1>
-      <p>This is a project to give solo parents peace of mind when they are planning any activites involving a 3rd party
-        <br/> Log in or sign in below to access the map and planner
-      </p>
-      <a href="/login"><button>Log in</button></a>
-      <a href="/signup"><button>Sign up</button></a>
+      <h1>Welcome to Child & ME</h1>
+      <p>The only place needed to plan your next adventure with your kids </p>
+
+      <Link to='/signup' > Signup</Link>
+      <Link to='/login' >Login</Link>
+
     </div>
   )
 }

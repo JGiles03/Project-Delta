@@ -10,3 +10,8 @@ export default function HomePage() {
     </div>
   )
 }
+
+//TODO
+//Make navbar hidden on this page
+//Styling
+//Flesh out intro text

@@ -12,3 +12,7 @@ export default function HomePage() {
     </div>
   )
 }
+
+//TODO
+//Styling
+//Flesh out intro text

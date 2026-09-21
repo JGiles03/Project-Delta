@@ -1,6 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import { mockLogIn, usernameExists, validPassword } from "../../services/auth";
 import { useState } from "react";
+
+
+
 export default function LoginPage() {
   const navigate = useNavigate()
     const [usernameText, setUsernameText] = useState<string>('')
@@ -23,20 +26,40 @@ function handleSubmit(e : React.SubmitEvent){
   setMessageBox('login successful')
   setTimeout(()=>{
       navigate('/home')
-  })
+  }, 2000)
 
 }
 
   return (
-    <div>
-      LoginPage
-      <form onSubmit={handleSubmit}>
-            <input type="text" placeholder="username" required value={usernameText} onChange={(e) => setUsernameText(e.target.value)} />
-            <input type="password" placeholder="Password" required value={passwordText} onChange={(e) => setPasswordText(e.target.value)} />
-            <button>Submit</button>
-          </form>
-          <div className="message-box" >{messageBox}</div>
-          <p>Don't have an account! sign up <Link to='/signup'>Here</Link> </p>
-          </div>
-  )
+  <div className="auth-container">
+      <div className="auth-card">
+        <h1>Welcome back</h1>
+        <p>Log in to continue planning with Child & Me</p>
+
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Username"
+            required
+            value={usernameText}
+            onChange={(e) => setUsernameText(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            required
+            value={passwordText}
+            onChange={(e) => setPasswordText(e.target.value)}
+          />
+          <button type="submit" className="btn-primary">Log in</button>
+        </form>
+
+        {messageBox && <div className="message-box">{messageBox}</div>}
+
+        <p className="auth-switch">
+          Don't have an account? <Link to="/signup">Sign up here</Link>
+        </p>
+      </div>
+    </div>
+  );
 }

@@ -1,18 +1,19 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import "./index.css";
 
 export default function HomePage() {
   return (
-    <div>
-      <h1>Welcome to Child & ME</h1>
-      <p>The only place needed to plan your next adventure with your kids </p>
+    <div className="home-container">
+      
+      <div className="home-card">
+        <h1>Welcome to <span className="highlight">Child & Me</span></h1>
+        <p>The only place needed to plan your next adventure with your kids</p>
 
-      <Link to='/signup' > Signup</Link>
-      <Link to='/login' >Login</Link>
-
+        <div className="home-actions">
+          <Link to="/signup" className="btn-primary">Sign up</Link>
+          <Link to="/login" className="btn-secondary">Log in</Link>
+        </div>
+      </div>
     </div>
-  )
+  );
 }
-
-//TODO
-//Styling
-//Flesh out intro text

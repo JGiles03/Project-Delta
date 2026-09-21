@@ -24,6 +24,19 @@ Here is a list of the main things needed to be researched or decided upon before
     - Needs extra time to learn?
     - Any differences in programming setup
 
+### Results
+
+- Mobile:
+    - Best to do web based (for mobile)
+    - PWA to create app-like interactability
+
+- Map API:
+    - 
+
+- Accessibility criteria:
+    - 
+
+
 ## MVP Checklist
 
 This is the bare minimum we'll need to get done for the presentation:

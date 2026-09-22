@@ -13,3 +13,11 @@ export type LogInPayload = {
     password : string;
     
 }
+
+export type Place = {
+  id: string;
+  name: string;
+  address: string;
+  lat: number;
+  lng: number;
+};

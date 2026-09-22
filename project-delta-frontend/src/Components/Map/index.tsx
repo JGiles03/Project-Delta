@@ -6,6 +6,7 @@ import placePin from "../../assets/placePin.png";
 import userPin from "../../assets/userPin.png";
 
 import type { Place } from "../../services/types";
+import { usePlaces } from "../../context/PlacesContext";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -32,7 +33,7 @@ type UserLocation = {
 };
 
 export default function Map() {
-  const [places, setPlaces] = useState<Place[]>([]);
+  const {places, setPlaces} = usePlaces()
   const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);

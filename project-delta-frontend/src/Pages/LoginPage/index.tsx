@@ -31,7 +31,7 @@ function handleSubmit(e : React.SubmitEvent){
   mockLogIn({username: usernameText, password: passwordText})
   setMessageBox('login successful')
   setTimeout(()=>{
-      navigate('/home')
+      navigate('/')
   }, 2000)
 
 }

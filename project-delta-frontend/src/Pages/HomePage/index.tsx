@@ -12,7 +12,7 @@ export default function HomePage() {
         <div className="home-actions">
           <Link to="/signup" className="btn-primary">Sign up</Link>
           <Link to="/login" className="btn-secondary">Log in</Link>
-            <Link to="/home" className="btn-secondary">Continue as a guest</Link>
+            <Link to="/" className="btn-secondary">Continue as a guest</Link>
         </div>
       </div>
     </div>

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import { usePlaces } from "../../context/PlacesContext"
 import PlaceCard from "../PlaceCard"
 import './index.css'
@@ -11,7 +12,7 @@ export default function PlaceList() {
   return (
     <div className="list">
       {places.map((place) => (
-        <PlaceCard key={place.id} place={place} />
+        <Link to={`/venue/${place.id}`} ><PlaceCard key={place.id} place={place} /></Link>
       ))}
     </div>
   )

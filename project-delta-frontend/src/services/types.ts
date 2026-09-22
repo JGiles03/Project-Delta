@@ -26,3 +26,6 @@ export type UserLocation = {
     lat: number;
     lng: number;
 }
+export type cardProps = {
+    place: Place,
+}

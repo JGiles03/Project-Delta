@@ -1,0 +1,49 @@
+.place-card {
+  display: flex;
+  gap: 0.875rem;
+  align-items: center;
+  background: var(--color-white);
+  border: 0.09375rem solid var(--color-line);
+  border-radius: 1.25rem;
+  padding: 0.875rem;
+  cursor: pointer;
+  transition: box-shadow 0.15s ease;
+}
+
+.place-card:hover {
+  box-shadow: 0 0.375rem 1rem rgba(0, 0, 0, 0.08);
+}
+
+.place-card-thumb {
+  width: 3.375rem;
+  height: 3.375rem;
+  border-radius: 0.875rem;
+  background: linear-gradient(135deg, #EFE6C7, #E4D9A8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.place-card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.place-card-name {
+  font-size: 0.96875rem;
+  font-weight: 700;
+  color: var(--color-black);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.place-card-address {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  margin-top: 0.125rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

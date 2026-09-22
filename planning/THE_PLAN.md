@@ -137,20 +137,38 @@ Joseph - Testing
 
 #### PM
 
-- **Stakeholder Stand-up**
-- Map display + interactivity
+- List page
+- Connect map to backend
+- deploy backend
+- backend testing
 
 ### Wednesday
 
 #### AM
 
+- user signup + login backend
+- connect FE login to BE
+- login auth FE
+- map search / filtering BE
+- Create business accounts page FE
+
 #### PM
+
+- Business data
+- FE testing 
+- Add reviews + update amenities FE
+- BE testing
 
 ### Thursday
 
 #### AM
 
+- Integration + end 2 end testing
+- polishing css + code
+
 #### PM
+
+- **AI**
 
 ### Friday
 

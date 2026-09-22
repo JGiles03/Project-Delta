@@ -59,6 +59,7 @@ function handleSubmit(e : React.SubmitEvent){
         <p className="auth-switch">
           Don't have an account? <Link to="/signup">Sign up here</Link>
         </p>
+        <Link to='/'>Back</Link>
       </div>
     </div>
   );

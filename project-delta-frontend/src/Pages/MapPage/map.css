@@ -1,18 +1,27 @@
-.map-image {
-    display: flex;
-    flex: 1
-}
-
-img {
-    max-width: 100%;
-}
-
-.searchbar {
-    display: flex;
-    flex: 1;
-    justify-content: center;
-}
-
 .map-page {
-    display: grid;
+  position: relative;
+  height: 100%;   
+  width: 100%;
+  overflow: hidden;
+  background: #F7F7F5;
+}
+
+.search-bar-overlay {
+  top: 1rem;
+  z-index: 1000;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+
+
+.map-container {
+  position: absolute;
+  top: 4rem;
+  bottom: 1.5rem;
+  left: 2rem;
+  right: 2rem;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }

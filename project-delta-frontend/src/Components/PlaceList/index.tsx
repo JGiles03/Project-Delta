@@ -5,7 +5,6 @@ export default function PlaceList() {
 
   const {places} = usePlaces()
 
-console.log(places);
 
   return (
     <>

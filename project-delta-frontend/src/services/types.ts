@@ -21,3 +21,8 @@ export type Place = {
   lat: number;
   lng: number;
 };
+
+export type UserLocation = {
+    lat: number;
+    lng: number;
+}

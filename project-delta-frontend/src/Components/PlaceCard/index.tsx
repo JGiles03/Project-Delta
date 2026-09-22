@@ -7,7 +7,6 @@ type cardProps = {
 
 export default function PlaceCard({place}:cardProps) {
 
-    console.log(place)
   return (
 
     <div className="place-card">

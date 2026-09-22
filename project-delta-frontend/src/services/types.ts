@@ -11,5 +11,4 @@ export type SignUpPayload = {
 export type LogInPayload = {
     username : string;
     password : string;
-    
 }

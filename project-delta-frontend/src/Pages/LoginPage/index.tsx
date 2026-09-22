@@ -12,13 +12,19 @@ export default function LoginPage() {
 
 function handleSubmit(e : React.SubmitEvent){
   e.preventDefault()
+
+  if(usernameText.trim() === "" || passwordText.trim() === ""){
+    setMessageBox('Please input a username and password!')
+    return
+  }
+
   if (!usernameExists(usernameText)){
     setMessageBox('Username not found!')
     return
   }
 
   if(!validPassword(passwordText)){
-     setMessageBox('Invalid password!')
+    setMessageBox('Invalid password!')
     return
   }
 
@@ -40,14 +46,14 @@ function handleSubmit(e : React.SubmitEvent){
           <input
             type="text"
             placeholder="Username"
-            required
+            //required
             value={usernameText}
             onChange={(e) => setUsernameText(e.target.value)}
           />
           <input
             type="password"
             placeholder="Password"
-            required
+            //required
             value={passwordText}
             onChange={(e) => setPasswordText(e.target.value)}
           />

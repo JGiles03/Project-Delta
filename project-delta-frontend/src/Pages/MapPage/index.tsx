@@ -2,13 +2,14 @@ import './map.css'
 import { SearchBar, Map } from '../../Components'
 
 export default function MapPage() {
+
   return (
     <div className='map-page'>
-      <div className="search-bar-overlay">
+      <div data-testid="search-bar-overlay" className="search-bar-overlay">
         <SearchBar />
       </div>
 
-      <div className="map-container">
+      <div data-testid="map-container" className="map-container">
         <Map />
       </div>
     </div>

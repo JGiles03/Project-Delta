@@ -58,7 +58,6 @@ export default function Map() {
         setIsLoading(false);
       },
       {
-        enableHighAccuracy: true,
       },
     );
   }, []);
@@ -73,6 +72,7 @@ export default function Map() {
           `https://api.geoapify.com/v2/places` +
           `?categories=catering.cafe` +
           `&filter=circle:${userLocation?.lng},${userLocation?.lat},${SEARCH_RADIUS}` +
+          `&bias=proximity:${userLocation?.lng},${userLocation?.lat}` +
           `&limit=${LIMIT}` +
           `&apiKey=${API_KEY}`;
 
@@ -83,6 +83,8 @@ export default function Map() {
         }
 
         const data = await response.json();
+
+    console.log(data);
 
         const parsed: Place[] = data.features.map((feature: any) => ({
           id: feature.properties.place_id,

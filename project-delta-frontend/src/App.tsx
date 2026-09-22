@@ -16,6 +16,7 @@ function App() {
           <Route path='list' element={<ListPage />} />
           <Route path='account' element={<AccountPage />}/>
         </Route>
+        {/* <Route path='/*' element={<h1>Page Not found</h1>} /> */}
       </Routes>
     </>
   )

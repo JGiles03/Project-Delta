@@ -33,14 +33,14 @@ describe("Header component", () => {
 
     it("Changes location to account when the correct navlink is clicked", async () => {
         expect(window.location.href).not.toContain("/account")
-        const account = screen.getByText("Account");
+        const account = screen.getByAltText("accountpage");
         await userEvent.click(account);
         expect(window.location.href).toContain("/account")
     });
 
     it("Changes location to list when the correct navlink is clicked", async () => {
         expect(window.location.href).not.toContain("/list")
-        const list = screen.getByText("List");
+        const list = screen.getByAltText("listpage");
         await userEvent.click(list);
         expect(window.location.href).toContain("/list")
     });

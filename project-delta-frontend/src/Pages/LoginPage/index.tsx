@@ -12,6 +12,11 @@ export default function LoginPage() {
 
 function handleSubmit(e : React.SubmitEvent){
   e.preventDefault()
+  if (usernameText.trim() === "" || passwordText.trim() === ""){
+    setMessageBox('Please input a username and password!')
+    return
+  }
+
   if (!usernameExists(usernameText)){
     setMessageBox('Username not found!')
     return

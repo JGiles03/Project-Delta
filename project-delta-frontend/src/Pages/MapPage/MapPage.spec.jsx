@@ -4,6 +4,7 @@ import { screen, render, cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { BrowserRouter } from 'react-router-dom';
+import { Placesprovider } from '../../context/PlacesContext';
 
 import * as matchers from '@testing-library/jest-dom/matchers';
 expect.extend(matchers)
@@ -16,7 +17,10 @@ describe("HomePage page", () => {
     beforeEach(() => {
         render(
         <BrowserRouter>
-            <MapPage />
+        <Placesprovider>
+             <MapPage />
+        </Placesprovider>
+           
         </BrowserRouter>);
     });
 

@@ -67,7 +67,7 @@ describe("HomePage page", () => {
         expect(link.innerHTML).toContain("Continue as a guest")
 
         await userEvent.click(link);
-        expect(window.location.href).not.toContain("/home")
+        expect(window.location.href).toContain("/map")
     });
 
 });

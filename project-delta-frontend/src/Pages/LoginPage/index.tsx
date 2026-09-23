@@ -18,7 +18,7 @@ try{
   setMessageBox('login successful')
   setTimeout(()=>{
     navigate('/home/map')
-  }, 2000)
+  }, 800)
 } catch (err){
   setMessageBox('Invalid Email or password')
 }
@@ -33,7 +33,7 @@ try{
 
         <form onSubmit={handleSubmit}>
           <input
-            type="text"
+            type="email"
             placeholder="email"
             required
             value={emailText}

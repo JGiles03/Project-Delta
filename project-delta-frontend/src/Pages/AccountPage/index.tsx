@@ -4,9 +4,9 @@ import { signOut } from "../../services/auth"
 export default function AccountPage() {
   const navigate = useNavigate()
 
-  async function handleSignOut (){
+function handleSignOut (){
 
-    await signOut()
+    signOut()
     navigate('/home')
   }
   
@@ -20,7 +20,7 @@ export default function AccountPage() {
         <li>req2</li>
         <li>req3</li>
       </ul>
-      <button onClick={(e)=>handleSignOut()} >Sign  Out</button>
+      <button onClick={handleSignOut} >Sign  Out</button>
     </div>
   )
 }

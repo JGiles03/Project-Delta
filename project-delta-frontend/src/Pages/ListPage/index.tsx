@@ -1,5 +1,6 @@
 import { SearchBar } from "../../Components"
 import {PlaceList} from "../../Components"
+
 import './index.css'
 
 export default function ListPage() {

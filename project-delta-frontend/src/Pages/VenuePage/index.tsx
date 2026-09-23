@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "./index.css";
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -41,7 +41,7 @@ export default function VenuePage() {
   return (
     <div className="venue-page">
       <div className="venue-details-container">
-        <h1>{properties.name}</h1>
+        <h1>{properties.name || 'Unknown Name'}</h1>
         <p className="venue-address">{properties.formatted}</p>
 
         {amenity && (

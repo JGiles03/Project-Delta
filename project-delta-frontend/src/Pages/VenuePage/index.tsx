@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-
+import "./index.css";
 const API_KEY = import.meta.env.VITE_API_KEY;
 
 export default function VenuePage() {
@@ -36,7 +36,6 @@ export default function VenuePage() {
   if (!venue?.features?.length) return <div>Venue not found.</div>;
 
   const properties = venue.features[0].properties;
-  const categories: string[] = properties.categories;
   const amenity: string | undefined = properties.datasource?.raw?.amenity;
 
   return (
@@ -45,16 +44,6 @@ export default function VenuePage() {
         <h1>{properties.name}</h1>
         <p className="venue-address">{properties.formatted}</p>
 
-        {categories.length > 0 && (
-          <div className="venue-categories">
-            {categories.map((category) => (
-              <span key={category} className="venue-category-chip">
-                {category}
-              </span>
-            ))}
-          </div>
-        )}
-
         {amenity && (
           <div className="venue-amenity">
             <strong>Type:</strong> {amenity}
@@ -62,13 +51,27 @@ export default function VenuePage() {
         )}
 
         {properties.website && (
-          <Link to={properties.website} className="venue-website">
-            Visit website
-          </Link>
+          <a
+            href={properties.website}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="venue-website"
+          >
+            Visit their website
+          </a>
         )}
       </div>
 
       <div className="Google-maps"></div>
+
+      <a
+        href={`https://www.google.com/maps/dir/?api=1&destination=${properties.lat},${properties.lon}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="btn-accent"
+      >
+        Get directions
+      </a>
     </div>
   );
 }

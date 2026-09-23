@@ -1,14 +1,15 @@
 import { SearchBar } from "../../Components"
+import {PlaceList} from "../../Components"
+import './index.css'
 
 export default function ListPage() {
   return (
-    <div>
-      <h1>Here are some cool places</h1>
+    <div className="list-page" >
+
       <SearchBar />
-      <ul>
-        <li>place1</li>
-        <li>place2</li>
-      </ul>
+      <div className="list-container">
+      <PlaceList />
+      </div>
     </div>
   )
 }

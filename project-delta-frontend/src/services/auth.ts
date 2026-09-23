@@ -1,23 +1,6 @@
 import type { User, SignUpPayload, LogInPayload } from "./types";
 
-const USER_KEY: string = "mock_user";
 
-// export function validPassword(password: string): boolean {
-//   const str = localStorage.getItem(USER_KEY);
-//   if (!str) return false;
-//   const item: User & { password: string } = JSON.parse(str);
-//   return item.password === password;
-// }
-
-// export function mockSignUp({email, password}: SignUpPayload): User{
-
-//     const user : User = {
-//         id: crypto.randomUUID(),
-//         email
-//     };
-//     localStorage.setItem(USER_KEY, JSON.stringify({...user, password}))
-//     return user
-// }
 
 export async function signUp({
   email,
@@ -43,14 +26,7 @@ export async function signUp({
   return await res.json();
 }
 
-// export function mockLogIn({ email, password }: LogInPayload): User | null {
-//   const stored = localStorage.getItem(USER_KEY);
-//   if (!stored) return null;
-//   const user = JSON.parse(stored);
-//   return user.email === email && user.password === password
-//     ? { id: user.id, email: user.email }
-//     : null;
-// }
+
 
 export async function logIn({
   email,

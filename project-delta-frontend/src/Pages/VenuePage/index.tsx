@@ -36,10 +36,14 @@ export default function VenuePage() {
   if (isLoading) return <div>Loading venue...</div>; 
   if (!venue?.features?.length) return <div>Venue not found.</div>;
 
+  const properties = venue.features[0].properties
+  const categories: string[] = venue.categories
+  const amenities: string[] = venue.datasource.raw.amenity
+
   return (
     <div className="venue-page">
       <div className="venue-details-container">
-        <h1>{venue.features[0].properties.name}</h1>
+        <h1>{properties.name}</h1>
       </div>
 
       <div className="Google-maps"></div>

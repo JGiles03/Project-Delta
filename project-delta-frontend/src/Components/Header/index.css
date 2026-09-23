@@ -32,7 +32,7 @@
   text-decoration: none;
   font-size: 0.8125rem;
   font-weight: 600;
-  padding: 0.1rem;
+  padding: 0.4rem;
   border-radius: 0.75rem;
   border: 0.125rem solid transparent;
 }
@@ -43,6 +43,7 @@
 }
 
 .nav-links img{
-  width: 5vh;
-  height: 5vh;
+  width: 3vh;
+  height: 3%;
 }
+

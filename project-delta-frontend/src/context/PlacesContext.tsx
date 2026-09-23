@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 const SEARCH_RADIUS = 1000;
-const LIMIT = 20;
+const LIMIT = 100;
 
 
 type placesContextType = {
@@ -92,7 +92,7 @@ export function Placesprovider({ children }: { children: ReactNode }) {
     }, [userLocation]);
 
   return (
-    <PlacesContext.Provider value={{ places, userLocation, isLoading, error }}>
+    <PlacesContext.Provider value={{ places, userLocation, isLoading, error}}>
       {children}
     </PlacesContext.Provider>
   );

@@ -1,9 +1,12 @@
 .map-page {
-  position: relative;
-  height: 100%;   
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   overflow: hidden;
-  background: #F7F7F5;
+  background: var(--color-white);
+  padding: 1.5rem 1rem;
+  gap: 1rem;
 }
 
 .search-bar-overlay {

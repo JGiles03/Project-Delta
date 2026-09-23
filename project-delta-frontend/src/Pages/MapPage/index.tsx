@@ -1,4 +1,4 @@
-import './map.css'
+import './index.css'
 import { SearchBar, Map } from '../../Components'
 
 export default function MapPage() {

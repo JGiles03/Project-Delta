@@ -1,7 +1,5 @@
 import type { User, SignUpPayload, LogInPayload } from "./types";
 
-
-
 export async function signUp({
   email,
   password,
@@ -26,12 +24,7 @@ export async function signUp({
   return await res.json();
 }
 
-
-
-export async function logIn({
-  email,
-  password,
-}: LogInPayload): Promise<User | null> {
+export async function logIn({ email, password }: LogInPayload): Promise<void> {
   const options = {
     method: "POST",
     headers: {
@@ -50,13 +43,9 @@ export async function logIn({
   }
 
   const user = await res.json();
-
   localStorage.setItem("token", user.token);
-  localStorage.setItem("user", user)
-  return user;
 }
 
 export function signOut(): void {
-  localStorage.removeItem('token');
-  localStorage.removeItem('user')
+  localStorage.removeItem("token");
 }

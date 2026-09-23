@@ -13,7 +13,7 @@ export default function PlaceCard({ place }: cardProps) {
       </div>
 
       <div className="place-card-body">
-        <h2 className="place-card-name">{place.name}</h2>
+        <h2 data-testid="place-card-name" className="place-card-name">{place.name}</h2>
         <p className="place-card-address">{place.address}</p>
       </div>
     </div>

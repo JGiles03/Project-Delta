@@ -6,11 +6,11 @@ import './index.css'
 export default function PlaceList() {
   const { places, isLoading, error } = usePlaces()
 
-  if (error) return <div className="list-message">{error}</div>
+  if (error) return <div data-testid="list-message" className="list-message">{error}</div>
   if (isLoading) return <div className="list-message">Loading venues...</div>
 
   return (
-    <div className="list">
+    <div data-testid="list" className="list">
       {places.map((place) => (
         <Link to={`/home/venue/${place.id}`} ><PlaceCard key={place.id} place={place} /></Link>
       ))}

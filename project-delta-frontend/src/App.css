@@ -178,14 +178,3 @@ nav {
   padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom, 0px));
 }
 
-.nav-links {
-  color: var(--color-text-muted);
-  text-align: center;
-  text-decoration: none;
-  font-size: 0.8125rem;
-  font-weight: 600;
-}
-
-.nav-links.active {
-  color: var(--color-yellow-deep);
-}

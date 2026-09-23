@@ -7,7 +7,7 @@ import { usePlaces } from "../../context/PlacesContext";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-const TILES_URL = `https://maps.geoapify.com/v1/tile/carto/{z}/{x}/{y}.png?apiKey=${API_KEY}`;
+const TILES_URL = `https://maps.geoapify.com/v1/tile/positron/{z}/{x}/{y}.png?apiKey=${API_KEY}`;
 
 
 

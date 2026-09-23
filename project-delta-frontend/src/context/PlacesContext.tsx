@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 const SEARCH_RADIUS = 1000;
-const LIMIT = 20;
+const LIMIT = 100;
 
 
 type placesContextType = {

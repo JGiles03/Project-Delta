@@ -51,27 +51,29 @@ export default function VenuePage() {
         )}
 
         {properties.website && (
-          <a
-            href={properties.website}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="venue-website"
-          >
-            Visit their website
-          </a>
+          <div className="venue-website">
+            <a
+              href={properties.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="venue-website"
+            >
+              Visit their website
+            </a>
+          </div>
         )}
       </div>
 
-      <div className="Google-maps"></div>
-
-      <a
-        href={`https://www.google.com/maps/dir/?api=1&destination=${properties.lat},${properties.lon}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="btn-accent"
-      >
-        Get directions
-      </a>
+      <div className="Google-maps">
+        <a
+          href={`https://www.google.com/maps/dir/?api=1&destination=${properties.lat},${properties.lon}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-accent"
+        >
+          Get directions
+        </a>
+      </div>
     </div>
   );
 }

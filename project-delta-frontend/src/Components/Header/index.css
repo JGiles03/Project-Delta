@@ -23,3 +23,26 @@
   border-top: 1.5px solid #E7E7E3;
 }
 
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  text-align: center;
+  text-decoration: none;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 0.1rem;
+  border-radius: 0.75rem;
+  border: 0.125rem solid transparent;
+}
+
+.nav-links.active {
+  color: var(--color-yellow-deep);
+  border-color: var(--color-yellow);
+}
+
+.nav-links img{
+  width: 5vh;
+  height: 5vh;
+}

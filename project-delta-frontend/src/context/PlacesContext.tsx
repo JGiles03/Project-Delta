@@ -92,7 +92,7 @@ export function Placesprovider({ children }: { children: ReactNode }) {
     }, [userLocation]);
 
   return (
-    <PlacesContext.Provider value={{ places, userLocation, isLoading, error }}>
+    <PlacesContext.Provider value={{ places, userLocation, isLoading, error}}>
       {children}
     </PlacesContext.Provider>
   );

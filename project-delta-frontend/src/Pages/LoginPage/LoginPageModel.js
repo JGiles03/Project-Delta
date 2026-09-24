@@ -12,6 +12,7 @@ class LoginPage {
         await this.page.goto("https://project-delta-m6ba.onrender.com/home", { waitUntil: 'domcontentloaded' })
         const login = this.page.getByText("Log in")
         await login.click()
+        // await this.page.goto("https://project-delta-m6ba.onrender.com/login", { waitUntil: 'domcontentloaded' })
     }
 
     async fillRequiredFields({ username, password }){
@@ -24,7 +25,7 @@ class LoginPage {
     }
 
     async expectSuccess() {
-        await expect(this.page).toHaveURL("https://project-delta-m6ba.onrender.com")
+        await expect(this.page).toHaveURL("https://project-delta-m6ba.onrender.com/home/map")
     }
 
     async expectFailure() {

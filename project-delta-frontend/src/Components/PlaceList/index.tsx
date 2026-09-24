@@ -12,7 +12,7 @@ export default function PlaceList() {
   return (
     <div className="list">
       {places.map((place) => (
-        <Link to={`/home/venue/${place.id}`} ><PlaceCard key={place.id} place={place} /></Link>
+        <Link to={`/map/venue/${place.id}`} ><PlaceCard key={place.id} place={place} /></Link>
       ))}
     </div>
   )

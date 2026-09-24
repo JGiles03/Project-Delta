@@ -28,7 +28,9 @@ function App() {
       <Route path="/account" element={<Header />}>
         <Route index element={<AccountPage />} />
       </Route>
-      <Route path="venue/:id" element={<VenuePage />} />
+      <Route path="venue/:id" element={<Header />}>
+        <Route index element={<VenuePage />} />
+      </Route>
       <Route path="*" element={<h1>Page Not Found</h1>} />
     </Routes>
   );

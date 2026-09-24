@@ -1,15 +1,15 @@
 export type User = {
     id : string;
-    username : string;
+    email : string;
 }
 
 export type SignUpPayload = {
-    username : string;
+    email : string;
     password : string;
 }
 
 export type LogInPayload = {
-    username : string;
+    email : string;
     password : string;
     
 }

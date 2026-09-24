@@ -12,9 +12,9 @@ export default function Header() {
       </div>
 
       <nav className="bottom-nav">
-        <NavLink className="nav-links" to='/home/map'><img src={home} alt="homepage" /></NavLink>
-        <NavLink className="nav-links list-link" to='/home/list'><img src={list} alt="listpage" /></NavLink>
-        <NavLink className="nav-links" to='/home/account'><img src={account} alt="accountpage" /></NavLink>
+        <NavLink className="nav-links" to='/map'><img src={home} alt="homepage" /></NavLink>
+        <NavLink className="nav-links list-link" to='/list'><img src={list} alt="listpage" /></NavLink>
+        <NavLink className="nav-links" to='/account'><img src={account} alt="accountpage" /></NavLink>
       </nav>
     </div>
   )

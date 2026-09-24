@@ -4,7 +4,7 @@ import { SignupPage } from "../Pages/SignupPage/SignupPageModel";
 import { describe } from "node:test";
 
 describe("Signup page tests", () => {
-  test('logs in with correct user and password', async ({ page }) => {
+  test('signs up with new user and matching passwords', async ({ page }) => {
     const form = new SignupPage(page)
     await form.goto()
 

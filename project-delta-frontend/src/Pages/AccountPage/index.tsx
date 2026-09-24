@@ -1,6 +1,6 @@
-import { Link, useNavigate } from "react-router-dom"
-import { useEffect, useState } from "react"
-import { signOut } from "../../services/auth"
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { signOut } from "../../services/auth";
 import { getCurrentUserTEMP } from "../../services/auth";
 import "./index.css";
 
@@ -10,46 +10,50 @@ export default function AccountPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    const email = localStorage.getItem('email');
+    const token = localStorage.getItem("token");
+    const email = localStorage.getItem("email");
 
     if (!token || !email) {
       setIsLoading(false);
       return;
     }
 
-  async function loadUser(email: any){
-    try{
-      const currentUser = await getCurrentUserTEMP(email)
-      setUser(currentUser)
-
-    } catch(err){
-      setUser(null)
-    }finally{
-      setIsLoading(false)
+    async function loadUser(email: any) {
+      try {
+        const currentUser = await getCurrentUserTEMP(email);
+        setUser(currentUser);
+      } catch (err) {
+        setUser(null);
+      } finally {
+        setIsLoading(false);
+      }
     }
-  }
     loadUser(email);
-}, []);
-
+  }, []);
 
   function handleSignOut() {
     signOut();
-    navigate('/home');
+    navigate("/home");
   }
 
   if (isLoading) return <div className="account-message">Loading...</div>;
 
-  if (!user) {
-    return (
-      <div className="account-page">
-        <div className="account-card">
-          <h1>You are not signed in</h1>
-          <Link to="/login" className="btn-primary">Login Here</Link>
+if (!user) {
+  return (
+    <div className="account-page">
+      <div className="account-card">
+        <h1>You're not signed in</h1>
+        <p className="account-subtext">
+          Log in to leave reviews and manage your account.
+        </p>
+        <div className="account-actions">
+          <Link to="/login" className="btn-primary">Log in</Link>
+          <Link to="/signup" className="btn-secondary">Create an account</Link>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
+}
 
   return (
     <div className="account-page">
@@ -60,7 +64,11 @@ export default function AccountPage() {
 
         <h1>{user.email}</h1>
         <p className="account-member-since">
-          Member since {new Date(user.created_at).toLocaleDateString('en-GB', { month: 'long', year: 'numeric' })}
+          Member since{" "}
+          {new Date(user.created_at).toLocaleDateString("en-GB", {
+            month: "long",
+            year: "numeric",
+          })}
         </p>
 
         <div className="account-section">
@@ -68,7 +76,9 @@ export default function AccountPage() {
           <p className="placeholder-note">Coming soon</p>
         </div>
 
-        <button onClick={handleSignOut} className="btn-secondary">Sign Out</button>
+        <button onClick={handleSignOut} className="btn-secondary">
+          Sign Out
+        </button>
       </div>
     </div>
   );

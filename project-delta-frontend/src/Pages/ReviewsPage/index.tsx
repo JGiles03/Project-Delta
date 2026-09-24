@@ -1,13 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import type { Review } from "../../services/types";
 
 
-type Review = {
-  id: number;
-  rating: number;
-  comment: string;
-  createdAt: string;
-};
 
 const GUEST_VISIBLE_COUNT = 1;
 

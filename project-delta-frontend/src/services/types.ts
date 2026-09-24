@@ -29,3 +29,10 @@ export type UserLocation = {
 export type cardProps = {
     place: Place,
 }
+
+export type Review = {
+  id: number;
+  rating: number;
+  comment: string;
+  createdAt: string;
+};

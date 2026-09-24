@@ -31,6 +31,12 @@ function App() {
       <Route path="venue/:id" element={<Header />}>
         <Route index element={<VenuePage />} />
       </Route>
+      <Route path="venue/:id/post-review" >
+        <Route index element={<h1>Here to make a review</h1>}/>
+      </Route>
+      <Route path="venue/:id/reviews" >
+        <Route index element={<h1>Here are all the reviews for this place</h1>}/>
+      </Route>
       <Route path="*" element={<h1>Page Not Found</h1>} />
     </Routes>
   );

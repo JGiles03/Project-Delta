@@ -33,10 +33,10 @@ function App() {
       <Route path="venue/:id" element={<Header />}>
         <Route index element={<VenuePage />} />
       </Route>
-      <Route path="venue/:id/post-review" >
+      <Route path="venue/:id/post-review" element={<Header />} >
         <Route index element={<ReviewForm />}/>
       </Route>
-      <Route path="venue/:id/reviews" >
+      <Route path="venue/:id/reviews" element={<Header />} >
         <Route index element={<ReviewsPage />}/>
       </Route>
       <Route path="*" element={<h1>Page Not Found</h1>} />

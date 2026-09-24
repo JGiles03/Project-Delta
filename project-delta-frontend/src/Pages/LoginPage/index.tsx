@@ -1,37 +1,27 @@
 import { Link, useNavigate } from "react-router-dom";
-import { mockLogIn, usernameExists, validPassword } from "../../services/auth";
+import { logIn } from "../../services/auth";
 import { useState } from "react";
 
 
 
 export default function LoginPage() {
-    const navigate = useNavigate()
-    const [usernameText, setUsernameText] = useState<string>('')
+  const navigate = useNavigate()
+    const [emailText, setEmailText] = useState<string>('')
     const [passwordText, setPasswordText] = useState<string>('')
     const [messageBox, setMessageBox] = useState<string>('')
 
-function handleSubmit(e : React.SubmitEvent){
+async function handleSubmit(e : React.SubmitEvent){
   e.preventDefault()
-  if (usernameText.trim() === "" || passwordText.trim() === ""){
-    setMessageBox('Please input a username and password!')
-    return
-  }
 
-  if (!usernameExists(usernameText)){
-    setMessageBox('Username not found!')
-    return
-  }
-
-  if(!validPassword(passwordText)){
-     setMessageBox('Invalid password!')
-    return
-  }
-
-  mockLogIn({username: usernameText, password: passwordText})
+try{
+  await logIn({email: emailText, password: passwordText})
   setMessageBox('login successful')
   setTimeout(()=>{
-      navigate(-1)
-  }, 2000)
+    navigate('/map')
+  }, 800)
+} catch (err){
+  setMessageBox('Invalid Email or password')
+}
 
 }
 
@@ -43,11 +33,11 @@ function handleSubmit(e : React.SubmitEvent){
 
         <form onSubmit={handleSubmit}>
           <input
-            type="text"
-            placeholder="Username"
-            //required
-            value={usernameText}
-            onChange={(e) => setUsernameText(e.target.value)}
+            type="email"
+            placeholder="email"
+            required
+            value={emailText}
+            onChange={(e) => setEmailText(e.target.value)}
           />
           <input
             type="password"

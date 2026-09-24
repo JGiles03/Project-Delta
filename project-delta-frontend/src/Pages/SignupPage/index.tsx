@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { mockSignUp, usernameExists } from "../../services/auth";
+import {  signUp } from "../../services/auth";
 import { useState } from "react";
 
 
@@ -7,30 +7,31 @@ import { useState } from "react";
 export default function SignupPage() {
   const navigate = useNavigate()
 
-  const [usernameText, setUsernameText] = useState<string>('')
+  const [emailText, setEmailText] = useState<string>('')
   const [passwordText, setPasswordText] = useState<string>('')
   const [conPasswordText, setConPasswordText] = useState<string>('')
   const [messageBox, setMessageBox] = useState<string>('')
 
-function handleSubmit(e : React.SubmitEvent){
+async function handleSubmit(e : React.SubmitEvent){
     e.preventDefault()
     
-    if(usernameExists(usernameText)) {
-      setMessageBox('This username already exists!');
-      return;
-    }
     
     if (passwordText !== conPasswordText){
       setMessageBox('Please make sure the passwords match!');
       return;
     } 
+    try{
 
-    mockSignUp({username : usernameText, password: passwordText});
-    setMessageBox('Signup successful')
-   setTimeout(()=>{
-    navigate('/login')
-   }, 2000)
-    
+      await signUp({email : emailText, password: passwordText});
+
+      setMessageBox('Signup successful')
+      setTimeout(()=>{
+        navigate('/login')
+      }, 2000)
+      
+    } catch (err){
+      setMessageBox('This email is already assigned to an account')
+    }
 }
 
   return (
@@ -41,11 +42,11 @@ function handleSubmit(e : React.SubmitEvent){
 
         <form onSubmit={handleSubmit}>
           <input
-            type="text"
-            placeholder="Username"
+            type="email"
+            placeholder="Email"
             required
-            value={usernameText}
-            onChange={(e) => setUsernameText(e.target.value)}
+            value={emailText}
+            onChange={(e) => setEmailText(e.target.value)}
           />
           <input
             type="password"

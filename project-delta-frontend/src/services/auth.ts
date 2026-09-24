@@ -1,42 +1,61 @@
-import type { User, SignUpPayload, LogInPayload} from "./types";
+import type { User, SignUpPayload, LogInPayload } from "./types";
 
-const USER_KEY:string = 'mock_user'
+export async function signUp({
+  email,
+  password,
+}: SignUpPayload): Promise<User | null> {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email,
+      password,
+    }),
+  };
 
-export function usernameExists(username: string): boolean {
-    const str = localStorage.getItem(USER_KEY);
-    if (!str) return false;
-    
-    const item: User & { password: string } = JSON.parse(str);
-    return item.username === username;
+  const res = await fetch("http://4.223.159.135/auth/register", options);
+
+  if (!res.ok) {
+    throw new Error("Failed to create account");
+  }
+
+  return await res.json();
 }
 
-export function validPassword(password : string): boolean{
-     const str = localStorage.getItem(USER_KEY);
-    if (!str) return false;
-    const item: User & { password: string } = JSON.parse(str);
-    return item.password === password;
+export async function logIn({ email, password }: LogInPayload): Promise<void> {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email,
+      password,
+    }),
+  };
 
+  const res = await fetch("http://4.223.159.135/auth/login", options);
+
+  if (!res.ok) {
+    throw new Error("Failed to login");
+  }
+
+  const user = await res.json();
+  localStorage.setItem("token", user.token);
+  localStorage.setItem("email", email)
 }
 
-export function mockSignUp({username, password}: SignUpPayload): User{
-
-    const user : User = {
-        id: crypto.randomUUID(), 
-        username
-    };
-    localStorage.setItem(USER_KEY, JSON.stringify({...user, password}))
-    return user
+export function signOut(): void {
+  localStorage.removeItem("token");
 }
 
+export async function getCurrentUserTEMP(email: string) {
+  const res = await fetch('http://4.223.159.135/auth')
 
-export function mockLogIn({username, password}: LogInPayload): User | null {
-    const stored = localStorage.getItem(USER_KEY)
-    if (!stored)return null;
-    const user = JSON.parse(stored)
-    return user.username === username && user.password === password ? {id : user.id, username: user.username}  : null 
-}
+  if (!res.ok) throw new Error('Failed to fetch users');
 
-
-export function signOut():void{
-    localStorage.removeItem(USER_KEY);
+  const users = await res.json();
+  return users.find((u: any) => u.email === email);
 }

@@ -57,7 +57,7 @@ export default function Map() {
           position={[place.lat, place.lng]}
           icon={placesIcon}
         >
-          <Link to={`/home/venue/${place.id}`}>
+          <Link to={`/venue/${place.id}`}>
             <Popup>
               <strong>{place.name}</strong>
               <br />

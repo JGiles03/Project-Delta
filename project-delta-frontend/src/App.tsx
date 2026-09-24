@@ -10,6 +10,8 @@ import {
   ListPage,
   AccountPage,
   VenuePage,
+  ReviewForm,
+  ReviewsPage,
 } from "./Pages";
 
 function App() {
@@ -32,10 +34,10 @@ function App() {
         <Route index element={<VenuePage />} />
       </Route>
       <Route path="venue/:id/post-review" >
-        <Route index element={<h1>Here to make a review</h1>}/>
+        <Route index element={<ReviewForm />}/>
       </Route>
       <Route path="venue/:id/reviews" >
-        <Route index element={<h1>Here are all the reviews for this place</h1>}/>
+        <Route index element={<ReviewsPage />}/>
       </Route>
       <Route path="*" element={<h1>Page Not Found</h1>} />
     </Routes>

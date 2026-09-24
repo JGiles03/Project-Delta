@@ -5,7 +5,7 @@ import { useState } from "react";
 
 
 export default function LoginPage() {
-  const navigate = useNavigate()
+    const navigate = useNavigate()
     const [usernameText, setUsernameText] = useState<string>('')
     const [passwordText, setPasswordText] = useState<string>('')
     const [messageBox, setMessageBox] = useState<string>('')
@@ -30,7 +30,7 @@ function handleSubmit(e : React.SubmitEvent){
   mockLogIn({username: usernameText, password: passwordText})
   setMessageBox('login successful')
   setTimeout(()=>{
-      navigate('/')
+      navigate(-1)
   }, 2000)
 
 }

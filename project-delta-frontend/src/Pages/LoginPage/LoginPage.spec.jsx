@@ -42,11 +42,11 @@ describe("LoginPage page", () => {
         expect(button).toBeInTheDocument();
         expect(button.innerHTML).toContain("Log in")
 
-        const username = screen.getByPlaceholderText("Username")
+        const email = screen.getByPlaceholderText("Email")
         const password = screen.getByPlaceholderText("Password")
 
         //fill in sign up details
-        fireEvent.change(username, { target: { value: 'user1' } });
+        fireEvent.change(email, { target: { value: 'user1@123.com' } });
         fireEvent.change(password, { target: { value: 'user1' } });
 
         expect(window.location.href).not.toContain("/home")
@@ -66,29 +66,28 @@ describe("LoginPage page", () => {
 
     });
 
-    // needs to be connected to db to work
-    // it("alerts if password is wrong", async () => {
-    //     const button = screen.getByRole("button", {name: "Log in"})
-    //     const username = screen.getByPlaceholderText("Username")
-    //     const password = screen.getByPlaceholderText("Password")
-    //     fireEvent.change(username, { target: { value: 'user1' } });
-    //     fireEvent.change(password, { target: { value: 'incorrect' } });
-    //     fireEvent.click(button)
+    it("alerts if password is wrong", async () => {
+        const button = screen.getByRole("button", {name: "Log in"})
+        const email = screen.getByPlaceholderText("Email")
+        const password = screen.getByPlaceholderText("Password")
+        fireEvent.change(email, { target: { value: 'user1@123.com' } });
+        fireEvent.change(password, { target: { value: 'incorrect' } });
+        fireEvent.click(button)
 
-    //     const alert = screen.getByText("Invalid password!")
-    //     expect(alert).toBeInTheDocument()
+        const alert = screen.getByText("Invalid Email or password")
+        expect(alert).toBeInTheDocument()
 
-    // });
+    });
 
     it("alerts if username not found", async () => {
         const button = screen.getByRole("button", {name: "Log in"})
-        const username = screen.getByPlaceholderText("Username")
+        const email = screen.getByPlaceholderText("Email")
         const password = screen.getByPlaceholderText("Password")
-        fireEvent.change(username, { target: { value: 'user2' } });
+        fireEvent.change(email, { target: { value: 'incorrect@123.com' } });
         fireEvent.change(password, { target: { value: 'user1' } });
         fireEvent.click(button)
 
-        const alert = screen.getByText("Username not found!")
+        const alert = screen.getByText("Invalid Email or password")
         expect(alert).toBeInTheDocument()
 
     });

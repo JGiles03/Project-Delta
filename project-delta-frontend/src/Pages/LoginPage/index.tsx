@@ -34,7 +34,7 @@ try{
         <form onSubmit={handleSubmit}>
           <input
             type="email"
-            placeholder="email"
+            placeholder="Email"
             required
             value={emailText}
             onChange={(e) => setEmailText(e.target.value)}

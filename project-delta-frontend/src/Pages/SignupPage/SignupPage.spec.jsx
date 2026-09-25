@@ -42,12 +42,12 @@ describe("SignupPage page", () => {
         expect(button).toBeInTheDocument();
         expect(button.innerHTML).toContain("Sign up")
 
-        const username = screen.getByPlaceholderText("Username")
+        const email = screen.getByPlaceholderText("Email")
         const password = screen.getByPlaceholderText("Password")
         const passwordCheck = screen.getByPlaceholderText("Confirm password")
 
         //fill in sign up details
-        fireEvent.change(username, { target: { value: 'user1' } });
+        fireEvent.change(email, { target: { value: 'user1@123.com' } });
         fireEvent.change(password, { target: { value: 'user1' } });
         fireEvent.change(passwordCheck, { target: { value: 'user1' } });
 
@@ -71,10 +71,10 @@ describe("SignupPage page", () => {
 
     it("alerts if passwords don't match", async () => {
         const button = screen.getByRole("button", {name: "Sign up"})
-        const username = screen.getByPlaceholderText("Username")
+        const email = screen.getByPlaceholderText("Email")
         const password = screen.getByPlaceholderText("Password")
         const passwordCheck = screen.getByPlaceholderText("Confirm password")
-        fireEvent.change(username, { target: { value: 'user2' } });
+        fireEvent.change(email, { target: { value: 'user2@123.com' } });
         fireEvent.change(password, { target: { value: 'user1' } });
         fireEvent.change(passwordCheck, { target: { value: 'user2' } });
         fireEvent.click(button)
@@ -86,15 +86,15 @@ describe("SignupPage page", () => {
 
     it("alerts if username already taken", async () => {
         const button = screen.getByRole("button", {name: "Sign up"})
-        const username = screen.getByPlaceholderText("Username")
+        const email = screen.getByPlaceholderText("Email")
         const password = screen.getByPlaceholderText("Password")
         const passwordCheck = screen.getByPlaceholderText("Confirm password")
-        fireEvent.change(username, { target: { value: 'user1' } });
+        fireEvent.change(email, { target: { value: 'user1@123.com' } });
         fireEvent.change(password, { target: { value: 'user1' } });
-        fireEvent.change(passwordCheck, { target: { value: 'user2' } });
+        fireEvent.change(passwordCheck, { target: { value: 'user1' } });
         fireEvent.click(button)
 
-        const alert = screen.getByText("This username already exists!")
+        const alert = screen.getByText("This email is already assigned to an account")
         expect(alert).toBeInTheDocument()
 
     });

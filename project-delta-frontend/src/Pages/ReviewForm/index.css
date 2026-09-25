@@ -1,0 +1,78 @@
+.review-form-page {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg);
+  overflow-y: auto;
+}
+
+.review-form-card {
+  background: var(--color-white);
+  border-radius: 1.75rem;
+  box-shadow: 0 0.65rem 2rem rgba(0, 0, 0, 0.08);
+  padding: 2.5rem 2rem;
+  max-width: 70vh;
+  width: 100%;
+  text-align: center;
+}
+
+.review-form-card h1 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-black);
+  letter-spacing: -0.05rem;
+  margin-bottom: 1rem;
+}
+
+.review-form-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: left;
+}
+
+.review-form-label {
+  font-weight: 700;
+  color: var(--color-black);
+  margin-bottom: -0.5rem;
+}
+
+.rating-input {
+  display: flex;
+  gap:0.7rem;
+  justify-content: center;
+}
+
+.rating-star {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--color-line);
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.15s ease, transform 0.1s ease;
+}
+
+.rating-star:hover {
+  transform: scale(1.1);
+}
+
+.rating-star.active {
+  color: var(--color-yellow);
+}
+
+.review-form-card textarea {
+  border: 0.1rem solid var(--color-line);
+  border-radius: 0.8rem;
+  padding: 1rem 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--color-black);
+  background: var(--color-bg);
+  min-height: 6rem;
+}
+
+

@@ -25,14 +25,17 @@ export default function ReviewForm() {
     try {
       setIsSubmitting(true);
 
-      const res = await fetch(`http://4.223.159.135/venues/${id}/reviews`, {
+
+      const options = {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ rating, comment }),
-      });
+      }
+
+      const res = await fetch(`http://4.223.159.135/venues/${id}/reviews`, options);
 
       if (!res.ok) {
         throw new Error('Failed to submit review');

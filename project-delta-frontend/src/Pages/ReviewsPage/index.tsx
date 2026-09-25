@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import type { Review } from "../../services/types";
-
+import './index.css'
 
 
 const GUEST_VISIBLE_COUNT = 1;
@@ -50,26 +50,25 @@ export default function ReviewsPage() {
 //     return <div className="reviews-message">Loading reviews...</div>;
 //   }
 
-  if (reviews.length === 0) {
-    return (
-      <div className="reviews-page">
-        <h1>Reviews</h1>
+if (reviews.length === 0) {
+  return (
+    <div className="reviews-page">
+      <h1>Reviews</h1>
 
-        <div className="reviews-message">
+      <div className="reviews-empty-card">
+        <p className="reviews-empty-text">
           No reviews yet — be the first to leave one!
-        </div>
+        </p>
 
         {token && (
-          <Link
-            to={`/venue/${id}/post-review`}
-            className="btn-accent"
-          >
+          <Link to={`/venue/${id}/post-review`} className="btn-accent">
             Post a review
           </Link>
         )}
       </div>
-    );
-  }
+    </div>
+  );
+}
 
   const visibleReviews = token
     ? reviews

@@ -51,10 +51,12 @@
   background: var(--color-white);
   border-radius: 1.25rem;
   box-shadow: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.08);
-  padding: 1.5rem;
+  padding: 5rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
   min-height: 10rem;
 }
 

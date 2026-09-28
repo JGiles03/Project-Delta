@@ -44,7 +44,7 @@ export async function logIn({ email, password }: LogInPayload): Promise<void> {
 
   const user = await res.json();
   localStorage.setItem("token", user.token);
-  localStorage.setItem("email", email)
+  localStorage.setItem("userId", user.id)
 }
 
 export function signOut(): void {

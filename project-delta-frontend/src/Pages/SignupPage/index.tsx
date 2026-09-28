@@ -1,38 +1,38 @@
 import { Link, useNavigate } from "react-router-dom";
-import {  signUp } from "../../services/auth";
+import { signUp, logIn } from "../../services/auth";
 import { useState } from "react";
 
-
-
 export default function SignupPage() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const [emailText, setEmailText] = useState<string>('')
-  const [passwordText, setPasswordText] = useState<string>('')
-  const [conPasswordText, setConPasswordText] = useState<string>('')
-  const [messageBox, setMessageBox] = useState<string>('')
+  const [emailText, setEmailText] = useState<string>("");
+  const [passwordText, setPasswordText] = useState<string>("");
+  const [conPasswordText, setConPasswordText] = useState<string>("");
+  const [messageBox, setMessageBox] = useState<string>("");
 
-async function handleSubmit(e : React.SubmitEvent){
-    e.preventDefault()
-    
-    
-    if (passwordText !== conPasswordText){
-      setMessageBox('Please make sure the passwords match!');
+  async function handleSubmit(e: React.SubmitEvent) {
+    e.preventDefault();
+
+    if (passwordText !== conPasswordText) {
+      setMessageBox("Please make sure the passwords match!");
       return;
-    } 
-    try{
-
-      await signUp({email : emailText, password: passwordText});
-
-      setMessageBox('Signup successful')
-      setTimeout(()=>{
-        navigate('/login')
-      }, 2000)
-      
-    } catch (err){
-      setMessageBox('This email is already assigned to an account')
     }
-}
+
+    try {
+      await signUp({ email: emailText, password: passwordText });
+    } catch (err) {
+      setMessageBox("This email is already assigned to an account");
+      return; // stop here, don't try to log in
+    }
+
+    try {
+      await logIn({ email: emailText, password: passwordText });
+      navigate("/onboarding");
+    } catch {
+      setMessageBox("Account created! Please log in.");
+      setTimeout(() => navigate("/login"), 500);
+    }
+  }
 
   return (
     <div className="auth-container">
@@ -62,7 +62,9 @@ async function handleSubmit(e : React.SubmitEvent){
             value={conPasswordText}
             onChange={(e) => setConPasswordText(e.target.value)}
           />
-          <button type="submit" className="btn-primary">Sign up</button>
+          <button type="submit" className="btn-primary">
+            Sign up
+          </button>
         </form>
 
         {messageBox && <div className="message-box">{messageBox}</div>}
@@ -70,7 +72,7 @@ async function handleSubmit(e : React.SubmitEvent){
         <p className="auth-switch">
           Already have an account? <Link to="/login">Log in here</Link>
         </p>
-        <Link to='/'>Back</Link>
+        <Link to="/">Back</Link>
       </div>
     </div>
   );

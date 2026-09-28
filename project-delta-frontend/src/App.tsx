@@ -12,6 +12,7 @@ import {
   VenuePage,
   ReviewForm,
   ReviewsPage,
+  OnboardingPage,
 } from "./Pages";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/home" element={<HomePage />} />
+      <Route path='/onboarding' element={<OnboardingPage />} />
       <Route path="/map" element={<Header />}>
         <Route index element={<MapPage />} />
       </Route>

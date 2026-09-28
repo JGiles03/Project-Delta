@@ -175,28 +175,47 @@ Joseph - Testing
 #### AM
 
 #### PM
+- AI research/ planning
 
 ## Week 2
 
 ### Monday
 
 #### AM
+- business data analytics
+- AI form frontend
+- AI API connection
 
 #### PM
+
+- AI response formatting + display
+- documentation
 
 ### Tuesday
 
 #### AM
 
+- documentation
+- testing
+- business data frontend
+
 #### PM
+
+- bug fixes
+- transport plans?
+- any extra features
 
 ### Wednesday
 
 #### AM
+- finish business data
+- transport
+- extra features
 
 #### PM
 - Presentation prep
 - Any code left to polish
+- documentation
 
 ### Thursday
 

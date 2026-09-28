@@ -4,13 +4,13 @@ import type { Place, UserLocation } from "../services/types";
 import type { ReactNode } from "react";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
-const SEARCH_RADIUS = 1000;
+const SEARCH_RADIUS = 35000;
 const LIMIT = 100;
 
 
 const FIXED_LOCATION: UserLocation = {
-  lat: 51.5098,
-  lng: -0.1271,
+  lat: 51.8098,
+  lng: -0.2237,
 };
 
 type placesContextType = {

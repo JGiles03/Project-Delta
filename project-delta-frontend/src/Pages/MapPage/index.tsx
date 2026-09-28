@@ -1,6 +1,5 @@
 import './index.css'
 import { SearchBar, Map } from '../../Components'
-import TourStart from '../../Components/Tour'
 
 export default function MapPage() {
   return (

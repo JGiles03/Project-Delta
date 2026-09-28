@@ -13,7 +13,7 @@ export default function SearchBar() {
     }
 
     return (
-        <div className="searchbar" data-tour={TOUR_STEPS.MAPSEARCH}>
+        <div className="searchbar">
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
@@ -21,6 +21,7 @@ export default function SearchBar() {
                     placeholder={searchString}
                     value={inputValue}
                     required
+                    data-tour={TOUR_STEPS.MAPSEARCH}
                 />
                 <input type="submit" value="Search" />
             </form>

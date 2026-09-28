@@ -8,6 +8,11 @@ const SEARCH_RADIUS = 1000;
 const LIMIT = 100;
 
 
+const FIXED_LOCATION: UserLocation = {
+  lat: 51.5098,
+  lng: -0.1271,
+};
+
 type placesContextType = {
   places: Place[];
   userLocation: UserLocation | null;
@@ -18,81 +23,54 @@ type placesContextType = {
 const PlacesContext = createContext<placesContextType | null>(null);
 
 export function Placesprovider({ children }: { children: ReactNode }) {
-    const [places, setPlaces] = useState<Place[]>([]);
-    const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
-    const [error, setError] = useState("");
-    const [isLoading, setIsLoading] = useState(true);
-  
-  
-    useEffect(() => {
-      if (!navigator.geolocation) {
-        setError("Geolocation is not supported by your browser.");
-        setIsLoading(false);
-        return;
-      }
-  
-      navigator.geolocation.getCurrentPosition(
-        ({ coords }) => {
-          setUserLocation({
-            lat: coords.latitude,
-            lng: coords.longitude,
-          });
-        },
-        (err) => {
-          console.error(err);
-          setError("Unable to retrieve your location.");
-          setIsLoading(false);
-        },
-        {
-        },
-      );
-    }, []);
-  
-  
-    useEffect(() => {
-      if (!userLocation) return;
-  
-      async function fetchPlaces() {
-        try {
-          const placesURL =
-            `https://api.geoapify.com/v2/places` +
-            `?categories=catering.cafe` +
-            `&filter=circle:${userLocation?.lng},${userLocation?.lat},${SEARCH_RADIUS}` +
-            `&bias=proximity:${userLocation?.lng},${userLocation?.lat}` +
-            `&limit=${LIMIT}` +
-            `&apiKey=${API_KEY}`;
-  
-          const response = await fetch(placesURL);
-  
-          if (!response.ok) {
-            throw new Error("Failed to fetch places");
-          }
-  
-          const data = await response.json();
-  
-  
-          const parsed: Place[] = data.features.map((feature: any) => ({
-            id: feature.properties.place_id,
-            name: feature.properties.name ?? "Unnamed Cafe",
-            address: feature.properties.formatted,
-            lat: feature.properties.lat,
-            lng: feature.properties.lon,
-          }));
-  
-          setPlaces(parsed);
-          setIsLoading(false);
-        } catch (err) {
-          console.error(err);
-          setError("Failed to load nearby cafes.");
-          setIsLoading(false);
-        } 
-      }
+  const [places, setPlaces] = useState<Place[]>([]);
+  const [userLocation, setUserLocation] = useState<UserLocation | null>(FIXED_LOCATION);
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
-      fetchPlaces();
-    }, [userLocation]);
+  useEffect(() => {
+    if (!userLocation) return;
+
+    async function fetchPlaces() {
+      try {
+        const placesURL =
+          `https://api.geoapify.com/v2/places` +
+          `?categories=catering.cafe` +
+          `&filter=circle:${userLocation?.lng},${userLocation?.lat},${SEARCH_RADIUS}` +
+          `&bias=proximity:${userLocation?.lng},${userLocation?.lat}` +
+          `&limit=${LIMIT}` +
+          `&apiKey=${API_KEY}`;
+
+        const response = await fetch(placesURL);
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch places");
+        }
+
+        const data = await response.json();
+
+        const parsed: Place[] = data.features.map((feature: any) => ({
+          id: feature.properties.place_id,
+          name: feature.properties.name ?? "Unnamed Cafe",
+          address: feature.properties.formatted,
+          lat: feature.properties.lat,
+          lng: feature.properties.lon,
+        }));
+
+        setPlaces(parsed);
+      } catch (err) {
+        console.error(err);
+        setError("Failed to load nearby cafes.");
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    fetchPlaces();
+  }, [userLocation]);
 
   return (
-    <PlacesContext.Provider value={{ places, userLocation, isLoading, error}}>
+    <PlacesContext.Provider value={{ places, userLocation, isLoading, error }}>
       {children}
     </PlacesContext.Provider>
   );

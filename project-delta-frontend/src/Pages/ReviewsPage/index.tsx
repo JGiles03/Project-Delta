@@ -70,19 +70,19 @@ if (reviews.length === 0) {
   );
 }
 
-  const visibleReviews = token
-    ? reviews
-    : reviews.slice(0, GUEST_VISIBLE_COUNT);
+  // const visibleReviews = token
+  //   ? reviews
+  //   : reviews.slice(0, GUEST_VISIBLE_COUNT);
 
-  const hasHiddenReviews =
-    !token && reviews.length > GUEST_VISIBLE_COUNT;
+  // const hasHiddenReviews =
+  //   !token && reviews.length > GUEST_VISIBLE_COUNT;
 
   return (
     <div className="reviews-page">
       <h1>Reviews</h1>
 
       <div className="reviews-scroll">
-        {visibleReviews.map((review) => (
+        {reviews.map((review) => (
           <div key={review.id} className="review-card">
             <div className="review-card-rating">
               {"★".repeat(review.rating)}
@@ -100,7 +100,7 @@ if (reviews.length === 0) {
           </div>
         ))}
 
-        {hasHiddenReviews && (
+        {/* {hasHiddenReviews && (
           <div className="review-card review-card-locked">
             <p>
               {reviews.length - GUEST_VISIBLE_COUNT} more review
@@ -117,7 +117,7 @@ if (reviews.length === 0) {
               Create an account
             </Link>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );

@@ -69,7 +69,35 @@ export default function ReviewForm() {
         <h1>Leave a review</h1>
 
         <form onSubmit={handleSubmit}>
-          <label className="review-form-label">Rating</label>
+          <label className="review-form-label">Overall Rating</label>
+          <div className="rating-input">
+            {[1, 2, 3, 4, 5].map((star) => (
+              <button
+                type="button"
+                key={star}
+                className={`rating-star ${rating >= star ? 'active' : ''}`}
+                onClick={() => setRating(star)}
+              >
+                ★
+              </button>
+            ))}
+          </div>
+
+          <label className="review-form-label">Accessability Rating</label>
+          <div className="rating-input">
+            {[1, 2, 3, 4, 5].map((star) => (
+              <button
+                type="button"
+                key={star}
+                className={`rating-star ${rating >= star ? 'active' : ''}`}
+                onClick={() => setRating(star)}
+              >
+                ★
+              </button>
+            ))}
+          </div>
+
+          <label className="review-form-label">Service Rating</label>
           <div className="rating-input">
             {[1, 2, 3, 4, 5].map((star) => (
               <button

@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { TOUR_STEPS } from '../../services/tourConsts';
 
 export default function SearchBar() {
 
@@ -12,7 +13,7 @@ export default function SearchBar() {
     }
 
     return (
-        <div className="searchbar">
+        <div className="searchbar" data-tour={TOUR_STEPS.MAPSEARCH}>
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"

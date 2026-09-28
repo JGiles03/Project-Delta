@@ -2,18 +2,24 @@ import { useEffect, type ReactNode } from "react";
 import { TourProvider as ReactourProvider } from "@reactour/tour";
 import { useTourStore } from "../Stores/tourStore";
 import { TOUR_STEPS } from "../services/tourConsts";
+import { useNavigate } from "react-router-dom";
 
 interface TourProviderProps {
     children: ReactNode
 }
 
 export default function TourProvider({ children }: TourProviderProps) {
-    const {completeTour, currentStep} = useTourStore()
+    const {completeTour, completedSteps, markStepCompleted} = useTourStore()
+    const navigate = useNavigate();
 
-    //!NOT WORKING!!!!!!!!
     useEffect(() => {
-        console.log(currentStep);
-    }, [currentStep])
+        console.log(completedSteps);
+        //! add in functionality to move between pages
+        if(completedSteps[completedSteps.length - 1] === `[data-tour="${TOUR_STEPS.MAPPAGE}"]`){
+            console.log("WOOOOOO");
+            navigate("/map")
+        }
+    }, [completedSteps])
 
     const steps = [
         {
@@ -31,6 +37,15 @@ export default function TourProvider({ children }: TourProviderProps) {
                 <div>
                     <h3>Map Page</h3>
                     <p>Click here to view the map</p>
+                </div>
+            ),
+        },
+        {
+           selector: `[data-tour="${TOUR_STEPS.MAPSEARCH}"]`,
+            content: (
+                <div>
+                    <h3>Search Bar</h3>
+                    <p>Search for venues here. We will automatically filter based on your account's preferences</p>
                 </div>
             ),
         },
@@ -62,6 +77,7 @@ export default function TourProvider({ children }: TourProviderProps) {
                 if (currentStep === steps.length - 1) {
                     setIsOpen(false)
                 }
+                markStepCompleted(steps[currentStep].selector.toString())
                 setCurrentStep((s) => (s === steps.length - 1 ? 0 : s + 1))
             }
         }} 
@@ -77,7 +93,6 @@ export default function TourProvider({ children }: TourProviderProps) {
             setCurrentStep,
             steps,
             }) => {
-                const last = currentStep === stepsLength - 1
                 return (
                     <Button
                     onClick={() => {
@@ -85,11 +100,12 @@ export default function TourProvider({ children }: TourProviderProps) {
                             if (currentStep === steps.length - 1) {
                                 setIsOpen(false)
                             }
+                            markStepCompleted(steps[currentStep].selector.toString())
                             setCurrentStep((s) => (s === steps.length - 1 ? 0 : s + 1))
                         }
                     }}
                     >
-                    {last ? 'Close!' : null}
+                    {currentStep === stepsLength - 1 ? 'Close!' : null}
                     </Button>
                 )
         }}

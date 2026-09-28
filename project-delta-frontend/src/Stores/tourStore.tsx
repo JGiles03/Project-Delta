@@ -6,7 +6,6 @@ interface TourState {
     currentStep: number,
     completedSteps: string[],
     markStepCompleted: (stepId: string) => void,
-    // skipTour: () => void,
     resetTour: () => void,
     completeTour: () => void
 }

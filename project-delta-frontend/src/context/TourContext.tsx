@@ -3,6 +3,7 @@ import { TourProvider as ReactourProvider } from "@reactour/tour";
 import { useTourStore } from "../Stores/tourStore";
 import { TOUR_STEPS } from "../services/tourConsts";
 import { useNavigate } from "react-router-dom";
+import { usePlaces } from "./PlacesContext";
 
 interface TourProviderProps {
     children: ReactNode
@@ -11,6 +12,7 @@ interface TourProviderProps {
 export default function TourProvider({ children }: TourProviderProps) {
     const {completeTour, completedSteps, markStepCompleted} = useTourStore()
     const navigate = useNavigate();
+    const { places } = usePlaces();
 
     useEffect(() => {
         console.log(completedSteps);
@@ -18,6 +20,9 @@ export default function TourProvider({ children }: TourProviderProps) {
             navigate("/map")
         } else if(completedSteps[completedSteps.length - 1] === `[data-tour="${TOUR_STEPS.MAPSEARCH}"]`){
             navigate("/list")
+        } else if(completedSteps[completedSteps.length - 1] === `[data-tour="${TOUR_STEPS.LISTITEM}"]`){
+            //! Not highlighting whole page (maybe need to wait for render)
+            navigate(`/venue/${places[0].id}`)
         } else if(completedSteps[completedSteps.length - 1] === `[data-tour="${TOUR_STEPS.VENUEPAGE}"]`){
             navigate("/account")
         }

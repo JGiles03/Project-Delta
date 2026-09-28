@@ -12,6 +12,6 @@ export default function TourStart() {
     }
 
     return(
-        <button onClick={handleStart} className="btn-secondary">Redo Tour</button>
+        <button onClick={handleStart} className="btn-accent">Take A Tour</button>
     )
 }

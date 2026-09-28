@@ -3,6 +3,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { Amenities } from "../../services/amenities";
 import { savePreferences } from "../../services/users";
 import "./index.css";
+import TourStart from "../../Components/Tour";
 
 type Step = "intro" | "preferences" | "done";
 
@@ -101,7 +102,8 @@ export default function OnboardingPage() {
             <div className="onboarding-check">✓</div>
             <h1>Thank you!</h1>
             <p>Your preferences are saved. Enjoy exploring.</p>
-            <Link to="/map" className="btn-accent">Get started</Link>
+            <Link to="/map"><TourStart /></Link>
+            <Link to="/map">Skip tutorial</Link>
           </>
         )}
       </div>

@@ -7,7 +7,6 @@ import './index.css'
 
 export default function ReviewsPage() {
   const { id } = useParams();
-  
 
   const [reviews, setReviews] = useState<Review[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);

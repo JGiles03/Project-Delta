@@ -4,6 +4,7 @@ import { signOut } from "../../services/auth";
 import { getUserById } from "../../services/users";
 import { amenityIcons } from "../../services/amenities";
 import "./index.css";
+import TourStart from "../../Components/Tour";
 
 export default function AccountPage() {
   const navigate = useNavigate();
@@ -107,6 +108,9 @@ export default function AccountPage() {
           <p className="placeholder-note">Coming soon</p>
         </div>
 
+        <div>
+          <TourStart />
+        </div>
         <button onClick={handleSignOut} className="btn-secondary">
           Sign Out
         </button>

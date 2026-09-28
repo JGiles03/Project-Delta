@@ -108,7 +108,7 @@ export default function ReviewsPage() {
             className="carousel-slides"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
-            {visibleReviews.map((review) => (
+            {reviews.map((review) => (
               <div key={review.id} className="review-card">
                 <div className="review-card-rating">
                   {"★".repeat(review.rating)}
@@ -120,7 +120,6 @@ export default function ReviewsPage() {
                 </p>
               </div>
             ))}
-
           </div>
         </div>
 

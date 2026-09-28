@@ -1,23 +1,19 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./index.css";
+import type { Venue } from "../../services/types";
 
-type Venue = {
-  id: number;
-  geoapify_place_id: string;
-  category: string;
-  address: string;
-  borough: string | null;
-  website: string | null;
-  opening_hours: string | null;
-  name: string;
-  description: string | null;
-  latitude: string;
-  longitude: string;
-  postcode: string;
-  age_suitability: string | null;
-  owner_id: number | null;
-  created_at: string;
+const amenityIcons: Record<string, string> = {
+  "Accessible entrance": "♿",
+  "Accessible toilet": "🚻",
+  "Breastfeeding friendly": "🤱",
+  "Changing facilities": "👶",
+  "Children's activities": "🛝",
+  "High chairs": "🪑",
+  " Parking": "🅿️",
+  "Prams allowed": "👶",
+  "Pram storage": "🛒",
+  "Table reservation": "📅",
 };
 
 export default function VenuePage() {
@@ -56,7 +52,7 @@ export default function VenuePage() {
   if (!venue) return <div>Venue not found.</div>;
 
   return (
-    <div className="venue-page"> 
+    <div className="venue-page">
       <div className="venue-details-container">
         <h1>{venue.name || "Unknown Name"}</h1>
         <p className="venue-address">{venue.address}</p>
@@ -69,14 +65,31 @@ export default function VenuePage() {
 
         {venue.website && (
           <div className="venue-website">
-            
-            <a  href={venue.website}
+            <a
+              href={venue.website}
               target="_blank"
               rel="noopener noreferrer"
               className="venue-website"
             >
               Visit their website
             </a>
+          </div>
+        )}
+
+        {venue.amenities?.length > 0 && (
+          <div className="venue-amenities">
+            <h3>Amenities</h3> 
+            <div className="amenities-list">
+              {venue.amenities.map((amenity) => (
+                <span
+                  key={amenity.id}
+                  className="amenity-icon"
+                  title={amenity.name}
+                >
+                  {amenityIcons[amenity.name] ?? "📍"}
+                </span>
+              ))}
+            </div>
           </div>
         )}
 
@@ -92,8 +105,8 @@ export default function VenuePage() {
       </div>
 
       <div className="Google-maps">
-        
-         <a href={`https://www.google.com/maps/dir/?api=1&destination=${venue.latitude},${venue.longitude}`}
+        <a
+          href={`https://www.google.com/maps/dir/?api=1&destination=${venue.latitude},${venue.longitude}`}
           target="_blank"
           rel="noopener noreferrer"
           className="btn-accent"

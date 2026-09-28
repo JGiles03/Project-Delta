@@ -71,6 +71,11 @@ if (!user) {
           })}
         </p>
 
+          <div className="account-section">
+          <h3>Your preferences</h3>
+          <p className="placeholder-note">Coming soon</p>
+        </div>
+
         <div className="account-section">
           <h3>Your reviews</h3>
           <p className="placeholder-note">Coming soon</p>

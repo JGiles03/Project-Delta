@@ -1,23 +1,43 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./index.css";
-const API_KEY = import.meta.env.VITE_API_KEY;
+
+type Venue = {
+  id: number;
+  geoapify_place_id: string;
+  category: string;
+  address: string;
+  borough: string | null;
+  website: string | null;
+  opening_hours: string | null;
+  name: string;
+  description: string | null;
+  latitude: string;
+  longitude: string;
+  postcode: string;
+  age_suitability: string | null;
+  owner_id: number | null;
+  created_at: string;
+};
 
 export default function VenuePage() {
   const { id } = useParams();
-  const [venue, setVenue] = useState<any>(null);
+  const [venue, setVenue] = useState<Venue | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
 
   useEffect(() => {
     if (!id) return;
 
-    const detailsURL = `https://api.geoapify.com/v2/place-details?id=${id}&features=details&apiKey=${API_KEY}`;
+    const detailsURL = `http://4.223.159.135/venues/geoapify/${id}`;
 
     async function fetchVenue() {
       try {
         setIsLoading(true);
         const res = await fetch(detailsURL);
+
+        if (!res.ok) throw new Error("Failed to fetch venue");
+
         const data = await res.json();
         setVenue(data);
       } catch (err) {
@@ -33,27 +53,24 @@ export default function VenuePage() {
 
   if (error) return <div>{error}</div>;
   if (isLoading) return <div>Loading venue...</div>;
-  if (!venue?.features?.length) return <div>Venue not found.</div>;
-
-  const properties = venue.features[0].properties;
-  const amenity: string | undefined = properties.datasource?.raw?.amenity;
+  if (!venue) return <div>Venue not found.</div>;
 
   return (
-    <div className="venue-page">
+    <div className="venue-page"> 
       <div className="venue-details-container">
-        <h1>{properties.name || "Unknown Name"}</h1>
-        <p className="venue-address">{properties.formatted}</p>
+        <h1>{venue.name || "Unknown Name"}</h1>
+        <p className="venue-address">{venue.address}</p>
 
-        {amenity && (
+        {venue.category && (
           <div className="venue-amenity">
-            <strong>Type:</strong> {amenity}
+            <strong>Type:</strong> {venue.category}
           </div>
         )}
 
-        {properties.website && (
+        {venue.website && (
           <div className="venue-website">
-            <a
-              href={properties.website}
+            
+            <a  href={venue.website}
               target="_blank"
               rel="noopener noreferrer"
               className="venue-website"
@@ -62,7 +79,7 @@ export default function VenuePage() {
             </a>
           </div>
         )}
-    
+
         <h2>Reviews</h2>
         <div className="review-actions">
           <Link to={`/venue/${id}/reviews`} className="btn-secondary">
@@ -74,10 +91,9 @@ export default function VenuePage() {
         </div>
       </div>
 
-
       <div className="Google-maps">
-        <a
-          href={`https://www.google.com/maps/dir/?api=1&destination=${properties.lat},${properties.lon}`}
+        
+         <a href={`https://www.google.com/maps/dir/?api=1&destination=${venue.latitude},${venue.longitude}`}
           target="_blank"
           rel="noopener noreferrer"
           className="btn-accent"

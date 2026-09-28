@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 import { TourProvider as ReactourProvider } from "@reactour/tour";
 import { useTourStore } from "../Stores/tourStore";
 import { TOUR_STEPS } from "../services/tourConsts";
@@ -8,7 +8,11 @@ interface TourProviderProps {
 }
 
 export default function TourProvider({ children }: TourProviderProps) {
-    const {completeTour} = useTourStore()
+    const {completeTour, currentStep} = useTourStore()
+
+    useEffect(() => {
+        console.log(currentStep);
+    }, [currentStep])
 
     const steps = [
         {
@@ -57,7 +61,8 @@ export default function TourProvider({ children }: TourProviderProps) {
                 if (currentStep === steps.length - 1) {
                     setIsOpen(false)
                 }
-            setCurrentStep((s) => (s === steps.length - 1 ? 0 : s + 1))
+                setCurrentStep((s) => (s === steps.length - 1 ? 0 : s + 1))
+                console.log(steps![currentStep]);
             }
         }} 
         onClickClose={({setIsOpen}) => {
@@ -79,7 +84,8 @@ export default function TourProvider({ children }: TourProviderProps) {
                         if (last) {
                             setIsOpen(false)
                         } else {
-                            setCurrentStep((s) => (s === steps?.length - 1 ? 0 : s + 1))
+                            setCurrentStep((s) => (s === steps!.length - 1 ? 0 : s + 1))
+                            console.log(steps![currentStep]);
                         }
                     }}
                     >

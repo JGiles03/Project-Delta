@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { Amenities } from "../../services/amenities";
 import { getUserById, savePreferences } from "../../services/users";
 import { useNavigate } from "react-router-dom";
+import "./index.css";
 
 export default function PreferencesForm() {
-
-    const navigate= useNavigate()
+  const navigate = useNavigate();
   const [selected, setSelected] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -50,7 +50,7 @@ export default function PreferencesForm() {
 
     try {
       await savePreferences(selected);
-      navigate('/account')
+      navigate("/account");
     } catch (err) {
       console.error(err);
       setError("We couldn't save your preferences. Please try again.");

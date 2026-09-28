@@ -12,9 +12,6 @@ export default function MapPage() {
       <div className="map-container">
         <Map />
       </div>
-      <div className="tour-button">
-        <TourStart />
-      </div>
     </div>
   )
 }

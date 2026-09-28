@@ -8,32 +8,88 @@ interface TourProviderProps {
 }
 
 export default function TourProvider({ children }: TourProviderProps) {
-    const { hasSeenTour, completeTour} = useTourStore()
+    const {completeTour} = useTourStore()
 
     const steps = [
         {
-            selector: `[data-tour="${TOUR_STEPS.SIDEBAR}"]`,
+           selector: `[data-tour="${TOUR_STEPS.NAVBAR}"]`,
             content: (
                 <div>
-                    <h3>Sidebar</h3>
-                    <p>Use Sidebar to navigate</p>
+                    <h3>Navigation Area</h3>
+                    <p>This is where the shortcuts to move between pages are</p>
                 </div>
             ),
-            position: "right" as const
         },
         {
-           selector: `[data-tour="${TOUR_STEPS.ADD_TASK}"]`,
+           selector: `[data-tour="${TOUR_STEPS.MAPPAGE}"]`,
             content: (
                 <div>
-                    <h3>Add task</h3>
-                    <p>Add a task here</p>
+                    <h3>Map Page</h3>
+                    <p>Click here to view the map</p>
                 </div>
             ),
-            position: "bottom" as const 
+        },
+        {
+           selector: `[data-tour="${TOUR_STEPS.LISTPAGE}"]`,
+            content: (
+                <div>
+                    <h3>List Page</h3>
+                    <p>Click here to view a list of all venues</p>
+                </div>
+            ),
+        },
+        {
+           selector: `[data-tour="${TOUR_STEPS.ACCOUNTPAGE}"]`,
+            content: (
+                <div>
+                    <h3>Account Page</h3>
+                    <p>Click here to view your account information and update your default preferences</p>
+                </div>
+            ),
         }
     ]
 
     return (
-        <ReactourProvider steps={steps} isOpen={!hasSeenTour} onRequestClose={completeTour} disableInteraction>{children}</ReactourProvider>
+        <ReactourProvider 
+        steps={steps} 
+        onClickMask={({ setCurrentStep, currentStep, steps, setIsOpen }) => {
+            if (steps) {
+                if (currentStep === steps.length - 1) {
+                    setIsOpen(false)
+                }
+            setCurrentStep((s) => (s === steps.length - 1 ? 0 : s + 1))
+            }
+        }} 
+        onClickClose={({setIsOpen}) => {
+            completeTour()
+            setIsOpen(false)
+        }}
+        nextButton={({
+            Button,
+            currentStep,
+            stepsLength,
+            setIsOpen,
+            setCurrentStep,
+            steps,
+            }) => {
+                const last = currentStep === stepsLength - 1
+                return (
+                    <Button
+                    onClick={() => {
+                        if (last) {
+                            setIsOpen(false)
+                        } else {
+                            setCurrentStep((s) => (s === steps?.length - 1 ? 0 : s + 1))
+                        }
+                    }}
+                    >
+                    {last ? 'Close!' : null}
+                    </Button>
+                )
+        }}
+        scrollSmooth
+        disableInteraction>
+            {children}
+        </ReactourProvider>
     )
 }

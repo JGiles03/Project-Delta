@@ -28,10 +28,3 @@
   overflow: hidden;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
-
-.tour-button{
-  border: 2rem;
-  padding: 2rem;
-  background-color: aqua;
-  z-index: 1000000000000;
-}

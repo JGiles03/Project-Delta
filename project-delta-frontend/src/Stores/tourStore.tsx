@@ -6,7 +6,7 @@ interface TourState {
     currentStep: number,
     completedSteps: string[],
     markStepCompleted: (stepId: string) => void,
-    skipTour: () => void,
+    // skipTour: () => void,
     resetTour: () => void,
     completeTour: () => void
 }
@@ -21,11 +21,6 @@ export const useTourStore = create<TourState>() (
                 set((state: TourState): {completedSteps: string[]} => ({
                     completedSteps: [...state.completedSteps, stepId]
                 })),
-            skipTour: () =>
-                set({
-                    hasSeenTour: true,
-                    currentStep: -1
-                }),
             resetTour: () => 
                 set({
                     hasSeenTour: false,

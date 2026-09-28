@@ -40,7 +40,6 @@ export default function Map() {
       zoom={14}
       scrollWheelZoom={true}
       style={{ height: "100%", width: "100%" }}
-      data-tour={TOUR_STEPS.ADD_TASK}
     >
       <TileLayer
         url={TILES_URL}

@@ -1,4 +1,6 @@
 export const TOUR_STEPS = {
-    SIDEBAR: "tour-sidebar",
-    ADD_TASK: "tour-add-task"
+    NAVBAR: "tour-navbar",
+    MAPPAGE: "tour-map-page",
+    LISTPAGE: "tour-list-page",
+    ACCOUNTPAGE: "tour-account-page",
 } as const

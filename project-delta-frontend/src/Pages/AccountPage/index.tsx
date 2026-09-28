@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { signOut } from "../../services/auth";
 import { getUserById } from "../../services/users";
+import { amenityIcons } from "../../services/amenities";
 import "./index.css";
 
 export default function AccountPage() {
@@ -20,7 +21,7 @@ export default function AccountPage() {
 
     async function loadUser(id: any) {
       try {
-        const currentUser = await getUserById(id)
+        const currentUser = await getUserById(id);
         setUser(currentUser);
       } catch (err) {
         setUser(null);
@@ -38,22 +39,26 @@ export default function AccountPage() {
 
   if (isLoading) return <div className="account-message">Loading...</div>;
 
-if (!user) {
-  return (
-    <div className="account-page">
-      <div className="account-card">
-        <h1>You're not signed in</h1>
-        <p className="account-subtext">
-          Log in to leave reviews and manage your account.
-        </p>
-        <div className="account-actions">
-          <Link to="/login" className="btn-primary">Log in</Link>
-          <Link to="/signup" className="btn-secondary">Create an account</Link>
+  if (!user) {
+    return (
+      <div className="account-page">
+        <div className="account-card">
+          <h1>You're not signed in</h1>
+          <p className="account-subtext">
+            Log in to leave reviews and manage your account.
+          </p>
+          <div className="account-actions">
+            <Link to="/login" className="btn-primary">
+              Log in
+            </Link>
+            <Link to="/signup" className="btn-secondary">
+              Create an account
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
 
   return (
     <div className="account-page">
@@ -70,6 +75,32 @@ if (!user) {
             year: "numeric",
           })}
         </p>
+
+        <div className="account-section">
+          <h3>Your preferences</h3>
+
+          {user.preferences?.length ? (
+            <div className="preferences-section">
+            <div className="preferences-list">
+              {user.preferences.map((preference: any) => (
+                <div key={preference} className="preference-item">
+                  <span className="preference-icon">
+                    {amenityIcons[preference]}
+                  </span>
+                  <span>{preference}</span>
+                </div>
+            
+          ))}
+            </div>
+              <Link to='/preferences' className="btn-accent">Change your amenities</Link>
+          </div>
+          ) : (
+            <div className="preference-section">
+            <p>No preferences selected.</p>
+            <Link to='/preferences' className="btn-accent" >Change your amenities</Link>
+            </div>
+          )}
+        </div>
 
         <div className="account-section">
           <h3>Your reviews</h3>

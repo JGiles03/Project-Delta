@@ -1,9 +1,16 @@
-const USE_MOCK = false;
+import type { User } from "./types";
+
+
+export async function getUserById(id: number): Promise<User> {
+  const res = await fetch(`http://4.223.159.135/users/${id}`);
+
+  if (!res.ok) throw new Error("Failed to fetch user");
+  return res.json();
+}
+
+
 export async function savePreferences(preferences: string[]): Promise<void> {
-  if (USE_MOCK) {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    return;
-  }
+
 
   const token = localStorage.getItem("token");
   const userId = localStorage.getItem("userId");

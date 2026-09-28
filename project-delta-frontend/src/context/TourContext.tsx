@@ -3,6 +3,7 @@ import { TourProvider as ReactourProvider } from "@reactour/tour";
 import { useTourStore } from "../Stores/tourStore";
 import { TOUR_STEPS } from "../services/tourConsts";
 import { useNavigate } from "react-router-dom";
+import { usePlaces } from "./PlacesContext";
 
 interface TourProviderProps {
     children: ReactNode
@@ -11,13 +12,19 @@ interface TourProviderProps {
 export default function TourProvider({ children }: TourProviderProps) {
     const {completeTour, completedSteps, markStepCompleted} = useTourStore()
     const navigate = useNavigate();
+    const { places } = usePlaces();
 
     useEffect(() => {
         console.log(completedSteps);
-        //! add in functionality to move between pages
-        if(completedSteps[completedSteps.length - 1] === `[data-tour="${TOUR_STEPS.MAPPAGE}"]`){
-            console.log("WOOOOOO");
+        if(completedSteps[completedSteps.length - 1] === `[data-tour="${TOUR_STEPS.NAVBAR}"]`){
             navigate("/map")
+        } else if(completedSteps[completedSteps.length - 1] === `[data-tour="${TOUR_STEPS.MAPSEARCH}"]`){
+            navigate("/list")
+        } else if(completedSteps[completedSteps.length - 1] === `[data-tour="${TOUR_STEPS.LISTITEM}"]`){
+            //! Not highlighting whole page (maybe need to wait for render)
+            navigate(`/venue/${places[0].id}`)
+        } else if(completedSteps[completedSteps.length - 1] === `[data-tour="${TOUR_STEPS.VENUEPAGE}"]`){
+            navigate("/account")
         }
     }, [completedSteps])
 
@@ -53,8 +60,26 @@ export default function TourProvider({ children }: TourProviderProps) {
            selector: `[data-tour="${TOUR_STEPS.LISTPAGE}"]`,
             content: (
                 <div>
-                    <h3>List Page</h3>
-                    <p>Click here to view a list of all venues</p>
+                    <h3>Venue List</h3>
+                    <p>You can search here the same way as on the map. A brief summary of relevant venues will show up here. Any venues that don't fit your criteria will be greyed out</p>
+                </div>
+            ),
+        },
+        {
+           selector: `[data-tour="${TOUR_STEPS.LISTITEM}"]`,
+            content: (
+                <div>
+                    <h3>Venue</h3>
+                    <p>Click on any venue to navigate to see more information</p>
+                </div>
+            ),
+        },
+        {
+           selector: `[data-tour="${TOUR_STEPS.VENUEPAGE}"]`,
+            content: (
+                <div>
+                    <h3>Venue Page</h3>
+                    <p>This is a more detailed view of the selected venue. Here is where you can see and leave reviews</p>
                 </div>
             ),
         },
@@ -64,6 +89,24 @@ export default function TourProvider({ children }: TourProviderProps) {
                 <div>
                     <h3>Account Page</h3>
                     <p>Click here to view your account information and update your default preferences</p>
+                </div>
+            ),
+        },
+        {
+           selector: `[data-tour="${TOUR_STEPS.PREFERENCES}"]`,
+            content: (
+                <div>
+                    <h3>Update Preferences</h3>
+                    <p>You are able to update your preferences here</p>
+                </div>
+            ),
+        },
+        {
+           selector: `[data-tour="${TOUR_STEPS.TURRITOPSIS_DOHRNII}"]`,
+            content: (
+                <div>
+                    <h3>Restart Tour</h3>
+                    <p>You are always able to retake this tour at any time by clicking here</p>
                 </div>
             ),
         }

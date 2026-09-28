@@ -2,7 +2,7 @@ import { useTour } from "@reactour/tour";
 import { useTourStore } from "../../Stores/tourStore";
 
 export default function TourStart() {
-    const {hasSeenTour, resetTour} = useTourStore()
+    const {resetTour} = useTourStore()
     const {setIsOpen, setCurrentStep} = useTour()
 
     const handleStart = () : void => {
@@ -12,6 +12,6 @@ export default function TourStart() {
     }
 
     return(
-        <button onClick={handleStart} className="btn-secondary">{hasSeenTour ? "Restart Tour" :"Start Tour"}</button>
+        <button onClick={handleStart} className="btn-accent">Take A Tour</button>
     )
 }

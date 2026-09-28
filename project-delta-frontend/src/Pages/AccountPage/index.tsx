@@ -5,6 +5,7 @@ import { getUserById } from "../../services/users";
 import { amenityIcons } from "../../services/amenities";
 import "./index.css";
 import TourStart from "../../Components/Tour";
+import { TOUR_STEPS } from "../../services/tourConsts";
 
 export default function AccountPage() {
   const navigate = useNavigate();
@@ -77,7 +78,7 @@ export default function AccountPage() {
           })}
         </p>
 
-        <div className="account-section">
+        <div className="account-section" data-tour={TOUR_STEPS.PREFERENCES}>
           <h3>Your preferences</h3>
 
           {user.preferences?.length ? (
@@ -108,7 +109,7 @@ export default function AccountPage() {
           <p className="placeholder-note">Coming soon</p>
         </div>
 
-        <div>
+        <div data-tour={TOUR_STEPS.TURRITOPSIS_DOHRNII}>
           <TourStart />
         </div>
         <button onClick={handleSignOut} className="btn-secondary">

@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import "./index.css";
 import type { Venue } from "../../services/types";
 import { amenityIcons } from "../../services/amenities";
+import { TOUR_STEPS } from "../../services/tourConsts";
 
 
 export default function VenuePage() {
@@ -41,7 +42,7 @@ export default function VenuePage() {
   if (!venue) return <div>Venue not found.</div>;
 
   return (
-    <div className="venue-page">
+    <div className="venue-page"  data-tour={TOUR_STEPS.VENUEPAGE}>
       <div className="venue-details-container">
         <h1>{venue.name || "Unknown Name"}</h1>
         <p className="venue-address">{venue.address}</p>

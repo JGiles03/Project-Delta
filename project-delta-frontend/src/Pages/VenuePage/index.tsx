@@ -2,19 +2,8 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./index.css";
 import type { Venue } from "../../services/types";
+import { amenityIcons } from "../../services/amenities";
 
-const amenityIcons: Record<string, string> = {
-  "Accessible entrance": "♿",
-  "Accessible toilet": "🚻",
-  "Breastfeeding friendly": "🤱",
-  "Changing facilities": "👶",
-  "Children's activities": "🛝",
-  "High chairs": "🪑",
-  " Parking": "🅿️",
-  "Prams allowed": "👶",
-  "Pram storage": "🛒",
-  "Table reservation": "📅",
-};
 
 export default function VenuePage() {
   const { id } = useParams();

@@ -12,6 +12,7 @@ import {
   VenuePage,
   ReviewForm,
   ReviewsPage,
+  BusinessPage,
 } from "./Pages";
 
 function App() {
@@ -29,6 +30,9 @@ function App() {
       </Route>
       <Route path="/account" element={<Header />}>
         <Route index element={<AccountPage />} />
+      </Route>
+      <Route path="/business" element={<Header />}>
+        <Route index element={<BusinessPage />} />
       </Route>
       <Route path="venue/:id" element={<Header />}>
         <Route index element={<VenuePage />} />

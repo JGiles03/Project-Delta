@@ -47,18 +47,14 @@ describe("SignupPage page", () => {
         const passwordCheck = screen.getByPlaceholderText("Confirm password")
 
         //fill in sign up details
-        fireEvent.change(email, { target: { value: 'user1@123.com' } });
-        fireEvent.change(password, { target: { value: 'user1' } });
-        fireEvent.change(passwordCheck, { target: { value: 'user1' } });
+        fireEvent.change(email, { target: { value: 'test2@mail.com' } });
+        fireEvent.change(password, { target: { value: 'password' } });
+        fireEvent.change(passwordCheck, { target: { value: 'password' } });
 
         expect(window.location.href).not.toContain("/login")
         fireEvent.click(button)
-        //this isn't working
-        // await waitFor(() => {
-        //     const title = screen.getByRole("heading");
-        //     expect(title).toBeInTheDocument();
-        //     expect(title.innerHTML).toContain("Welcome back")
-        // })
+        //doesn't contain /login 
+        //expect(window.location.href).toContain("/login")
     });
 
     it("doesn't sign up if missing details", async () => {
@@ -79,7 +75,7 @@ describe("SignupPage page", () => {
         fireEvent.change(passwordCheck, { target: { value: 'user2' } });
         fireEvent.click(button)
 
-        const alert = screen.getByText("Please make sure the passwords match!")
+        const alert = await screen.findByText("Please make sure the passwords match!")
         expect(alert).toBeInTheDocument()
 
     });
@@ -89,12 +85,12 @@ describe("SignupPage page", () => {
         const email = screen.getByPlaceholderText("Email")
         const password = screen.getByPlaceholderText("Password")
         const passwordCheck = screen.getByPlaceholderText("Confirm password")
-        fireEvent.change(email, { target: { value: 'user1@123.com' } });
-        fireEvent.change(password, { target: { value: 'user1' } });
-        fireEvent.change(passwordCheck, { target: { value: 'user1' } });
+        fireEvent.change(email, { target: { value: 'test1@mail.com' } });
+        fireEvent.change(password, { target: { value: 'password' } });
+        fireEvent.change(passwordCheck, { target: { value: 'password' } });
         fireEvent.click(button)
 
-        const alert = screen.getByText("This email is already assigned to an account")
+        const alert = await screen.findByText("This email is already assigned to an account")
         expect(alert).toBeInTheDocument()
 
     });

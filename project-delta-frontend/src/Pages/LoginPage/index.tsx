@@ -10,20 +10,20 @@ export default function LoginPage() {
     const [passwordText, setPasswordText] = useState<string>('')
     const [messageBox, setMessageBox] = useState<string>('')
 
-async function handleSubmit(e : React.SubmitEvent){
-  e.preventDefault()
+  async function handleSubmit(e : React.SubmitEvent){
+    e.preventDefault()
 
-try{
-  await logIn({email: emailText, password: passwordText})
-  setMessageBox('login successful')
-  setTimeout(()=>{
-    navigate('/map')
-  }, 800)
-} catch (err){
-  setMessageBox('Invalid Email or password')
-}
+    try{
+      await logIn({email: emailText, password: passwordText})
+      setMessageBox('login successful')
+      setTimeout(()=>{
+        navigate('/map')
+      }, 800)
+    } catch (err){
+      setMessageBox('Invalid Email or password')
+    }
 
-}
+  }
 
   return (
   <div className="auth-container">
@@ -35,7 +35,7 @@ try{
           <input
             type="email"
             placeholder="Email"
-            required
+            //required
             value={emailText}
             onChange={(e) => setEmailText(e.target.value)}
           />

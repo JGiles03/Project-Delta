@@ -3,9 +3,10 @@ import { Link, useParams } from "react-router-dom";
 import type { Review } from "../../services/types";
 import './index.css'
 
+
+
 export default function ReviewsPage() {
   const { id } = useParams();
-  const token = localStorage.getItem("token");
 
   const [reviews, setReviews] = useState<Review[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -44,21 +45,20 @@ export default function ReviewsPage() {
           <p className="reviews-empty-text">
             No reviews yet — be the first to leave one!
           </p>
-          {token && (
+      
             <Link to={`/venue/${id}/post-review`} className="btn-accent">
               Post a review
             </Link>
-          )}
         </div>
       </div>
     );
   }
 
-  // const visibleReviews = token ? reviews : reviews.slice(0, GUEST_VISIBLE_COUNT);
-  // const hasHiddenReviews = !token && reviews.length > GUEST_VISIBLE_COUNT;
+  const visibleReviews = reviews 
 
-  // total "slides" = visible reviews, plus one extra locked slide if applicable
-  const totalSlides = reviews.length;
+
+
+  const totalSlides = visibleReviews.length 
 
   function goNext() {
     setCurrentIndex((i) => Math.min(i + 1, totalSlides - 1));
@@ -68,7 +68,7 @@ export default function ReviewsPage() {
     setCurrentIndex((i) => Math.max(i - 1, 0));
   }
 
-  // Swipe handling
+
   let touchStartX = 0;
 
   function handleTouchStart(e: React.TouchEvent) {

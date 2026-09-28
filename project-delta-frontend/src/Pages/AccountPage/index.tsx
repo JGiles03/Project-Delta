@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { signOut } from "../../services/auth";
-import { getCurrentUserTEMP } from "../../services/auth";
+import { getUserById } from "../../services/users";
 import "./index.css";
 import TourStart from "../../Components/Tour";
 
@@ -12,16 +12,16 @@ export default function AccountPage() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const email = localStorage.getItem("email");
+    const id = localStorage.getItem("userId");
 
-    if (!token || !email) {
+    if (!token || !id) {
       setIsLoading(false);
       return;
     }
 
-    async function loadUser(email: any) {
+    async function loadUser(id: any) {
       try {
-        const currentUser = await getCurrentUserTEMP(email);
+        const currentUser = await getUserById(id)
         setUser(currentUser);
       } catch (err) {
         setUser(null);
@@ -29,7 +29,7 @@ export default function AccountPage() {
         setIsLoading(false);
       }
     }
-    loadUser(email);
+    loadUser(id);
   }, []);
 
   function handleSignOut() {

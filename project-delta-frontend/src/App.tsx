@@ -13,6 +13,8 @@ import {
   ReviewForm,
   ReviewsPage,
   BusinessPage,
+  OnboardingPage,
+  PreferencesForm,
 } from "./Pages";
 
 function App() {
@@ -22,6 +24,7 @@ function App() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/home" element={<HomePage />} />
+      <Route path='/onboarding' element={<OnboardingPage />} />
       <Route path="/map" element={<Header />}>
         <Route index element={<MapPage />} />
       </Route>
@@ -42,6 +45,9 @@ function App() {
       </Route>
       <Route path="venue/:id/reviews" element={<Header />} >
         <Route index element={<ReviewsPage />}/>
+      </Route>
+      <Route path="/preferences" element={<Header />} >
+        <Route index element={<PreferencesForm />}/>
       </Route>
       <Route path="*" element={<h1>Page Not Found</h1>} />
     </Routes>

@@ -43,19 +43,15 @@ export async function logIn({ email, password }: LogInPayload): Promise<void> {
   }
 
   const user = await res.json();
+  if (!user.token || user.id == null) {
+  throw new Error("Login response is missing token or id");
+}
   localStorage.setItem("token", user.token);
-  localStorage.setItem("email", email)
+  localStorage.setItem("userId", user.id)
 }
 
 export function signOut(): void {
   localStorage.removeItem("token");
+   localStorage.removeItem("userId");
 }
 
-export async function getCurrentUserTEMP(email: string) {
-  const res = await fetch('http://4.223.159.135/auth')
-
-  if (!res.ok) throw new Error('Failed to fetch users');
-
-  const users = await res.json();
-  return users.find((u: any) => u.email === email);
-}

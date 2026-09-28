@@ -52,7 +52,23 @@ export function signOut(): void {
 }
 
 export async function getCurrentUserTEMP(email: string) {
-  const res = await fetch('http://4.223.159.135/auth')
+
+  const token = localStorage.getItem("token")
+  console.log(token);
+
+  if(!token) throw new Error("not logged in")
+
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      authorization: token
+    }),
+  };
+
+  const res = await fetch('http://4.223.159.135/auth', options)
 
   if (!res.ok) throw new Error('Failed to fetch users');
 

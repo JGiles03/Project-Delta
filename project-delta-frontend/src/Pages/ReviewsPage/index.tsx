@@ -3,8 +3,6 @@ import { Link, useParams } from "react-router-dom";
 import type { Review } from "../../services/types";
 import './index.css'
 
-const GUEST_VISIBLE_COUNT = 1;
-
 export default function ReviewsPage() {
   const { id } = useParams();
   const token = localStorage.getItem("token");
@@ -56,11 +54,11 @@ export default function ReviewsPage() {
     );
   }
 
-  const visibleReviews = token ? reviews : reviews.slice(0, GUEST_VISIBLE_COUNT);
-  const hasHiddenReviews = !token && reviews.length > GUEST_VISIBLE_COUNT;
+  // const visibleReviews = token ? reviews : reviews.slice(0, GUEST_VISIBLE_COUNT);
+  // const hasHiddenReviews = !token && reviews.length > GUEST_VISIBLE_COUNT;
 
   // total "slides" = visible reviews, plus one extra locked slide if applicable
-  const totalSlides = visibleReviews.length + (hasHiddenReviews ? 1 : 0);
+  const totalSlides = reviews.length;
 
   function goNext() {
     setCurrentIndex((i) => Math.min(i + 1, totalSlides - 1));
@@ -110,7 +108,7 @@ export default function ReviewsPage() {
             className="carousel-slides"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
-            {visibleReviews.map((review) => (
+            {reviews.map((review) => (
               <div key={review.id} className="review-card">
                 <div className="review-card-rating">
                   {"★".repeat(review.rating)}
@@ -122,21 +120,6 @@ export default function ReviewsPage() {
                 </p>
               </div>
             ))}
-
-            {hasHiddenReviews && (
-              <div className="review-card review-card-locked">
-                <p>
-                  {reviews.length - GUEST_VISIBLE_COUNT} more review
-                  {reviews.length - GUEST_VISIBLE_COUNT === 1 ? "" : "s"}
-                </p>
-                <p className="review-card-locked-subtext">
-                  Create an account to see all reviews
-                </p>
-                <Link to="/signup" className="btn-accent">
-                  Create an account
-                </Link>
-              </div>
-            )}
           </div>
         </div>
 

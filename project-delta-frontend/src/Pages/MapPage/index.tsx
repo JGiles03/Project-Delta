@@ -1,5 +1,6 @@
 import './index.css'
 import { SearchBar, Map } from '../../Components'
+import TourStart from '../../Components/Tour'
 
 export default function MapPage() {
   return (
@@ -10,6 +11,9 @@ export default function MapPage() {
 
       <div className="map-container">
         <Map />
+      </div>
+      <div className="tour-button">
+        <TourStart />
       </div>
     </div>
   )

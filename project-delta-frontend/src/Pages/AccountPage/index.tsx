@@ -97,7 +97,7 @@ export default function AccountPage() {
           ) : (
             <div className="preference-section">
             <p>No preferences selected.</p>
-            <Link to='/preferences'>Change your amenities</Link>
+            <Link to='/preferences' className="btn-accent" >Change your amenities</Link>
             </div>
           )}
         </div>

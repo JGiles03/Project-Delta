@@ -10,6 +10,7 @@ interface TourProviderProps {
 export default function TourProvider({ children }: TourProviderProps) {
     const {completeTour, currentStep} = useTourStore()
 
+    //!NOT WORKING!!!!!!!!
     useEffect(() => {
         console.log(currentStep);
     }, [currentStep])
@@ -62,7 +63,6 @@ export default function TourProvider({ children }: TourProviderProps) {
                     setIsOpen(false)
                 }
                 setCurrentStep((s) => (s === steps.length - 1 ? 0 : s + 1))
-                console.log(steps![currentStep]);
             }
         }} 
         onClickClose={({setIsOpen}) => {
@@ -81,11 +81,11 @@ export default function TourProvider({ children }: TourProviderProps) {
                 return (
                     <Button
                     onClick={() => {
-                        if (last) {
-                            setIsOpen(false)
-                        } else {
-                            setCurrentStep((s) => (s === steps!.length - 1 ? 0 : s + 1))
-                            console.log(steps![currentStep]);
+                        if (steps) {
+                            if (currentStep === steps.length - 1) {
+                                setIsOpen(false)
+                            }
+                            setCurrentStep((s) => (s === steps.length - 1 ? 0 : s + 1))
                         }
                     }}
                     >
@@ -93,6 +93,7 @@ export default function TourProvider({ children }: TourProviderProps) {
                     </Button>
                 )
         }}
+        badgeContent={({ totalSteps, currentStep }) => currentStep + 1 + "/" + totalSteps}
         scrollSmooth
         disableInteraction>
             {children}

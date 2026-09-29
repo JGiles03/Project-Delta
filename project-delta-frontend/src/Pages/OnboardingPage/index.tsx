@@ -91,7 +91,7 @@ export default function OnboardingPage() {
             >
               {isSubmitting ? "Saving..." : "Save preferences"}
             </button>
-            <button className="onboarding-skip" onClick={() => navigate("/map")}>
+            <button className="onboarding-skip" onClick={() => navigate("/list")}>
               Skip for now
             </button>
           </>

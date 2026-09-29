@@ -14,3 +14,8 @@ export default function ListPage() {
     </div>
   )
 }
+
+// playground
+// cafe
+// restaraunt
+// musuem 

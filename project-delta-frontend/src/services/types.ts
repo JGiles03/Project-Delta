@@ -1,3 +1,5 @@
+import type { CategoryKey } from "./categories";
+
 export type User = {
     id : number;
     email : string;
@@ -21,6 +23,7 @@ export type Place = {
   address: string;
   lat: number;
   lng: number;
+  category: CategoryKey | "other"
 };
 export type Amenity = {
 id: number;
@@ -51,7 +54,8 @@ export type UserLocation = {
     lng: number;
 }
 export type cardProps = {
-    place: Place,
+    place: Place;
+    distanceKm? : number;
 }
 
 export type Review = {

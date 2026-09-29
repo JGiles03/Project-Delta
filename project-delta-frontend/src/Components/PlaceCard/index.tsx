@@ -3,7 +3,7 @@ import type { cardProps } from "../../services/types"
 
 import './index.css'
 
-export default function PlaceCard({ place }: cardProps) {
+export default function PlaceCard({ place, distanceKm }: cardProps) {
   return (
     <div className="place-card">
       <div className="place-card-thumb">
@@ -14,8 +14,10 @@ export default function PlaceCard({ place }: cardProps) {
 
       <div className="place-card-body">
         <h2 className="place-card-name">{place.name}</h2>
-        <p className="place-card-address">{place.address}</p>
+        {distanceKm !== undefined && (
+          <p className="place-card-distance">{distanceKm.toFixed(1)} km away</p>
+        )}
       </div>
     </div>
-  )
+  );
 }

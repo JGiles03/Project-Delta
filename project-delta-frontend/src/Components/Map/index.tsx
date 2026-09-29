@@ -5,7 +5,6 @@ import placePin from "../../assets/placePin.png";
 import userPin from "../../assets/userPin.png";
 import { usePlaces } from "../../context/PlacesContext";
 import { Link } from "react-router-dom";
-import { TOUR_STEPS } from "../../services/tourConsts";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -40,6 +39,7 @@ export default function Map() {
       zoom={14}
       scrollWheelZoom={true}
       style={{ height: "100%", width: "100%" }}
+      data-testid="map"
     >
       <TileLayer
         url={TILES_URL}

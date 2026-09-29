@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { screen, render, cleanup, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -10,10 +10,12 @@ expect.extend(matchers)
 
 import SignupPage from '.';
 
+const mockFetch = vi.fn();
 
 describe("SignupPage page", () => {
 
     beforeEach(() => {
+        mockFetch.mockClear()
         render(
         <BrowserRouter>
             <SignupPage />
@@ -37,7 +39,15 @@ describe("SignupPage page", () => {
         expect(text[0]).toBeInTheDocument();
     });
 
-    it("has a sign up button that navigates to the login page on correct details given", async () => {
+    it("has a sign up button that navigates to onboarding if correct details given", async () => {
+        const mockUser = {email: "test@mail.com", password: "password", passwordCheck: "password"}
+
+        mockFetch.mockResolvedValueOnce({
+            ok: true,
+            status: 200,
+            json: () => Promise.resolve(mockUser)
+        });
+
         const button = screen.getByRole("button", {name: "Sign up"})
         expect(button).toBeInTheDocument();
         expect(button.innerHTML).toContain("Sign up")
@@ -47,14 +57,15 @@ describe("SignupPage page", () => {
         const passwordCheck = screen.getByPlaceholderText("Confirm password")
 
         //fill in sign up details
-        fireEvent.change(email, { target: { value: 'test2@mail.com' } });
+        fireEvent.change(email, { target: { value: 'test@mail.com' } });
         fireEvent.change(password, { target: { value: 'password' } });
         fireEvent.change(passwordCheck, { target: { value: 'password' } });
 
-        expect(window.location.href).not.toContain("/login")
         fireEvent.click(button)
-        //doesn't contain /login 
-        //expect(window.location.href).toContain("/login")
+
+        //expect(mockFetch).toHaveBeenCalledTimes(1)
+        const onboarding = await screen.findByText("Welcome")
+        expect(onboarding).toBeInTheDocument()
     });
 
     it("doesn't sign up if missing details", async () => {

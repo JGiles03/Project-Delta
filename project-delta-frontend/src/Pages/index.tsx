@@ -6,7 +6,7 @@ export { default as MapPage } from "./MapPage";
 export { default as SignupPage } from "./SignupPage";
 export { default as AccountPage } from "./AccountPage";
 export { default as VenuePage } from "./VenuePage";
-export { default as ReviewForm } from "./ReviewForm";
 export { default as ReviewsPage } from "./ReviewsPage";
 export { default as OnboardingPage } from "./OnboardingPage";
+export { default as ReviewForm } from "./ReviewForm";
 export { default as PreferencesForm } from "./PreferencesForm";

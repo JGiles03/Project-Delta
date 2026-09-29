@@ -97,7 +97,7 @@ export default function TourProvider({ children }: TourProviderProps) {
             content: (
                 <div>
                     <h3>Update Preferences</h3>
-                    <p>You are able to update your preferences here</p>
+                    <p>You are able to see and update your preferences here</p>
                 </div>
             ),
         },

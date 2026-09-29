@@ -52,6 +52,6 @@ export async function logIn({ email, password }: LogInPayload): Promise<void> {
 
 export function signOut(): void {
   localStorage.removeItem("token");
-   localStorage.removeItem("userId");
+  localStorage.removeItem("userId");
 }
 

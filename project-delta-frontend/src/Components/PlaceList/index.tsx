@@ -18,7 +18,6 @@ export default function PlaceList() {
 
   if (error) return <div className="list-message">{error}</div>;
   if (isLoading) return <div className="list-message">Loading venues...</div>;
-
   function toggleAmenity(amenity: string) {
     setSelectedAmenities((prev) =>
       prev.includes(amenity)

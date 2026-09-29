@@ -41,10 +41,7 @@ export function Placesprovider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (!userLocation) return;
-
-    async function fetchPlaces() {
-      try {
-        const placesURL =
+       const placesURL =
           `https://api.geoapify.com/v2/places` +
           `?categories=${GEOAPIFY_CATEGORIES}` +
           `&filter=circle:${userLocation?.lng},${userLocation?.lat},${SEARCH_RADIUS}` +
@@ -52,34 +49,41 @@ export function Placesprovider({ children }: { children: ReactNode }) {
           `&limit=${LIMIT}` +
           `&apiKey=${API_KEY}`;
 
-        const response = await fetch(placesURL);
+    async function fetchPlaces() {
+  try {
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch places");
-        }
+    const geoRes = await fetch(placesURL);
+    if (!geoRes.ok) throw new Error("Failed to fetch places");
+    const geoData = await geoRes.json();
 
-        const data = await response.json();
 
-        const parsed: Place[] = data.features
-        .filter((feature: any)=> feature.properties.name)
-        .map((feature: any) => ({
-          id: feature.properties.place_id,
-          name: feature.properties.name ,
-          address: feature.properties.formatted,
-          lat: feature.properties.lat,
-          lng: feature.properties.lon,
-          category: matchCategory(feature.properties.categories ?? []),
-        }));
+    const venueRes = await fetch("http://4.223.159.135/venues");
+    if (!venueRes.ok) throw new Error("Failed to fetch venue data");
+    const venueData = await venueRes.json();
 
-        setPlaces(parsed);
-      } catch (err) {
-        console.error(err);
-        setError("Failed to load nearby venues.");
-      } finally {
-        setIsLoading(false);
-      }
-    }
+    const amenitiesByPlaceId = new Map<string, string[]>(
+      venueData.map((v: any) => [v.geoapify_place_id, v.amenities ?? []])
+    );
 
+    const parsed: Place[] = geoData.features
+      .filter((feature: any) => feature.properties.name)
+      .map((feature: any) => ({
+        id: feature.properties.place_id,
+        name: feature.properties.name,
+        lat: feature.properties.lat,
+        lng: feature.properties.lon,
+        category: matchCategory(feature.properties.categories ?? []),
+        amenities: amenitiesByPlaceId.get(feature.properties.place_id) ?? [],
+      }));
+
+    setPlaces(parsed);
+  } catch (err) {
+    console.error(err);
+    setError("Failed to load nearby venues.");
+  } finally {
+    setIsLoading(false);
+  }
+}
     fetchPlaces();
   }, [userLocation]);
 

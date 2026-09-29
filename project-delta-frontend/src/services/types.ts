@@ -23,7 +23,8 @@ export type Place = {
   address: string;
   lat: number;
   lng: number;
-  category: CategoryKey | "other"
+  category: CategoryKey | "other";
+  amenities: string[];
 };
 export type Amenity = {
 id: number;

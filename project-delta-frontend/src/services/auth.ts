@@ -24,6 +24,7 @@ export async function signUp({
   return await res.json();
 }
 
+
 export async function logIn({ email, password }: LogInPayload): Promise<void> {
   const options = {
     method: "POST",
@@ -49,6 +50,9 @@ export async function logIn({ email, password }: LogInPayload): Promise<void> {
   localStorage.setItem("token", user.token);
   localStorage.setItem("userId", user.id)
 }
+
+
+
 
 export function signOut(): void {
   localStorage.removeItem("token");

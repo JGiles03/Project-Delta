@@ -26,6 +26,7 @@ export type Place = {
   category: CategoryKey | "other";
   amenities: string[];
 };
+
 export type Amenity = {
 id: number;
 name: string;

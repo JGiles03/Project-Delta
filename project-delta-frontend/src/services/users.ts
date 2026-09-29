@@ -1,7 +1,7 @@
 import type { User } from "./types";
 
 
-export async function getUserById(id: number): Promise<User> {
+export async function getUserById(id: string): Promise<User> {
   const res = await fetch(`http://4.223.159.135/users/${id}`);
 
   if (!res.ok) throw new Error("Failed to fetch user");

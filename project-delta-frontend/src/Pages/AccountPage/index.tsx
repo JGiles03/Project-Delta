@@ -3,14 +3,19 @@ import { useEffect, useState } from "react";
 import { signOut } from "../../services/auth";
 import { getUserById } from "../../services/users";
 import { amenityIcons } from "../../services/amenities";
-import "./index.css";
 import TourStart from "../../Components/Tour";
 import { TOUR_STEPS } from "../../services/tourConsts";
+import { getFavourites } from "../../services/favourites";
+import PlaceCard from "../../Components/PlaceCard";
+import type { Place } from "../../services/types";
+import "./index.css";
 
 export default function AccountPage() {
   const navigate = useNavigate();
   const [user, setUser] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [favouriteVenues, setFavouriteVenues] = useState<Place[]>([]);
+  const [favouritesLoading, setFavouritesLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -21,16 +26,21 @@ export default function AccountPage() {
       return;
     }
 
-    async function loadUser(id: any) {
+    async function loadUser(id: string) {
       try {
         const currentUser = await getUserById(id);
         setUser(currentUser);
+
+        const venues = await getFavourites(id);
+        setFavouriteVenues(venues);
       } catch (err) {
-        setUser(null);
+        console.error(err);
       } finally {
         setIsLoading(false);
+        setFavouritesLoading(false);
       }
     }
+
     loadUser(id);
   }, []);
 
@@ -77,29 +87,53 @@ export default function AccountPage() {
             year: "numeric",
           })}
         </p>
+        <div className="account-section">
+          <h3>Your favourites</h3>
+
+          {favouritesLoading ? (
+            <p>Loading your favourites...</p>
+          ) : favouriteVenues.length === 0 ? (
+            <div className="empty-favourites">
+              <p>You haven't favourited any venues yet.</p>
+
+              <Link to="/list" className="btn-accent">
+                Explore venues
+              </Link>
+            </div>
+          ) : (
+            <div className="favourites-grid">
+              {favouriteVenues.map((venue) => (
+                <PlaceCard key={venue.id} place={venue} />
+              ))}
+            </div>
+          )}
+        </div>
 
         <div className="account-section" data-tour={TOUR_STEPS.PREFERENCES}>
           <h3>Your preferences</h3>
 
           {user.preferences?.length ? (
             <div className="preferences-section">
-            <div className="preferences-list">
-              {user.preferences.map((preference: any) => (
-                <div key={preference} className="preference-item">
-                  <span className="preference-icon">
-                    {amenityIcons[preference]}
-                  </span>
-                  <span>{preference}</span>
-                </div>
-            
-          ))}
+              <div className="preferences-list">
+                {user.preferences.map((preference: any) => (
+                  <div key={preference} className="preference-item">
+                    <span className="preference-icon">
+                      {amenityIcons[preference]}
+                    </span>
+                    <span>{preference}</span>
+                  </div>
+                ))}
+              </div>
+              <Link to="/preferences" className="btn-accent">
+                Change your amenities
+              </Link>
             </div>
-              <Link to='/preferences' className="btn-accent">Change your amenities</Link>
-          </div>
           ) : (
             <div className="preference-section">
-            <p>No preferences selected.</p>
-            <Link to='/preferences' className="btn-accent" >Change your amenities</Link>
+              <p>No preferences selected.</p>
+              <Link to="/preferences" className="btn-accent">
+                Change your amenities
+              </Link>
             </div>
           )}
         </div>

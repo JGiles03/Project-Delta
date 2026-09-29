@@ -1,12 +1,30 @@
 import type { cardProps } from "../../services/types";
 import { amenityIcons } from "../../services/amenities";
-
+import { useFavourites } from "../../context/FavouritesContext";
 import "./index.css";
 
 export default function PlaceCard({ place, distanceKm }: cardProps) {
+
+  const { isFavourite, toggleFavourite } = useFavourites();
+  const favourited = isFavourite(place.id);
+  function handleHeartClick(e: React.MouseEvent) {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleFavourite(place.id);
+  }
   return (
     <div className="place-card">
       <div className="place-card-thumb">
+         <button
+          type="button"
+          className={`place-card-heart ${favourited ? "active" : ""}`}
+          onClick={handleHeartClick}
+          aria-label={
+            favourited ? "Remove from favourites" : "Add to favourites"
+          }
+        >
+          {favourited ? "♥" : "♡"}
+        </button>
         <svg
           width="26"
           height="26"
@@ -20,6 +38,7 @@ export default function PlaceCard({ place, distanceKm }: cardProps) {
       </div>
 
       <div className="place-card-body">
+        
         <h2 className="place-card-name">{place.name}</h2>
         {distanceKm !== undefined && (
           <p className="place-card-distance">{distanceKm.toFixed(1)} km away</p>

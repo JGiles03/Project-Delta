@@ -10,9 +10,9 @@ class SignupPage {
     }
 
     async goto() {
-        await this.page.goto("https://project-delta-m6ba.onrender.com/signup", { waitUntil: 'domcontentloaded' })
-        const login = this.page.getByText("Sign up")
-        await login.click()
+        await this.page.goto("https://tiny-lolly-77a880.netlify.app/signup", { waitUntil: 'domcontentloaded' })
+        // const login = this.page.getByText("Sign up")
+        // await login.click()
     }
 
     async fillRequiredFields({ username, password, cpass }){
@@ -26,11 +26,11 @@ class SignupPage {
     }
 
     async expectSuccess() {
-        await expect(this.page).toHaveURL("https://project-delta-m6ba.onrender.com/login")
+        await expect(this.page).toHaveURL("https://tiny-lolly-77a880.netlify.app/login")
     }
 
     async expectFailure() {
-        await expect(this.page).toHaveURL("https://project-delta-m6ba.onrender.com/signup")
+        await expect(this.page).toHaveURL("https://tiny-lolly-77a880.netlify.app/signup")
         //await expect(this.page.getByRole("alert")).toBeVisible()
     }
 }

@@ -12,7 +12,7 @@ class HomePage {
     }
 
     async goto() {
-        await this.page.goto("https://project-delta-m6ba.onrender.com/home", { waitUntil: 'domcontentloaded' })
+        await this.page.goto("https://tiny-lolly-77a880.netlify.app", { waitUntil: 'domcontentloaded' })
     }
 
     async login() {
@@ -40,28 +40,28 @@ class HomePage {
     }
 
     async expectLogin() {
-        await expect(this.page).toHaveURL("https://project-delta-m6ba.onrender.com/login")
+        await expect(this.page).toHaveURL("https://tiny-lolly-77a880.netlify.app/login")
     }
 
     async expectSignup() {
-        await expect(this.page).toHaveURL("https://project-delta-m6ba.onrender.com/signup")
+        await expect(this.page).toHaveURL("https://tiny-lolly-77a880.netlify.app/signup")
         //await expect(this.page.getByRole("alert")).toBeVisible()
     }
 
     async expectMap() {
-        await expect(this.page).toHaveURL("https://project-delta-m6ba.onrender.com/home/map")
+        await expect(this.page).toHaveURL("https://tiny-lolly-77a880.netlify.app/map")
     }
 
     async expectList() {
-        await expect(this.page).toHaveURL("https://project-delta-m6ba.onrender.com/home/list")
+        await expect(this.page).toHaveURL("https://tiny-lolly-77a880.netlify.app/list")
     }
 
     async expectAccount() {
-        await expect(this.page).toHaveURL("https://project-delta-m6ba.onrender.com/home/account")
+        await expect(this.page).toHaveURL("https://tiny-lolly-77a880.netlify.app/account")
     }
 
     async expectFailure() {
-        await expect(this.page).toHaveURL("https://project-delta-m6ba.onrender.com/home")
+        await expect(this.page).toHaveURL("https://tiny-lolly-77a880.netlify.app/home")
     }
 
 

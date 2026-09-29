@@ -8,6 +8,10 @@ export default defineConfig({
     exclude: [
       ...configDefaults.exclude,
       "src/tests/*"
-    ]
+    ],
+    coverage: {
+      provider: 'v8',
+      enabled: true
+    }
   },
 })

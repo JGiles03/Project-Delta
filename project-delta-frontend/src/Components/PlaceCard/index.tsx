@@ -1,5 +1,5 @@
 import type { cardProps } from "../../services/types";
-
+import { amenityIcons } from "../../services/amenities";
 
 import "./index.css";
 
@@ -25,7 +25,20 @@ export default function PlaceCard({ place, distanceKm }: cardProps) {
           <p className="place-card-distance">{distanceKm.toFixed(1)} km away</p>
         )}
 
-      
+        {place.amenities.length > 0 && (
+          <div className="place-card-amenities">
+            {place.amenities.slice(0, 4).map((amenity) => (
+              <span key={amenity} className="amenity-icon" title={amenity}>
+                {amenityIcons[amenity] ?? "•"}
+              </span>
+            ))}
+            {place.amenities.length > 4 && (
+              <span className="amenity-icon-more">
+                +{place.amenities.length - 4}
+              </span>
+            )}
+          </div>
+        )}
       </div>
 
       <a

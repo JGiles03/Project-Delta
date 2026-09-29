@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { usePlaces } from "../../context/PlacesContext";
 import PlaceCard from "../PlaceCard";
 import "./index.css";
+import { TOUR_STEPS } from "../../services/tourConsts";
 
 export default function PlaceList() {
   const { places, isLoading, error } = usePlaces();
@@ -12,7 +13,7 @@ export default function PlaceList() {
   return (
     <div data-testid="list" className="list">
       {places.map((place) => (
-        <Link to={`/venue/${place.id}`}>
+        <Link to={`/venue/${place.id}`} data-tour={TOUR_STEPS.LISTITEM}>
           <PlaceCard key={place.id} place={place} />
         </Link>
       ))}

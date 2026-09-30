@@ -15,7 +15,7 @@ createRoot(document.getElementById('root')!).render(
     <Placesprovider>
     <FavouritesProvider>
     <TourProvider>
-      <App />
+      <App />a
     </TourProvider>
     </FavouritesProvider>
     </Placesprovider>

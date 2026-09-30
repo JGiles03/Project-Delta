@@ -150,14 +150,13 @@
 
 /* CHARTS */
 
+
 .analytics-chart {
   display: block;
-
-  width: 100%;
-  max-width: 100%;
+  width: 106%;
+  max-width: none;
   height: auto;
-
-  object-fit: contain;
+  margin: 20px -3%;
 }
 
 /* AMENITIES */
@@ -284,8 +283,8 @@
 }
 
 .traffic-sources-chart {
-  width: 65%;
+  width: 75%;
   max-width: 600px;
   display: block;
-  margin: 0 auto;
+  margin: 16px auto;
 }

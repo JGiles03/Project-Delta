@@ -58,7 +58,6 @@ export default function AccountPage() {
     favouriteIds.has(v.id),
   );
 
-
   const clampedFavouriteIndex = Math.min(
     favouriteIndex,
     Math.max(visibleFavourites.length - 1, 0),
@@ -144,10 +143,10 @@ export default function AccountPage() {
                     }}
                   >
                     {visibleFavourites.map((venue) => (
-                      <div key={venue.id} className="carousel-slide">
-                        <Link to={`/venue/${venue.id}`}>
-                          <PlaceCard place={venue} />
-                        </Link>
+                      <div key={venue.id} className="carousel-slide " onClick={() => navigate(`/venue/${venue.id}`)}>
+                      
+                          <PlaceCard place={venue}  />
+                      
                       </div>
                     ))}
                   </div>

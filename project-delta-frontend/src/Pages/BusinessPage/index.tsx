@@ -1,146 +1,239 @@
 import { useEffect, useState } from "react";
 import "./index.css";
 
-type Amenity = {
+type VenueAmenity = {
+  id: number;
+  name: string;
+};
+
+type Venue = {
+  id: number;
+  name: string;
+  category: string | null;
+  address: string | null;
+  postcode: string;
+  amenities: VenueAmenity[];
+};
+
+type AmenityOpportunity = {
   amenity_id: number;
   name: string;
-};
-
-type AmenityDemand = Amenity & {
   searches: number;
-};
-
-type VenueAnalytics = {
-  venue_id: number;
-  name: string;
-  views: number;
-  relevant_searches: number;
-  venue_amenities: Amenity[];
-  amenity_demand: AmenityDemand[];
-  opportunities: AmenityDemand[];
+  demand_rate: number;
+  projection_chart: string;
 };
 
 type AnalyticsData = {
   generated_at: string;
   is_demo_data: boolean;
-  venues: VenueAnalytics[];
+  views: number;
+  relevant_searches: number;
+  views_chart: string;
+  amenity_demand_chart: string;
+  search_heatmap_chart: string;
+  search_demand_chart: string;
+  projection_method: string;
+  opportunities: AmenityOpportunity[];
 };
 
+const API_URL = "http://4.223.159.135";
+
 export default function BusinessPage() {
+  const [venue, setVenue] = useState<Venue | null>(null);
   const [analytics, setAnalytics] = useState<AnalyticsData | null>(null);
-  const [selectedVenueId, setSelectedVenueId] = useState<number | null>(null);
 
-  useEffect(() => {
-    fetch("/analytics/business-analytics.json")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Could not load analytics");
-        }
-
-        return response.json();
-      })
-      .then((data: AnalyticsData) => {
-        setAnalytics(data);
-
-        if (data.venues.length > 0) {
-          setSelectedVenueId(data.venues[0].venue_id);
-        }
-      })
-      .catch((error) => {
-        console.error("Failed to load business analytics:", error);
-      });
-  }, []);
-
-  if (!analytics || selectedVenueId === null) {
-    return (
-      <div className="business-page">
-        <p>Loading analytics...</p>
-      </div>
-    );
-  }
-
-  const venue = analytics.venues.find(
-    (item) => item.venue_id === selectedVenueId
+  const [selectedAmenityId, setSelectedAmenityId] = useState<number | null>(
+    null
   );
 
-  if (!venue) {
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function loadDashboard() {
+      try {
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+          throw new Error("You must be logged in to view this dashboard.");
+        }
+
+        const [venueResponse, analyticsResponse] = await Promise.all([
+          fetch(`${API_URL}/venues/mine`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }),
+
+          fetch("/analytics/business-analytics.json"),
+        ]);
+
+        if (!venueResponse.ok) {
+          throw new Error("Could not load your venue.");
+        }
+
+        if (!analyticsResponse.ok) {
+          throw new Error("Could not load business analytics.");
+        }
+
+        const venueData: Venue = await venueResponse.json();
+        const analyticsData: AnalyticsData = await analyticsResponse.json();
+
+        setVenue(venueData);
+        setAnalytics(analyticsData);
+      } catch (err) {
+        console.error("Failed to load business dashboard:", err);
+
+        setError(
+          err instanceof Error
+            ? err.message
+            : "Could not load the business dashboard."
+        );
+      }
+    }
+
+    loadDashboard();
+  }, []);
+
+  if (error) {
     return (
       <div className="business-page">
-        <p>Venue analytics not found.</p>
+        <p>{error}</p>
       </div>
     );
   }
+
+  if (!venue || !analytics) {
+    return (
+      <div className="business-page">
+        <p>Loading dashboard...</p>
+      </div>
+    );
+  }
+
+  const availableOpportunities = analytics.opportunities
+  .filter(
+    (opportunity) =>
+      !venue.amenities.some(
+        (amenity) => amenity.name === opportunity.name
+      )
+  )
+  .sort((a, b) => b.searches - a.searches);
+
+  const selectedAmenity = availableOpportunities.find(
+    (amenity) => amenity.amenity_id === selectedAmenityId
+  );
 
   return (
     <div className="business-page">
       <header className="business-header">
         <p className="business-eyebrow">Venue analytics</p>
 
-        <h1>Business Dashboard</h1>
+        <h1>{venue.name}</h1>
 
-        <p>
-          Understand how parents are discovering and evaluating your venue.
-        </p>
+        {venue.address && <p>{venue.address}</p>}
 
         {analytics.is_demo_data && (
           <p className="demo-label">
-            Demo analytics using simulated parent activity
+            Demo analytics using parent activity
           </p>
         )}
       </header>
 
-      <section className="business-filters">
-        <select
-          value={selectedVenueId}
-          onChange={(event) =>
-            setSelectedVenueId(Number(event.target.value))
-          }
-        >
-          {analytics.venues.map((item) => (
-            <option
-              key={item.venue_id}
-              value={item.venue_id}
-            >
-              {item.name}
-            </option>
-          ))}
-        </select>
-
-        <select defaultValue="60" disabled>
-          <option value="60">Last 60 days</option>
-        </select>
-      </section>
-
       <section className="metric-grid">
         <article className="metric-card">
           <p>Venue views</p>
-          <h2>{venue.views}</h2>
-          <span>Simulated activity</span>
+          <h2>{analytics.views}</h2>
+          <span>Activity</span>
         </article>
 
         <article className="metric-card">
           <p>Relevant searches</p>
-          <h2>{venue.relevant_searches}</h2>
+          <h2>{analytics.relevant_searches}</h2>
           <span>Estimated nearby demand</span>
         </article>
       </section>
 
       <section className="analytics-card">
-        <h2>Venue views over time</h2>
+        <h2>Explore potential amenity impact</h2>
+
+        <p className="section-description projection-intro">
+          Choose an amenity to see how it could affect traffic to your venue.
+          The projection uses simulated parent search demand to estimate the
+          potential impact on venue views.
+        </p>
+
+        <div className="projection-controls">
+          <label htmlFor="amenity-projection">
+            Choose an amenity   
+          </label>
+
+          <select
+            id="amenity-projection"
+            value={selectedAmenityId ?? ""}
+            onChange={(event) =>
+              setSelectedAmenityId(
+                event.target.value
+                  ? Number(event.target.value)
+                  : null
+              )
+            }
+          >
+            <option value="">Current views only</option>
+
+            {availableOpportunities.map((amenity) => (
+              <option
+                key={amenity.amenity_id}
+                value={amenity.amenity_id}
+              >
+                {amenity.name}
+              </option>
+            ))}
+          </select>
+        </div>
 
         <img
           className="analytics-chart"
-          src="/analytics/venue-views-over-time.png"
-          alt="Venue views over time"
+          src={
+            selectedAmenity?.projection_chart ??
+            analytics.views_chart
+          }
+          alt={
+            selectedAmenity
+              ? `Illustrative projected venue views with ${selectedAmenity.name}`
+              : `Simulated venue views for ${venue.name}`
+          }
         />
+
+        {selectedAmenity && (
+          <div className="projection-explanation">
+            <strong>What does this projection mean?</strong>
+
+            <p>
+              {selectedAmenity.name} appeared in{" "}
+              <strong>{selectedAmenity.searches} searches</strong>.
+              The red line estimates how venue views could change if this
+              amenity were added.
+            </p>
+
+            <small>
+              Illustrative estimate based on simulated demand — not a
+              guaranteed increase in visits.
+            </small>
+          </div>
+        )}
       </section>
 
       <section className="analytics-card">
         <h2>Most requested amenities</h2>
 
+        <p className="section-description">
+          Amenities most frequently selected in simulated nearby
+          parent searches.
+        </p>
+
         <img
           className="analytics-chart"
-          src="/analytics/amenity-demand.png"
+          src={analytics.amenity_demand_chart}
           alt="Most requested amenities"
         />
       </section>
@@ -149,17 +242,17 @@ export default function BusinessPage() {
         <h2>Your venue amenities</h2>
 
         <div className="amenity-list">
-          {venue.venue_amenities.length > 0 ? (
-            venue.venue_amenities.map((amenity) => (
+          {venue.amenities.length > 0 ? (
+            venue.amenities.map((amenity) => (
               <span
                 className="amenity-chip"
-                key={amenity.amenity_id}
+                key={amenity.id}
               >
                 ✓ {amenity.name}
               </span>
             ))
           ) : (
-            <p>No amenities currently recorded.</p>
+            <p>No amenities currently recorded for this venue.</p>
           )}
         </div>
       </section>
@@ -168,13 +261,13 @@ export default function BusinessPage() {
         <h2>Amenity opportunities</h2>
 
         <p className="section-description">
-          Amenities requested in relevant nearby searches that aren't
-          currently recorded for this venue.
+          Amenities appearing in simulated parent searches that
+          aren't currently recorded for your venue.
         </p>
 
         <div className="opportunity-list">
-          {venue.opportunities.length > 0 ? (
-            venue.opportunities.slice(0, 5).map((opportunity) => (
+          {availableOpportunities.length > 0 ? (
+            availableOpportunities.slice(0, 5).map((opportunity) => (
               <div
                 className="opportunity-row"
                 key={opportunity.amenity_id}
@@ -193,16 +286,23 @@ export default function BusinessPage() {
       </section>
 
       <section className="analytics-card">
-        <h2>When parents search</h2>
+        <h2>How parents discovered your venue</h2>
+
+        <p className="section-description">
+          See which parts of Child & Me are driving parents to discover
+          your venue.
+        </p>
 
         <img
           className="analytics-chart"
-          src="/analytics/search-heatmap.png"
-          alt="Parent searches by day and time"
+          src="/analytics/traffic-sources.png"
+          alt="How parents discovered your venue"
         />
-      </section>
 
-      
+        <small className="analytics-note">
+          Discovery source data is simulated for demonstration purposes.
+        </small>
+      </section>
     </div>
   );
 }

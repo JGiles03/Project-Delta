@@ -28,11 +28,14 @@ const PlacesContext = createContext<placesContextType | null>(null);
 
 export function Placesprovider({ children }: { children: ReactNode }) {
   const [places, setPlaces] = useState<Place[]>([]);
-  const [userLocation, setUserLocation] = useState<UserLocation | null>(FIXED_LOCATION);
+  const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
+  
   useEffect(() => {
+    setUserLocation(FIXED_LOCATION)
+
     if (!userLocation) return;
        const placesURL =
           `https://api.geoapify.com/v2/places` +

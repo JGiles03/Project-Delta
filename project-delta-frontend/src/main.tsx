@@ -6,15 +6,18 @@ import { BrowserRouter } from 'react-router-dom'
 import 'leaflet/dist/leaflet.css';
 import { Placesprovider } from './context/PlacesContext.tsx';
 import TourProvider from './context/TourContext.tsx';
+import { FavouritesProvider } from './context/FavouritesContext.tsx';
 
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
     <Placesprovider>
-      <TourProvider>
+    <FavouritesProvider>
+    <TourProvider>
       <App />
-      </TourProvider>
+    </TourProvider>
+    </FavouritesProvider>
     </Placesprovider>
     </BrowserRouter>
   </StrictMode>,

@@ -1,17 +1,13 @@
-import type { User } from "./types";
+import type { Review, User } from "./types";
 
-
-export async function getUserById(id: number): Promise<User> {
+export async function getUserById(id: string): Promise<User> {
   const res = await fetch(`http://4.223.159.135/users/${id}`);
 
   if (!res.ok) throw new Error("Failed to fetch user");
   return res.json();
 }
 
-
 export async function savePreferences(preferences: string[]): Promise<void> {
-
-
   const token = localStorage.getItem("token");
   const userId = localStorage.getItem("userId");
 
@@ -21,10 +17,24 @@ export async function savePreferences(preferences: string[]): Promise<void> {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    body : JSON.stringify({preferences})
+    body: JSON.stringify({ preferences }),
   };
 
-  const res = await fetch(`http://4.223.159.135/users/${userId}/preferences`, options);
+  const res = await fetch(
+    `http://4.223.159.135/users/${userId}/preferences`,
+    options,
+  );
 
-  if(!res.ok) throw new Error("Failed to save preferences")
+  if (!res.ok) throw new Error("Failed to save preferences");
+}
+
+
+export async function fetchReviews(id: string): Promise<Review[]> {
+  const res = await fetch(`http://4.223.159.135/users/${id}/reviews`, {
+    headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+  });
+
+  if (!res.ok) throw new Error("Failed to fetch reviews");
+
+  return res.json();
 }

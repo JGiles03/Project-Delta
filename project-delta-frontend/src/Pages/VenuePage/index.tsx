@@ -48,7 +48,7 @@ export default function VenuePage() {
         <p className="venue-address">{venue.address}</p>
 
         {venue.category && (
-          <div className="venue-amenity">
+          <div className="venue-type">
             <strong>Type:</strong> {venue.category}
           </div>
         )}

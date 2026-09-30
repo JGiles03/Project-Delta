@@ -15,7 +15,7 @@ export default function TourProvider({ children }: TourProviderProps) {
     const { places } = usePlaces();
 
     useEffect(() => {
-        console.log(completedSteps);
+    
         if(completedSteps[completedSteps.length - 1] === `[data-tour="${TOUR_STEPS.NAVBAR}"]`){
             navigate("/map")
         } else if(completedSteps[completedSteps.length - 1] === `[data-tour="${TOUR_STEPS.MAPSEARCH}"]`){

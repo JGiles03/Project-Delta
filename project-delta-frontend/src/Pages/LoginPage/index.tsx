@@ -13,15 +13,15 @@ export default function LoginPage() {
   async function handleSubmit(e : React.SubmitEvent){
     e.preventDefault()
 
-    try{
-      await logIn({email: emailText, password: passwordText})
-      setMessageBox('login successful')
-      setTimeout(()=>{
-        navigate('/map')
-      }, 800)
-    } catch (err){
-      setMessageBox('Invalid Email or password')
-    }
+try{
+  await logIn({email: emailText, password: passwordText})
+  setMessageBox('login successful')
+  setTimeout(()=>{
+    navigate('/list')
+  }, 800)
+} catch (err){
+  setMessageBox('Invalid Email or password')
+}
 
   }
 

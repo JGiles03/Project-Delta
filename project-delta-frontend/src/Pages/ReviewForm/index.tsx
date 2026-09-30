@@ -8,23 +8,25 @@ export default function ReviewForm() {
 
   const token = localStorage.getItem('token');
 
-  const [rating, setRating] = useState<number>(0);
+  const [accessibilityRating, setAccessibilityRating] = useState<number>(0);
+  const [serviceRating, setServiceRating] = useState<number>(0);
   const [comment, setComment] = useState<string>('');
   const [error, setError] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
-  async function handleSubmit(e: React.SubmitEvent) {
+  const overallRating = (accessibilityRating + serviceRating) / 2;
+
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError('');
 
-    if (rating === 0) {
-      setError('Please select a rating.');
+    if (accessibilityRating === 0 || serviceRating === 0) {
+      setError('Please rate both accessibility and service.');
       return;
     }
 
     try {
       setIsSubmitting(true);
-
 
       const options = {
         method: 'POST',
@@ -32,8 +34,8 @@ export default function ReviewForm() {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ rating, comment }),
-      }
+        body: JSON.stringify({ rating: overallRating, comment }),
+      };
 
       const res = await fetch(`http://4.223.159.135/venues/${id}/reviews`, options);
 
@@ -68,29 +70,15 @@ export default function ReviewForm() {
       <div className="review-form-card">
         <h1>Leave a review</h1>
 
-        <form onSubmit={handleSubmit} data-testid="form">
-          <label className="review-form-label">Overall Rating</label>
+        <form onSubmit={handleSubmit}>
+          <label className="review-form-label">Accessibility Rating</label>
           <div className="rating-input">
             {[1, 2, 3, 4, 5].map((star) => (
               <button
                 type="button"
                 key={star}
-                className={`rating-star ${rating >= star ? 'active' : ''}`}
-                onClick={() => setRating(star)}
-              >
-                ★
-              </button>
-            ))}
-          </div>
-
-          <label className="review-form-label">Accessability Rating</label>
-          <div className="rating-input">
-            {[1, 2, 3, 4, 5].map((star) => (
-              <button
-                type="button"
-                key={star}
-                className={`rating-star ${rating >= star ? 'active' : ''}`}
-                onClick={() => setRating(star)}
+                className={`rating-star ${accessibilityRating >= star ? 'active' : ''}`}
+                onClick={() => setAccessibilityRating(star)}
               >
                 ★
               </button>
@@ -103,13 +91,19 @@ export default function ReviewForm() {
               <button
                 type="button"
                 key={star}
-                className={`rating-star ${rating >= star ? 'active' : ''}`}
-                onClick={() => setRating(star)}
+                className={`rating-star ${serviceRating >= star ? 'active' : ''}`}
+                onClick={() => setServiceRating(star)}
               >
                 ★
               </button>
             ))}
           </div>
+
+          {accessibilityRating > 0 && serviceRating > 0 && (
+            <p className="review-form-overall">
+              Overall rating: {overallRating.toFixed(1)} ★
+            </p>
+          )}
 
           <label className="review-form-label" htmlFor="comment">Comment</label>
           <textarea

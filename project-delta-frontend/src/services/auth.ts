@@ -25,7 +25,10 @@ export async function signUp({
 }
 
 
-export async function logIn({ email, password }: LogInPayload): Promise<void> {
+export async function logIn({
+  email,
+  password,
+}: LogInPayload): Promise<string> {
   const options = {
     method: "POST",
     headers: {
@@ -44,11 +47,19 @@ export async function logIn({ email, password }: LogInPayload): Promise<void> {
   }
 
   const user = await res.json();
-  if (!user.token || user.id == null) {
-  throw new Error("Login response is missing token or id");
-}
+
   localStorage.setItem("token", user.token);
-  localStorage.setItem("userId", user.id)
+  localStorage.setItem("id", String(user.id));
+  localStorage.setItem("email", email);
+
+  const payload = JSON.parse(
+    atob(user.token.split(".")[1])
+  );
+
+  localStorage.setItem("role", payload.role);
+
+
+  return payload.role;
 }
 
 
@@ -56,6 +67,8 @@ export async function logIn({ email, password }: LogInPayload): Promise<void> {
 
 export function signOut(): void {
   localStorage.removeItem("token");
-   localStorage.removeItem("userId");
+  localStorage.removeItem("email");
+  localStorage.removeItem("id");
+  localStorage.removeItem("role");
 }
 

@@ -64,7 +64,7 @@ export default function PlaceList() {
 
   return (
     <div className="list-wrapper">
-      <div className="list-toolbar">
+      <div className="list-toolbar" data-tour={TOUR_STEPS.LISTSEARCH}>
         <input
           type="text"
           placeholder="Search by name"
@@ -78,6 +78,7 @@ export default function PlaceList() {
           className="filter-toggle"
           onClick={() => setIsFilterOpen(true)}
           aria-label="Open filters"
+          data-tour={TOUR_STEPS.LISTFILTERS}
         >
           ☰
           {activeFilterCount > 0 && (

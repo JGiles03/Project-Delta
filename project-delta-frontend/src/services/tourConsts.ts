@@ -1,8 +1,9 @@
 export const TOUR_STEPS = {
     NAVBAR: "tour-navbar",
     MAPPAGE: "tour-map-page",
-    MAPSEARCH: "tour-map-search",
     LISTPAGE: "tour-list-page",
+    LISTSEARCH: "tour-list-search",
+    LISTFILTERS: "tour-list-filters",
     LISTITEM: "tour-list-item",
     VENUEPAGE: "tour-venue-page",
     ACCOUNTPAGE: "tour-account-page",

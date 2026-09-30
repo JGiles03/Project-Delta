@@ -70,7 +70,7 @@
   background: rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: flex-end;
-  z-index: 1000;
+  z-index: 3000;
 }
 
 .filter-modal {
@@ -112,13 +112,12 @@
 }
 .filter-modal-actions {
   display: flex;
-  gap: 0.75rem;
   margin-top: 1.25rem;
+  flex-shrink: 0;
 }
 
-.filter-modal-reset,
-.filter-modal-apply {
-  flex: 1;
+.filter-modal-reset {
+  width: 100%;
 }
 
 .filter-section-title {

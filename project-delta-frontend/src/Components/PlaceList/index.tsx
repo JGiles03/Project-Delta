@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { usePlaces } from "../../context/PlacesContext";
 import { CATEGORY_GROUPS, type CategoryKey } from "../../services/categories";
 import { Amenities } from "../../services/amenities";
@@ -9,6 +9,7 @@ import { TOUR_STEPS } from "../../services/tourConsts";
 import "./index.css";
 
 export default function PlaceList() {
+  const navigate = useNavigate();
   const { placesByCategory, userLocation, isLoading, error } = usePlaces();
 
   const [searchText, setSearchText] = useState("");
@@ -16,15 +17,16 @@ export default function PlaceList() {
   const [maxDistanceKm, setMaxDistanceKm] = useState<number | null>(null);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-
-  const [indexByCategory, setIndexByCategory] = useState<Record<CategoryKey, number>>({
+  const [indexByCategory, setIndexByCategory] = useState<
+    Record<CategoryKey, number>
+  >({
     cafe: 0,
     restaurant: 0,
     museum: 0,
     playground: 0,
   });
 
-    useEffect(() => {
+  useEffect(() => {
     setIndexByCategory({ cafe: 0, restaurant: 0, museum: 0, playground: 0 });
   }, [searchText, selectedAmenities, maxDistanceKm]);
 
@@ -33,11 +35,14 @@ export default function PlaceList() {
 
   function toggleAmenity(amenity: string) {
     setSelectedAmenities((prev) =>
-      prev.includes(amenity) ? prev.filter((a) => a !== amenity) : [...prev, amenity]
+      prev.includes(amenity)
+        ? prev.filter((a) => a !== amenity)
+        : [...prev, amenity],
     );
   }
 
-  const activeFilterCount = selectedAmenities.length + (maxDistanceKm !== null ? 1 : 0);
+  const activeFilterCount =
+    selectedAmenities.length + (maxDistanceKm !== null ? 1 : 0);
 
   function resetFilters() {
     setSelectedAmenities([]);
@@ -83,7 +88,10 @@ export default function PlaceList() {
       </div>
 
       {isFilterOpen && (
-        <div className="filter-modal-backdrop" onClick={() => setIsFilterOpen(false)}>
+        <div
+          className="filter-modal-backdrop"
+          onClick={() => setIsFilterOpen(false)}
+        >
           <div className="filter-modal" onClick={(e) => e.stopPropagation()}>
             <div className="filter-modal-header">
               <h2>Filters</h2>
@@ -129,13 +137,13 @@ export default function PlaceList() {
 
             <div className="filter-modal-actions">
               {activeFilterCount > 0 && (
-                <button className="btn-accent filter-modal-reset" onClick={resetFilters}>
+                <button
+                  className="btn-accent filter-modal-reset"
+                  onClick={resetFilters}
+                >
                   Clear all
                 </button>
               )}
-              <button className="btn-primary filter-modal-apply" onClick={() => setIsFilterOpen(false)}>
-                Show results
-              </button>
             </div>
           </div>
         </div>
@@ -147,19 +155,25 @@ export default function PlaceList() {
 
           if (searchText.trim()) {
             groupPlaces = groupPlaces.filter((p) =>
-              p.name.toLowerCase().includes(searchText.trim().toLowerCase())
+              p.name.toLowerCase().includes(searchText.trim().toLowerCase()),
             );
           }
 
           if (selectedAmenities.length > 0) {
             groupPlaces = groupPlaces.filter((p) =>
-              selectedAmenities.every((a) => p.amenities.includes(a))
+              selectedAmenities.every((a) => p.amenities.includes(a)),
             );
           }
 
           if (userLocation && maxDistanceKm !== null) {
             groupPlaces = groupPlaces.filter(
-              (p) => getDistanceKm(userLocation.lat, userLocation.lng, p.lat, p.lng) <= maxDistanceKm
+              (p) =>
+                getDistanceKm(
+                  userLocation.lat,
+                  userLocation.lng,
+                  p.lat,
+                  p.lng,
+                ) <= maxDistanceKm,
             );
           }
 
@@ -168,14 +182,27 @@ export default function PlaceList() {
           const sortedPlaces = userLocation
             ? [...groupPlaces].sort(
                 (a, b) =>
-                  getDistanceKm(userLocation.lat, userLocation.lng, a.lat, a.lng) -
-                  getDistanceKm(userLocation.lat, userLocation.lng, b.lat, b.lng)
+                  getDistanceKm(
+                    userLocation.lat,
+                    userLocation.lng,
+                    a.lat,
+                    a.lng,
+                  ) -
+                  getDistanceKm(
+                    userLocation.lat,
+                    userLocation.lng,
+                    b.lat,
+                    b.lng,
+                  ),
               )
             : groupPlaces;
 
           const totalSlides = sortedPlaces.length;
-         
-          const currentIndex = Math.min(indexByCategory[group.key], totalSlides - 1);
+
+          const currentIndex = Math.min(
+            indexByCategory[group.key],
+            totalSlides - 1,
+          );
 
           let touchStartX = 0;
 
@@ -217,21 +244,24 @@ export default function PlaceList() {
                     style={{ transform: `translateX(-${currentIndex * 100}%)` }}
                   >
                     {sortedPlaces.map((place) => (
-                      <div key={place.id} className="carousel-slide">
-                        <Link
-                          to={`/venue/${place.id}`}
-                          className="category-row-item"
-                          data-tour={TOUR_STEPS.LISTITEM}
-                        >
-                          <PlaceCard
-                            place={place}
-                            distanceKm={
-                              userLocation
-                                ? getDistanceKm(userLocation.lat, userLocation.lng, place.lat, place.lng)
-                                : undefined
-                            }
-                          />
-                        </Link>
+                      <div
+                        key={place.id}
+                        className="carousel-slide"
+                        onClick={() => navigate(`/venue/${place.id}`)}
+                      >
+                        <PlaceCard
+                          place={place}
+                          distanceKm={
+                            userLocation
+                              ? getDistanceKm(
+                                  userLocation.lat,
+                                  userLocation.lng,
+                                  place.lat,
+                                  place.lng,
+                                )
+                              : undefined
+                          }
+                        />
                       </div>
                     ))}
                   </div>

@@ -14,10 +14,14 @@ async function handleSubmit(e : React.SubmitEvent){
   e.preventDefault()
 
 try{
-  await logIn({email: emailText, password: passwordText})
+  const role = await logIn({email: emailText, password: passwordText})
   setMessageBox('login successful')
   setTimeout(()=>{
-    navigate('/list')
+    if (role === "venue_owner") {
+      navigate("/business");
+    } else {
+      navigate("/list");
+    }
   }, 800)
 } catch (err){
   setMessageBox('Invalid Email or password')

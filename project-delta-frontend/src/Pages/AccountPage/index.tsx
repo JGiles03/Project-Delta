@@ -26,7 +26,7 @@ export default function AccountPage() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const id = localStorage.getItem("userId");
+    const id = localStorage.getItem("id");
 
     if (!token || !id) {
       setIsLoading(false);

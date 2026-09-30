@@ -46,7 +46,7 @@ try{
           <input
             type="password"
             placeholder="Password"
-            required
+            //required
             value={passwordText}
             onChange={(e) => setPasswordText(e.target.value)}
           />

@@ -2,6 +2,7 @@ import type { cardProps } from "../../services/types";
 import { amenityIcons } from "../../services/amenities";
 import { useFavourites } from "../../context/FavouritesContext";
 import "./index.css";
+import { TOUR_STEPS } from "../../services/tourConsts";
 
 export default function PlaceCard({ place, distanceKm }: cardProps) {
   const { isFavourite, toggleFavourite } = useFavourites();
@@ -12,7 +13,7 @@ export default function PlaceCard({ place, distanceKm }: cardProps) {
     toggleFavourite(place.id);
   }
   return (
-    <div className="place-card">
+    <div className="place-card" data-tour={TOUR_STEPS.LISTITEM}>
       <div className="place-card-thumb">
         <button
           type="button"

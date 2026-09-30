@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import { describe, it, expect, beforeEach, afterEach, vi, beforeAll } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi, beforeAll, afterAll } from 'vitest';
 import { screen, render, cleanup, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter } from 'react-router-dom';
@@ -11,7 +11,7 @@ import { getUserById } from '../../services/users';
 import { signOut } from '../../services/auth';
 import { FavouritesProvider } from '../../context/FavouritesContext';
 
-vi.mock(import("../../services/users"), () => ({
+vi.mock("../../services/users", () => ({
   getUserById: vi.fn(() => ({ 
     id: 1, 
     email: "test1@mail.com", 
@@ -21,19 +21,22 @@ vi.mock(import("../../services/users"), () => ({
     }))
 }))
 
-vi.mock(import("../../services/auth"), () => ({
+vi.mock("../../services/auth", () => ({
   signOut: vi.fn()
 }))
 
 describe("AccountPage page", () => {
-    let originalStorage;
+    let mockStorage;
+    const realStorage = window.localStorage;
 
     beforeAll(() => {
-        originalStorage = window.localStorage;
-        window.localStorage = {
+        mockStorage = {
             store: {
-                userId: 1,
-                token: "Bearer becusbc78eg8g38"
+                id: 1,
+                token: "becusbc78eg8g38"
+            },
+            setStore(newStore) {
+                this.store = newStore
             },
             getItem(key) {
             return this.store[key] ?? null;
@@ -48,22 +51,33 @@ describe("AccountPage page", () => {
             this.store = {};
             },
         };
+        window.localStorage = mockStorage;
     })
 
-    beforeEach(() => {
+    const renderPage = () => {
         render(
-        <BrowserRouter>
-            <FavouritesProvider>
-                <AccountPage />
-            </FavouritesProvider>
-        </BrowserRouter>);
-    });
+            <BrowserRouter>
+                <FavouritesProvider>
+                    <AccountPage />
+                </FavouritesProvider>
+            </BrowserRouter>);
+    }
 
     afterEach(() => {
         cleanup();
+        vi.clearAllMocks();
+        mockStorage.setStore({
+            id: 1,
+            token: "becusbc78eg8g38"
+        })
     });
+
+    afterAll(() => {
+        window.localStorage = realStorage 
+    })
     
     it("Displays logged in Email, and member status", async () => {
+        renderPage()
         expect(getUserById).toHaveBeenCalled()
         const title = await screen.findByText("test1@mail.com");
         const text = await screen.findAllByRole("paragraph");
@@ -74,6 +88,7 @@ describe("AccountPage page", () => {
     });
 
     it("Shows user's selected preferences", async () => {
+        renderPage()
         expect(getUserById).toHaveBeenCalled()
         const preferences = await screen.findByText("Your preferences")
         const list = await screen.findByTestId("preferences-list")
@@ -83,6 +98,7 @@ describe("AccountPage page", () => {
     });
 
     it("Allows the user to change their preferences", async () => {
+        renderPage()
         expect(getUserById).toHaveBeenCalled()
         const change = await screen.findByText("Change your amenities")
         expect(change).toBeInTheDocument();
@@ -92,12 +108,14 @@ describe("AccountPage page", () => {
     });
 
     it("displays user's reviews", async () => {
+        renderPage()
         expect(getUserById).toHaveBeenCalled()
         const reviews = await screen.findByText("Your reviews")
         expect(reviews).toBeInTheDocument();
     });
 
     it("allows a user to log out", async () => {
+        renderPage()
         expect(getUserById).toHaveBeenCalled()
         const quit = await screen.findByRole("button", {name: "Sign Out"})
         expect(quit).toBeInTheDocument()
@@ -105,6 +123,25 @@ describe("AccountPage page", () => {
         await userEvent.click(quit);
         expect(signOut).toHaveBeenCalled();
         expect(window.location.href).toContain("/home")
+    });
+
+    it("Shows login when nothing in local storage", async () => {
+        mockStorage.clear(); 
+        renderPage()
+
+        const title = await screen.findByRole("heading", { name: "You're not signed in" });
+        const text = screen.getByText("Log in to leave reviews and manage your account.");
+        
+        expect(title).toBeInTheDocument();
+        expect(text).toBeInTheDocument();
+
+        const login = screen.getByRole("link", { name: "Log in" });
+        const signup = screen.getByRole("link", { name: "Create an account" });
+
+        expect(login).toHaveAttribute("href", "/login");
+        expect(signup).toHaveAttribute("href", "/signup");
+
+        expect(getUserById).not.toHaveBeenCalled();
     });
 
 });

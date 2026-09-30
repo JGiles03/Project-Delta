@@ -1,9 +1,9 @@
 import { createContext, useContext, useState, useEffect, useMemo } from "react";
 
 import type { Place, UserLocation } from "../services/types";
-import { CATEGORY_GROUPS, GEOAPIFY_CATEGORIES, type CategoryKey } from "../services/categories";
+import { GEOAPIFY_CATEGORIES, type CategoryKey } from "../services/categories";
 import type { ReactNode } from "react";
-
+import { matchCategory } from "../services/categories";
 const API_KEY = import.meta.env.VITE_API_KEY;
 const SEARCH_RADIUS = 35000;
 const LIMIT = 300;
@@ -24,14 +24,7 @@ type placesContextType = {
 const PlacesContext = createContext<placesContextType | null>(null);
 
 
-function matchCategory(rawCategories: string[]): CategoryKey | "other" {
-  for (const group of CATEGORY_GROUPS) {
-    if (rawCategories.some((c) => c.startsWith(group.geoapifyPrefix))) {
-      return group.key;
-    }
-  }
-  return "other";
-}
+
 
 export function Placesprovider({ children }: { children: ReactNode }) {
   const [places, setPlaces] = useState<Place[]>([]);

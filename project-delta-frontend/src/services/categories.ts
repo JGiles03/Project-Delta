@@ -9,3 +9,12 @@ export const CATEGORY_GROUPS: { key: CategoryKey; label: string; geoapifyPrefix:
 
 
 export const GEOAPIFY_CATEGORIES = CATEGORY_GROUPS.map((g) => g.geoapifyPrefix).join(",");
+
+export function matchCategory(rawCategories: string[]): CategoryKey | "other" {
+  for (const group of CATEGORY_GROUPS) {
+    if (rawCategories.some((c) => c.startsWith(group.geoapifyPrefix))) {
+      return group.key;
+    }
+  }
+  return "other";
+}

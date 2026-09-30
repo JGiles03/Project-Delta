@@ -6,6 +6,7 @@ import { amenityIcons } from "../../services/amenities";
 import TourStart from "../../Components/Tour";
 import { TOUR_STEPS } from "../../services/tourConsts";
 import { getFavourites } from "../../services/favourites";
+import { useFavourites } from "../../context/FavouritesContext";
 import PlaceCard from "../../Components/PlaceCard";
 import type { Place } from "../../services/types";
 import "./index.css";
@@ -16,6 +17,8 @@ export default function AccountPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [favouriteVenues, setFavouriteVenues] = useState<Place[]>([]);
   const [favouritesLoading, setFavouritesLoading] = useState(true);
+
+  const { favouriteIds } = useFavourites();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -43,6 +46,10 @@ export default function AccountPage() {
 
     loadUser(id);
   }, []);
+
+  // derived on every render from the live context Set, so unfavouriting
+  // updates this list immediately without needing its own effect
+  const visibleFavourites = favouriteVenues.filter((v) => favouriteIds.has(v.id));
 
   function handleSignOut() {
     signOut();
@@ -92,7 +99,7 @@ export default function AccountPage() {
 
           {favouritesLoading ? (
             <p>Loading your favourites...</p>
-          ) : favouriteVenues.length === 0 ? (
+          ) : visibleFavourites.length === 0 ? (
             <div className="empty-favourites">
               <p>You haven't favourited any venues yet.</p>
 
@@ -102,8 +109,10 @@ export default function AccountPage() {
             </div>
           ) : (
             <div className="favourites-grid">
-              {favouriteVenues.map((venue) => (
-                <PlaceCard key={venue.id} place={venue} />
+              {visibleFavourites.map((venue) => (
+                <Link to={`/venue/${venue.id}`} key={venue.id}>
+                  <PlaceCard place={venue} />
+                </Link>
               ))}
             </div>
           )}

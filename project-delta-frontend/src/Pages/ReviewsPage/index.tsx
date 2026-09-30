@@ -17,7 +17,7 @@ export default function ReviewsPage() {
     async function fetchReviews() {
       try {
         setIsLoading(true);
-        const res = await fetch(`http://4.223.159.135/venues/${id}/reviews`);
+        const res = await fetch(`${import.meta.env.VITE_BACK_END_SERVER_URL}/venues/${id}/reviews`);
         if (!res.ok) throw new Error("Failed to load reviews");
         const data = await res.json();
         setReviews(data);

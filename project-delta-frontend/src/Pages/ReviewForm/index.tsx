@@ -37,7 +37,7 @@ export default function ReviewForm() {
         body: JSON.stringify({ rating: overallRating, comment }),
       };
 
-      const res = await fetch(`http://4.223.159.135/venues/${id}/reviews`, options);
+      const res = await fetch(`${import.meta.env.VITE_BACK_END_SERVER_URL}/venues/${id}/reviews`, options);
 
       if (!res.ok) {
         throw new Error('Failed to submit review');

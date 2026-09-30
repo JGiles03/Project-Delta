@@ -4,7 +4,6 @@ import { useFavourites } from "../../context/FavouritesContext";
 import "./index.css";
 
 export default function PlaceCard({ place, distanceKm }: cardProps) {
-
   const { isFavourite, toggleFavourite } = useFavourites();
   const favourited = isFavourite(place.id);
   function handleHeartClick(e: React.MouseEvent) {
@@ -15,7 +14,7 @@ export default function PlaceCard({ place, distanceKm }: cardProps) {
   return (
     <div className="place-card">
       <div className="place-card-thumb">
-         <button
+        <button
           type="button"
           className={`place-card-heart ${favourited ? "active" : ""}`}
           onClick={handleHeartClick}
@@ -38,7 +37,6 @@ export default function PlaceCard({ place, distanceKm }: cardProps) {
       </div>
 
       <div className="place-card-body">
-        
         <h2 className="place-card-name">{place.name}</h2>
         {distanceKm !== undefined && (
           <p className="place-card-distance">{distanceKm.toFixed(1)} km away</p>
@@ -48,9 +46,14 @@ export default function PlaceCard({ place, distanceKm }: cardProps) {
           <div className="place-card-amenities">
             {place.amenities.slice(0, 4).map((amenity) => (
               <span key={amenity} className="amenity-icon" title={amenity}>
-                {amenityIcons[amenity] ?? "•"}
+                {amenityIcons[amenity] ? (
+                  <img src={amenityIcons[amenity]} alt={amenity} />
+                ) : (
+                  "•"
+                )}
               </span>
             ))}
+
             {place.amenities.length > 4 && (
               <span className="amenity-icon-more">
                 +{place.amenities.length - 4}

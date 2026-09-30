@@ -15,7 +15,7 @@ export default function VenuePage() {
   useEffect(() => {
     if (!id) return;
 
-    const detailsURL = `http://4.223.159.135/venues/geoapify/${id}`;
+    const detailsURL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/venues/geoapify/${id}`;
 
     async function fetchVenue() {
       try {
@@ -66,22 +66,30 @@ export default function VenuePage() {
           </div>
         )}
 
-        {venue.amenities?.length > 0 && (
-          <div className="venue-amenities">
-            <h3>Amenities</h3> 
-            <div className="amenities-list">
-              {venue.amenities.map((amenity) => (
-                <span
-                  key={amenity.id}
-                  className="amenity-icon"
-                  title={amenity.name}
-                >
-                  {amenityIcons[amenity.name] ?? "📍"}
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
+    {venue.amenities?.length > 0 && (
+  <div className="venue-amenities">
+    <h3>Amenities</h3>
+
+    <div className="amenities-list">
+      {venue.amenities.map((amenity) => (
+        <span
+          key={amenity.id}
+          className="amenity-icon"
+          title={amenity.name}
+        >
+          {amenityIcons[amenity.name] ? (
+            <img
+              src={amenityIcons[amenity.name]}
+              alt={amenity.name}
+            />
+          ) : (
+            "📍"
+          )}
+        </span>
+      ))}
+    </div>
+  </div>
+)}
 
         <h2>Reviews</h2>
         <div className="review-actions">

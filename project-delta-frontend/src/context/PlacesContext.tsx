@@ -50,7 +50,7 @@ export function Placesprovider({ children }: { children: ReactNode }) {
     const geoData = await geoRes.json();
 
 
-    const venueRes = await fetch("http://4.223.159.135/venues");
+    const venueRes = await fetch(`${import.meta.env.VITE_BACK_END_SERVER_URL}/venues`);
     if (!venueRes.ok) throw new Error("Failed to fetch venue data");
     const venueData = await venueRes.json();
 

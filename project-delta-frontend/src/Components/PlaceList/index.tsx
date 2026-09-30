@@ -246,15 +246,6 @@ export default function PlaceList() {
                   ›
                 </button>
               </div>
-
-              <div className="carousel-dots">
-                {Array.from({ length: totalSlides }).map((_, i) => (
-                  <span
-                    key={i}
-                    className={`carousel-dot ${i === currentIndex ? "active" : ""}`}
-                  />
-                ))}
-              </div>
             </section>
           );
         })}

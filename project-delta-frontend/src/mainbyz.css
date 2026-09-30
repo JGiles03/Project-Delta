@@ -1,6 +1,5 @@
-/* Child & Me — clean aqua theme */
 
-/* Friendly rounded font */
+
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap");
 
 :root {
@@ -30,9 +29,7 @@
   --color-line: var(--color-border);
 }
 
-/* ------------------------------
-   Global styling
------------------------------- */
+
 
 * {
   box-sizing: border-box;
@@ -66,9 +63,7 @@ a {
   text-decoration: none;
 }
 
-/* ------------------------------
-   Shared buttons
------------------------------- */
+
 
 .btn-primary,
 .btn-secondary,
@@ -132,9 +127,7 @@ select:focus-visible {
   outline-offset: 3px;
 }
 
-/* ------------------------------
-   Home page
------------------------------- */
+
 
 .home-container {
   min-height: 100vh;
@@ -153,7 +146,7 @@ select:focus-visible {
   background: var(--color-white);
 }
 
-/* Temporary circular logo area */
+
 .home-card::before {
   content: "♡";
   display: flex;
@@ -201,9 +194,7 @@ select:focus-visible {
   width: 100%;
 }
 
-/* ------------------------------
-   Login and sign-up pages
------------------------------- */
+
 
 .auth-container {
   min-height: 100vh;
@@ -276,9 +267,6 @@ select:focus-visible {
   font-weight: 800;
 }
 
-/* ------------------------------
-   Messages
------------------------------- */
 
 .message-box {
   margin-top: 1rem;
@@ -296,9 +284,7 @@ select:focus-visible {
   border-color: var(--color-error);
 }
 
-/* ------------------------------
-   Main app layout
------------------------------- */
+
 
 .app-shell {
   display: flex;
@@ -317,9 +303,7 @@ select:focus-visible {
   background: var(--color-white);
 }
 
-/* ------------------------------
-   Bottom navigation
------------------------------- */
+
 
 .bottom-nav {
   z-index: 2000;
@@ -369,9 +353,7 @@ select:focus-visible {
     saturate(898%) hue-rotate(139deg) brightness(88%) contrast(94%);
 }
 
-/* ------------------------------
-   Search bar
------------------------------- */
+
 
 .searchbar {
   width: 100%;
@@ -417,9 +399,6 @@ select:focus-visible {
   background: var(--color-primary-dark);
 }
 
-/* ------------------------------
-   Map page
------------------------------- */
 
 .map-page {
   position: relative;
@@ -450,9 +429,6 @@ select:focus-visible {
   box-shadow: var(--shadow-medium);
 }
 
-/* ------------------------------
-   List page
------------------------------- */
 
 .list-page {
   display: flex;
@@ -475,9 +451,6 @@ select:focus-visible {
   border-radius: 1.5rem;
 }
 
-/* ------------------------------
-   Venue cards
------------------------------- */
 
 .place-card {
   display: flex;
@@ -541,9 +514,6 @@ select:focus-visible {
   white-space: nowrap;
 }
 
-/* ------------------------------
-   General forms and page cards
------------------------------- */
 
 input,
 select,
@@ -572,9 +542,7 @@ textarea:focus {
   box-shadow: var(--shadow-small);
 }
 
-/* ------------------------------
-   Desktop adjustments
------------------------------- */
+
 
 @media (min-width: 768px) {
   .home-card {
@@ -597,7 +565,7 @@ textarea:focus {
   }
 }
 
-/* Reduce movement for accessibility */
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

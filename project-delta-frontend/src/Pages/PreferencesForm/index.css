@@ -111,14 +111,14 @@
   margin-top: 0.25rem;
 }
 
-/* Error message */
+
 
 .preferences-form .message-box.error {
   width: 100%;
   box-sizing: border-box;
 }
 
-/* Mobile */
+
 
 @media (max-width: 30rem) {
   .preferences-form {

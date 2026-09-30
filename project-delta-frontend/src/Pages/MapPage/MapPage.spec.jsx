@@ -1,26 +1,25 @@
 /* eslint-env jest */
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { screen, render, cleanup } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-
 import { BrowserRouter } from 'react-router-dom';
-import { Placesprovider } from '../../context/PlacesContext';
-
 import * as matchers from '@testing-library/jest-dom/matchers';
 expect.extend(matchers)
-
 import MapPage from '.';
 
+vi.mock("../../Components/SearchBar", () => ({
+    default: vi.fn(() => <div data-testid="mock-search">Search Here</div>)
+}))
+
+vi.mock("../../Components/Map", () => ({
+    default: vi.fn(() => <div data-testid="mock-map">This is a map</div>)
+}))
 
 describe("HomePage page", () => {
 
     beforeEach(() => {
         render(
         <BrowserRouter>
-        <Placesprovider>
              <MapPage />
-        </Placesprovider>
-           
         </BrowserRouter>);
     });
 
@@ -29,16 +28,17 @@ describe("HomePage page", () => {
     });
     
     it("Has a searchbar", () => {
-        const search = screen.getByTestId("search-bar-overlay");
+        const search = screen.getByTestId("mock-search");
 
         expect(search).toBeInTheDocument();
+        expect(search.innerHTML).toContain("Search Here")
     });
 
     it("Has a map", () => {
-        const map = screen.getByTestId("map-container");
+        const map = screen.getByTestId("mock-map");
 
         expect(map).toBeInTheDocument();
+        expect(map.innerHTML).toContain("This is a map")
     });
-
 
 });

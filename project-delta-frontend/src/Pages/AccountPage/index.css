@@ -147,3 +147,12 @@ margin-bottom: 1rem;
   font-weight: 500;
   color: #374151;
 }
+.account-carousel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.account-carousel .carousel-slide {
+  padding: 0 0.125rem;
+}

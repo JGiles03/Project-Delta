@@ -1,6 +1,5 @@
-/* Child & Me — clean aqua theme */
 
-/* Friendly rounded font */
+
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap");
 
 :root {
@@ -30,9 +29,7 @@
   --color-line: var(--color-border);
 }
 
-/* ------------------------------
-   Global styling
------------------------------- */
+
 
 * {
   box-sizing: border-box;
@@ -66,9 +63,7 @@ a {
   text-decoration: none;
 }
 
-/* ------------------------------
-   Shared buttons
------------------------------- */
+
 
 .btn-primary,
 .btn-secondary,
@@ -132,9 +127,7 @@ select:focus-visible {
   outline-offset: 3px;
 }
 
-/* ------------------------------
-   Home page
------------------------------- */
+
 
 .home-container {
   min-height: 100vh;
@@ -153,7 +146,7 @@ select:focus-visible {
   background: var(--color-white);
 }
 
-/* Temporary circular logo area */
+
 .home-card::before {
   content: "♡";
   display: flex;

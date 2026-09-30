@@ -14,7 +14,7 @@ vi.mock("../../Components/Map", () => ({
     default: vi.fn(() => <div data-testid="mock-map">This is a map</div>)
 }))
 
-describe("HomePage page", () => {
+describe("MapPage page", () => {
 
     beforeEach(() => {
         render(

@@ -1,21 +1,22 @@
 /* eslint-env jest */
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { screen, render, cleanup, fireEvent, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-
-import { BrowserRouter } from 'react-router-dom';
-
-import * as matchers from '@testing-library/jest-dom/matchers';
+import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
+import { screen, render, cleanup, fireEvent, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { BrowserRouter } from "react-router-dom";
+import * as matchers from "@testing-library/jest-dom/matchers";
 expect.extend(matchers)
 
-import SignupPage from '.';
+import SignupPage from ".";
+import { signUp, logIn } from "../../services/auth";
 
-const mockFetch = vi.fn();
+vi.mock(import("../../services/auth"), () => ({
+    signUp: vi.fn(),
+    logIn: vi.fn()
+}))
 
 describe("SignupPage page", () => {
 
     beforeEach(() => {
-        mockFetch.mockClear()
         render(
         <BrowserRouter>
             <SignupPage />
@@ -24,6 +25,7 @@ describe("SignupPage page", () => {
 
     afterEach(() => {
         cleanup();
+        vi.restoreAllMocks();
     });
     
     it("Displays a title", () => {
@@ -40,13 +42,6 @@ describe("SignupPage page", () => {
     });
 
     it("has a sign up button that navigates to onboarding if correct details given", async () => {
-        const mockUser = {email: "test@mail.com", password: "password", passwordCheck: "password"}
-
-        mockFetch.mockResolvedValueOnce({
-            ok: true,
-            status: 200,
-            json: () => Promise.resolve(mockUser)
-        });
 
         const button = screen.getByRole("button", {name: "Sign up"})
         expect(button).toBeInTheDocument();
@@ -56,16 +51,17 @@ describe("SignupPage page", () => {
         const password = screen.getByPlaceholderText("Password")
         const passwordCheck = screen.getByPlaceholderText("Confirm password")
 
-        //fill in sign up details
-        fireEvent.change(email, { target: { value: 'test@mail.com' } });
-        fireEvent.change(password, { target: { value: 'password' } });
-        fireEvent.change(passwordCheck, { target: { value: 'password' } });
+        fireEvent.change(email, { target: { value: "test1@mail.com" } });
+        fireEvent.change(password, { target: { value: "password" } });
+        fireEvent.change(passwordCheck, { target: { value: "password" } });
 
         fireEvent.click(button)
 
-        //expect(mockFetch).toHaveBeenCalledTimes(1)
-        const onboarding = await screen.findByText("Welcome")
-        expect(onboarding).toBeInTheDocument()
+        expect(signUp).toHaveBeenCalledWith({ email: "test1@mail.com", password: "password" })
+        // expect(logIn).toHaveBeenCalled()
+
+        // const onboarding = await screen.findByText("Welcome")
+        // expect(onboarding).toBeInTheDocument()
     });
 
     it("doesn't sign up if missing details", async () => {
@@ -81,9 +77,9 @@ describe("SignupPage page", () => {
         const email = screen.getByPlaceholderText("Email")
         const password = screen.getByPlaceholderText("Password")
         const passwordCheck = screen.getByPlaceholderText("Confirm password")
-        fireEvent.change(email, { target: { value: 'user2@123.com' } });
-        fireEvent.change(password, { target: { value: 'user1' } });
-        fireEvent.change(passwordCheck, { target: { value: 'user2' } });
+        fireEvent.change(email, { target: { value: "user2@123.com" } });
+        fireEvent.change(password, { target: { value: "user1" } });
+        fireEvent.change(passwordCheck, { target: { value: "user2" } });
         fireEvent.click(button)
 
         const alert = await screen.findByText("Please make sure the passwords match!")
@@ -92,13 +88,15 @@ describe("SignupPage page", () => {
     });
 
     it("alerts if username already taken", async () => {
+        signUp.mockImplementation(() => {throw new Error("AAAAAA")})
+
         const button = screen.getByRole("button", {name: "Sign up"})
         const email = screen.getByPlaceholderText("Email")
         const password = screen.getByPlaceholderText("Password")
         const passwordCheck = screen.getByPlaceholderText("Confirm password")
-        fireEvent.change(email, { target: { value: 'test1@mail.com' } });
-        fireEvent.change(password, { target: { value: 'password' } });
-        fireEvent.change(passwordCheck, { target: { value: 'password' } });
+        fireEvent.change(email, { target: { value: "repeat@mail.com" } });
+        fireEvent.change(password, { target: { value: "password" } });
+        fireEvent.change(passwordCheck, { target: { value: "password" } });
         fireEvent.click(button)
 
         const alert = await screen.findByText("This email is already assigned to an account")

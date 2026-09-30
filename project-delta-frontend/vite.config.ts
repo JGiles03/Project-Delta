@@ -11,7 +11,7 @@ export default defineConfig({
     ],
     coverage: {
       provider: 'v8',
-      //enabled: true
+      enabled: true
     },
     setupFiles: ["vitest-localstorage-mock"],
   },

@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import { describe, it, expect, beforeEach, afterEach, vi, beforeAll } from 'vitest';
-import { screen, render, cleanup } from '@testing-library/react';
+import { screen, render, cleanup, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter } from 'react-router-dom';
 import * as matchers from '@testing-library/jest-dom/matchers';
@@ -8,9 +8,20 @@ expect.extend(matchers)
 
 import AccountPage from '.';
 import { getUserById } from '../../services/users';
+import { signOut } from '../../services/auth';
 
 vi.mock(import("../../services/users"), () => ({
-  getUserById: vi.fn(() => ({ id: 1, email: "test1@mail.com", role: null, preferences: [], created_at: "2026-09-28T14:53:21.333Z" }))
+  getUserById: vi.fn(() => ({ 
+    id: 1, 
+    email: "test1@mail.com", 
+    role: null, 
+    preferences: ["Accessible entrance", "Accessible toilet", "Changing facilities"], 
+    created_at: "2026-09-28T14:53:21.333Z" 
+    }))
+}))
+
+vi.mock(import("../../services/auth"), () => ({
+  signOut: vi.fn()
 }))
 
 describe("AccountPage page", () => {
@@ -61,15 +72,18 @@ describe("AccountPage page", () => {
 
     it("Shows user's selected preferences", async () => {
         const preferences = await screen.findByText("Your preferences")
+        const list = await screen.findByTestId("preferences-list")
 
         expect(preferences).toBeInTheDocument();
+        expect(list.children.length).toBe(3)
     });
 
     it("Allows the user to change their preferences", async () => {
         const change = await screen.findByText("Change your amenities")
         expect(change).toBeInTheDocument();
 
-        //! Check it takes to /preferences        
+        await userEvent.click(change);
+        expect(window.location.href).toContain("/preferences")
     });
 
     it("displays user's reviews", async () => {
@@ -78,9 +92,12 @@ describe("AccountPage page", () => {
     });
 
     it("allows a user to log out", async () => {
-        const signOut = await screen.findByRole("button", {name: "Sign Out"})
-
-        expect(signOut).toBeInTheDocument()
+        const quit = await screen.findByRole("button", {name: "Sign Out"})
+        expect(quit).toBeInTheDocument()
+        
+        await userEvent.click(quit);
+        expect(signOut).toHaveBeenCalled();
+        expect(window.location.href).toContain("/home")
     });
 
 });

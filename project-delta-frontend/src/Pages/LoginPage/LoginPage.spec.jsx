@@ -48,8 +48,6 @@ describe("LoginPage page", () => {
         fireEvent.change(email, { target: { value: 'test1@mail.com' } });
         fireEvent.change(password, { target: { value: 'password' } });
 
-        //not getting /login in rendered component
-        //expect(window.location.href).toContain("/login")
         fireEvent.click(button)
         expect(window.location.href).not.toContain("/login")
     });
@@ -106,9 +104,6 @@ describe("LoginPage page", () => {
         expect(link).toBeInTheDocument();
         expect(link.innerHTML).toContain("Back")
 
-
-        //The test is recieving /signup at this stage
-        //expect(window.location.href).toContain("/login")
         await userEvent.click(link);
         expect(window.location.href).not.toContain("/login")
     });

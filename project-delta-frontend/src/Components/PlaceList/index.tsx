@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { usePlaces } from "../../context/PlacesContext";
 import { CATEGORY_GROUPS, type CategoryKey } from "../../services/categories";
@@ -23,6 +23,10 @@ export default function PlaceList() {
     museum: 0,
     playground: 0,
   });
+
+    useEffect(() => {
+    setIndexByCategory({ cafe: 0, restaurant: 0, museum: 0, playground: 0 });
+  }, [searchText, selectedAmenities, maxDistanceKm]);
 
   if (error) return <div className="list-message">{error}</div>;
   if (isLoading) return <div className="list-message">Loading venues...</div>;

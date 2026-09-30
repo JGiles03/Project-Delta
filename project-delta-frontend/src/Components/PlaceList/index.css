@@ -254,3 +254,20 @@
   color: var(--color-text-muted);
   font-size: 0.9375rem;
 }
+
+@media (min-width: 1000px) {
+  .carousel-track {
+    display: flex;
+    justify-content: center;
+  }
+
+  .carousel-slide {
+    display: flex;
+    justify-content: center;
+  }
+
+  .category-row-item {
+    width: 26rem;
+    height: 20rem;
+  }
+}

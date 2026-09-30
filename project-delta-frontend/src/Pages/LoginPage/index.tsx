@@ -17,7 +17,7 @@ try{
   await logIn({email: emailText, password: passwordText})
   setMessageBox('login successful')
   setTimeout(()=>{
-    navigate('/map')
+    navigate('/list')
   }, 800)
 } catch (err){
   setMessageBox('Invalid Email or password')

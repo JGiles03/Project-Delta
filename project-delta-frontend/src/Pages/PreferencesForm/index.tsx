@@ -22,7 +22,7 @@ export default function PreferencesForm() {
           throw new Error("No user ID found");
         }
 
-        const user = await getUserById(Number(userId));
+        const user = await getUserById(userId);
 
         setSelected(user.preferences ?? []);
       } catch (err) {

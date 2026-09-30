@@ -64,16 +64,17 @@ describe("AccountPage page", () => {
     });
     
     it("Displays logged in Email, and member status", async () => {
+        expect(getUserById).toHaveBeenCalled()
         const title = await screen.findByText("test1@mail.com");
         const text = await screen.findAllByRole("paragraph");
 
-        expect(getUserById).toHaveBeenCalled();
         expect(title).toBeInTheDocument();
         expect(text[0]).toBeInTheDocument();
         expect(text[0].innerHTML).toContain("Member since");
     });
 
     it("Shows user's selected preferences", async () => {
+        expect(getUserById).toHaveBeenCalled()
         const preferences = await screen.findByText("Your preferences")
         const list = await screen.findByTestId("preferences-list")
 
@@ -82,6 +83,7 @@ describe("AccountPage page", () => {
     });
 
     it("Allows the user to change their preferences", async () => {
+        expect(getUserById).toHaveBeenCalled()
         const change = await screen.findByText("Change your amenities")
         expect(change).toBeInTheDocument();
 
@@ -90,11 +92,13 @@ describe("AccountPage page", () => {
     });
 
     it("displays user's reviews", async () => {
+        expect(getUserById).toHaveBeenCalled()
         const reviews = await screen.findByText("Your reviews")
         expect(reviews).toBeInTheDocument();
     });
 
     it("allows a user to log out", async () => {
+        expect(getUserById).toHaveBeenCalled()
         const quit = await screen.findByRole("button", {name: "Sign Out"})
         expect(quit).toBeInTheDocument()
         

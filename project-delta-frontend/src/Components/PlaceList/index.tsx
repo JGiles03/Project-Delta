@@ -150,7 +150,7 @@ export default function PlaceList() {
         </div>
       )}
 
-      <div className="category-sections">
+      <div className="category-sections" data-testid="list">
         {CATEGORY_GROUPS.map((group) => {
           let groupPlaces = placesByCategory[group.key];
 

@@ -294,7 +294,7 @@ export default function BusinessPage() {
         </p>
 
         <img
-          className="analytics-chart"
+          className="analytics-chart traffic-sources-chart"
           src="/analytics/traffic-sources.png"
           alt="How parents discovered your venue"
         />

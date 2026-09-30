@@ -74,6 +74,7 @@ export default function VenuePage() {
                 <span
                   key={amenity.id}
                   className="amenity-icon"
+                  data-testid="amenity-icon"
                   title={amenity.name}
                 >
                   {amenityIcons[amenity.name] ?? "📍"}

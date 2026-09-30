@@ -2,30 +2,42 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import { screen, render, cleanup, fireEvent, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { BrowserRouter } from "react-router-dom";
+import { MemoryRouter, Routes, Route } from "react-router-dom";
 import * as matchers from "@testing-library/jest-dom/matchers";
 expect.extend(matchers)
 
 import ReviewsPage from ".";
+const fetchMock = vi.spyOn(globalThis, "fetch")
 
 describe("ReviewsPage page", () => {
 
-    beforeEach(() => {
+    const renderPage = () => {
         render(
-        <BrowserRouter>
-            <ReviewsPage />
-        </BrowserRouter>);
+            <MemoryRouter initialEntries={["/1"]}>
+                <Routes>
+                    <Route path="/:id" element={<ReviewsPage />}/>
+                </Routes>
+            </MemoryRouter>
+        );
+    }
+
+    beforeEach(() => {
+        fetchMock.mockImplementation(async () => 
+            new Response({ok: true, status: 201 })   
+        )
     });
 
     afterEach(() => {
         cleanup();
-        vi.restoreAllMocks();
+        vi.clearAllMocks()
     });
     
-    it("Displays a title", () => {
-        // const title = screen.getByRole("heading");
+    it("Displays a title", async () => {
+        renderPage()
+        const title = await screen.findByRole("heading");
 
-        // expect(title).toBeInTheDocument();
+        expect(title).toBeInTheDocument();
+        expect(title.innerHTML).toContain("Reviews");
     });
 
 });

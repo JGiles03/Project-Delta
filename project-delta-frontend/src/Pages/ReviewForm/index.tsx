@@ -68,7 +68,7 @@ export default function ReviewForm() {
       <div className="review-form-card">
         <h1>Leave a review</h1>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} data-testid="form">
           <label className="review-form-label">Overall Rating</label>
           <div className="rating-input">
             {[1, 2, 3, 4, 5].map((star) => (

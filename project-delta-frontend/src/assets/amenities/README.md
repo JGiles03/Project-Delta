@@ -16,21 +16,4 @@ This pack contains the Child & Me logo and matching amenity icons. All assets ar
 - `parking.svg`
 - `high-chairs.svg`
 
-## React usage
 
-Copy the SVG files into `src/assets/icons/`, then import an icon:
-
-```tsx
-import changingIcon from "../../assets/icons/changing-facilities.svg";
-
-<img src={changingIcon} alt="Changing facilities" className="amenity-icon" />
-```
-
-Suggested CSS:
-
-```css
-.amenity-icon {
-  width: 3rem;
-  height: 3rem;
-}
-```

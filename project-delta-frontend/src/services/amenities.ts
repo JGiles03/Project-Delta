@@ -16,7 +16,7 @@ export const amenityIcons: Record<string, string> = {
   "Accessible entrance": "♿",
   "Accessible toilet": "🚻",
   "Breastfeeding friendly": "🤱",
-  "Changing facilities": "👶",
+  "Changing facilities": "🚼",
   "Children's activities": "🛝",
   "High chairs": "🪑",
   "Parking": "🅿️",

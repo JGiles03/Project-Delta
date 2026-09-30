@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import type { Review } from "../../services/types";
-import './index.css'
-
-
+import "./index.css";
 
 export default function ReviewsPage() {
   const { id } = useParams();
@@ -35,7 +33,8 @@ export default function ReviewsPage() {
   }, [id]);
 
   if (error) return <div className="reviews-message">{error}</div>;
-  if (isLoading) return <div className="reviews-message">Loading reviews...</div>;
+  if (isLoading)
+    return <div className="reviews-message">Loading reviews...</div>;
 
   if (reviews.length === 0) {
     return (
@@ -45,20 +44,18 @@ export default function ReviewsPage() {
           <p className="reviews-empty-text">
             No reviews yet — be the first to leave one!
           </p>
-      
-            <Link to={`/venue/${id}/post-review`} className="btn-accent">
-              Post a review
-            </Link>
+
+          <Link to={`/venue/${id}/post-review`} className="btn-accent">
+            Post a review
+          </Link>
         </div>
       </div>
     );
   }
 
-  const visibleReviews = reviews 
+  const visibleReviews = reviews;
 
-
-
-  const totalSlides = visibleReviews.length 
+  const totalSlides = visibleReviews.length;
 
   function goNext() {
     setCurrentIndex((i) => Math.min(i + 1, totalSlides - 1));
@@ -67,7 +64,6 @@ export default function ReviewsPage() {
   function goPrev() {
     setCurrentIndex((i) => Math.max(i - 1, 0));
   }
-
 
   let touchStartX = 0;
 
@@ -108,19 +104,18 @@ export default function ReviewsPage() {
             className="carousel-slides"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
-            {visibleReviews.map((review) => (
+            {reviews.map((review) => (
               <div key={review.id} className="review-card">
                 <div className="review-card-rating">
-                  {"★".repeat(review.rating)}
-                  {"☆".repeat(5 - review.rating)}
+                    {review.rating}★
                 </div>
                 <p className="review-card-comment">{review.comment}</p>
                 <p className="review-card-date">
-                  Posted {new Date(review.created_at).toLocaleDateString("en-GB")}
+                  Posted{" "}
+                  {new Date(review.created_at).toLocaleDateString("en-GB")}
                 </p>
               </div>
             ))}
-
           </div>
         </div>
 

@@ -5,7 +5,6 @@ import { CATEGORY_GROUPS, type CategoryKey } from "../../services/categories";
 import { Amenities } from "../../services/amenities";
 import { getDistanceKm } from "../../services/distance";
 import PlaceCard from "../PlaceCard";
-import { TOUR_STEPS } from "../../services/tourConsts";
 import "./index.css";
 
 export default function PlaceList() {

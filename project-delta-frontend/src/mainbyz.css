@@ -147,21 +147,7 @@ select:focus-visible {
 }
 
 
-.home-card::before {
-  content: "♡";
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 6.5rem;
-  height: 6.5rem;
-  margin: 0 auto 1.75rem;
-  color: var(--color-primary);
-  background: var(--color-primary-soft);
-  border-radius: 50%;
-  font-size: 4rem;
-  font-weight: 800;
-  line-height: 1;
-}
+
 
 .home-card h1 {
   margin: 0 0 1rem;

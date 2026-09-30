@@ -143,10 +143,12 @@ export default function AccountPage() {
                     }}
                   >
                     {visibleFavourites.map((venue) => (
-                      <div key={venue.id} className="carousel-slide " onClick={() => navigate(`/venue/${venue.id}`)}>
-                      
-                          <PlaceCard place={venue}  />
-                      
+                      <div
+                        key={venue.id}
+                        className="carousel-slide "
+                        onClick={() => navigate(`/venue/${venue.id}`)}
+                      >
+                        <PlaceCard place={venue} />
                       </div>
                     ))}
                   </div>
@@ -189,7 +191,11 @@ export default function AccountPage() {
                 {user.preferences.map((preference: any) => (
                   <div key={preference} className="preference-item">
                     <span className="preference-icon">
-                      {amenityIcons[preference]}
+                      {amenityIcons[preference] ? (
+                        <img src={amenityIcons[preference]} alt={preference} />
+                      ) : (
+                        "•"
+                      )}
                     </span>
                     <span>{preference}</span>
                   </div>

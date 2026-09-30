@@ -15,7 +15,7 @@ export async function signUp({
     }),
   };
 
-  const res = await fetch("http://4.223.159.135/auth/register", options);
+  const res = await fetch(`${import.meta.env.VITE_BACK_END_SERVER_URL}/auth/register`, options);
 
   if (!res.ok) {
     throw new Error("Failed to create account");
@@ -40,10 +40,7 @@ export async function logIn({
     }),
   };
 
-  const res = await fetch(
-    "http://4.223.159.135/auth/login",
-    options
-  );
+  const res = await fetch(`${import.meta.env.VITE_BACK_END_SERVER_URL}/auth/login`, options);
 
   if (!res.ok) {
     throw new Error("Failed to login");

@@ -6,6 +6,7 @@ import { Amenities } from "../../services/amenities";
 import { getDistanceKm } from "../../services/distance";
 import PlaceCard from "../PlaceCard";
 import "./index.css";
+import { TOUR_STEPS } from "../../services/tourConsts";
 
 export default function PlaceList() {
   const navigate = useNavigate();

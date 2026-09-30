@@ -14,7 +14,6 @@ export type SignUpPayload = {
 export type LogInPayload = {
     email : string;
     password : string;
-    
 }
 
 export type Place = {

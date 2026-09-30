@@ -28,11 +28,14 @@ export const PlacesContext = createContext<placesContextType | null>(null);
 
 export function Placesprovider({ children }: { children: ReactNode }) {
   const [places, setPlaces] = useState<Place[]>([]);
-  const [userLocation, setUserLocation] = useState<UserLocation | null>(FIXED_LOCATION);
+  const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
+  
   useEffect(() => {
+    setUserLocation(FIXED_LOCATION)
+
     if (!userLocation) return;
        const placesURL =
           `https://api.geoapify.com/v2/places` +
@@ -50,7 +53,7 @@ export function Placesprovider({ children }: { children: ReactNode }) {
     const geoData = await geoRes.json();
 
 
-    const venueRes = await fetch("http://4.223.159.135/venues");
+    const venueRes = await fetch(`${import.meta.env.VITE_BACK_END_SERVER_URL}/venues`);
     if (!venueRes.ok) throw new Error("Failed to fetch venue data");
     const venueData = await venueRes.json();
 

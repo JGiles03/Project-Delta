@@ -2,9 +2,9 @@ import type { cardProps } from "../../services/types";
 import { amenityIcons } from "../../services/amenities";
 import { useFavourites } from "../../context/FavouritesContext";
 import "./index.css";
+import { TOUR_STEPS } from "../../services/tourConsts";
 
 export default function PlaceCard({ place, distanceKm }: cardProps) {
-
   const { isFavourite, toggleFavourite } = useFavourites();
   const favourited = isFavourite(place.id);
   function handleHeartClick(e: React.MouseEvent) {
@@ -13,9 +13,9 @@ export default function PlaceCard({ place, distanceKm }: cardProps) {
     toggleFavourite(place.id);
   }
   return (
-    <div className="place-card">
+    <div className="place-card" data-tour={TOUR_STEPS.LISTITEM}>
       <div className="place-card-thumb">
-         <button
+        <button
           type="button"
           data-testid="fav"
           className={`place-card-heart ${favourited ? "active" : ""}`}
@@ -49,9 +49,14 @@ export default function PlaceCard({ place, distanceKm }: cardProps) {
           <div className="place-card-amenities" data-testid="amenities">
             {place.amenities.slice(0, 4).map((amenity) => (
               <span key={amenity} className="amenity-icon" title={amenity}>
-                {amenityIcons[amenity] ?? "•"}
+                {amenityIcons[amenity] ? (
+                  <img src={amenityIcons[amenity]} alt={amenity} />
+                ) : (
+                  "•"
+                )}
               </span>
             ))}
+
             {place.amenities.length > 4 && (
               <span className="amenity-icon-more">
                 +{place.amenities.length - 4}

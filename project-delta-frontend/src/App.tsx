@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 
-import { Header } from "./Components";
+import { Header, BusinessHeader } from "./Components";
 import {
   HomePage,
   LoginPage,
@@ -17,6 +17,35 @@ import {
   PreferencesForm,
 } from "./Pages";
 
+function BusinessRoute({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
+
+  if (!token) {
+    return <Navigate to="/login" replace />;
+  }
+
+  if (role !== "venue_owner") {
+    return <Navigate to="/list" replace />;
+  }
+
+  return children;
+}
+
+function AccountHeader() {
+  const role = localStorage.getItem("role");
+
+  if (role === "venue_owner") {
+    return <BusinessHeader />;
+  }
+
+  return <Header />;
+}
+
 function App() {
   return (
     <Routes>
@@ -31,11 +60,12 @@ function App() {
       <Route path="/list" element={<Header />}>
         <Route index element={<ListPage />} />
       </Route>
-      <Route path="/account" element={<Header />}>
+      <Route path="/account" element={<AccountHeader />}>
         <Route index element={<AccountPage />} />
       </Route>
-      <Route path="/business" element={<Header />}>
-        <Route index element={<BusinessPage />} />
+      <Route
+        path="/business" element={ <BusinessRoute> <BusinessHeader /> </BusinessRoute>}> 
+        <Route index element={<BusinessPage />}/>
       </Route>
       <Route path="venue/:id" element={<Header />}>
         <Route index element={<VenuePage />} />

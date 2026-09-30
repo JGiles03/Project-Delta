@@ -18,7 +18,7 @@ export default function TourProvider({ children }: TourProviderProps) {
     
         if(completedSteps[completedSteps.length - 1] === `[data-tour="${TOUR_STEPS.NAVBAR}"]`){
             navigate("/map")
-        } else if(completedSteps[completedSteps.length - 1] === `[data-tour="${TOUR_STEPS.MAPSEARCH}"]`){
+        } else if(completedSteps[completedSteps.length - 1] === `[data-tour="${TOUR_STEPS.MAPPAGE}"]`){
             navigate("/list")
         } else if(completedSteps[completedSteps.length - 1] === `[data-tour="${TOUR_STEPS.LISTITEM}"]`){
             //! Not highlighting whole page (maybe need to wait for render)
@@ -48,7 +48,16 @@ export default function TourProvider({ children }: TourProviderProps) {
             ),
         },
         {
-           selector: `[data-tour="${TOUR_STEPS.MAPSEARCH}"]`,
+           selector: `[data-tour="${TOUR_STEPS.LISTPAGE}"]`,
+            content: (
+                <div>
+                    <h3>Venue List</h3>
+                    <p>A brief summary of relevant venues will show up here. Any venues that don't fit your criteria will be greyed out</p>
+                </div>
+            ),
+        },
+        {
+           selector: `[data-tour="${TOUR_STEPS.LISTSEARCH}"]`,
             content: (
                 <div>
                     <h3>Search Bar</h3>
@@ -57,11 +66,11 @@ export default function TourProvider({ children }: TourProviderProps) {
             ),
         },
         {
-           selector: `[data-tour="${TOUR_STEPS.LISTPAGE}"]`,
+           selector: `[data-tour="${TOUR_STEPS.LISTFILTERS}"]`,
             content: (
                 <div>
-                    <h3>Venue List</h3>
-                    <p>You can search here the same way as on the map. A brief summary of relevant venues will show up here. Any venues that don't fit your criteria will be greyed out</p>
+                    <h3>Filtering options</h3>
+                    <p>You can manually change the filtering options here</p>
                 </div>
             ),
         },
@@ -70,7 +79,7 @@ export default function TourProvider({ children }: TourProviderProps) {
             content: (
                 <div>
                     <h3>Venue</h3>
-                    <p>Click on any venue to navigate to see more information</p>
+                    <p>Click on any venue to see more information</p>
                 </div>
             ),
         },

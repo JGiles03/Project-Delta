@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="title">
+  <title id="title">Child and Me logo</title>
+  <circle cx="60" cy="60" r="58" fill="#E8F8FA"/>
+  <circle cx="47" cy="32" r="10" fill="#20B7C5"/>
+  <circle cx="76" cy="45" r="7" fill="#20B7C5"/>
+  <path d="M26 75c0-22 8-34 21-34 12 0 18 10 20 22 3-7 8-11 15-11 9 0 15 7 15 17 0 17-18 29-37 36C41 98 26 89 26 75Z" fill="#20B7C5"/>
+  <path d="M44 70c7 13 17 20 29 20 9 0 17-5 24-15-4 15-18 25-37 31C46 100 35 91 30 81c5 5 9 8 14 10-3-7-3-14 0-21Z" fill="#FFFFFF"/>
+</svg>

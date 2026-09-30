@@ -150,14 +150,13 @@
 
 /* CHARTS */
 
+
 .analytics-chart {
   display: block;
-
-  width: 100%;
-  max-width: 100%;
+  width: 106%;
+  max-width: none;
   height: auto;
-
-  object-fit: contain;
+  margin: 20px -3%;
 }
 
 /* AMENITIES */
@@ -236,4 +235,56 @@
   .analytics-card {
     padding: 1.25rem;
   }
+}
+
+.projection-intro {
+  max-width: 700px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.projection-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.projection-controls label {
+  font-weight: 600;
+}
+
+.projection-controls select {
+  min-width: 260px;
+  padding: 10px 12px;
+}
+
+.projection-explanation {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--color-line);
+  line-height: 1.6;
+}
+
+.projection-explanation p {
+  margin: 8px 0;
+}
+
+.projection-explanation small {
+  color: var(--color-text-muted);
+}
+
+.analytics-note {
+  display: block;
+  margin-top: 12px;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+.traffic-sources-chart {
+  width: 75%;
+  max-width: 600px;
+  display: block;
+  margin: 16px auto;
 }

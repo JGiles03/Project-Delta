@@ -15,7 +15,7 @@ export async function signUp({
     }),
   };
 
-  const res = await fetch("http://4.223.159.135/auth/register", options);
+  const res = await fetch(`${import.meta.env.VITE_BACK_END_SERVER_URL}/auth/register`, options);
 
   if (!res.ok) {
     throw new Error("Failed to create account");
@@ -25,7 +25,10 @@ export async function signUp({
 }
 
 
-export async function logIn({ email, password }: LogInPayload): Promise<void> {
+export async function logIn({
+  email,
+  password,
+}: LogInPayload): Promise<string> {
   const options = {
     method: "POST",
     headers: {
@@ -37,18 +40,26 @@ export async function logIn({ email, password }: LogInPayload): Promise<void> {
     }),
   };
 
-  const res = await fetch("http://4.223.159.135/auth/login", options);
+  const res = await fetch(`${import.meta.env.VITE_BACK_END_SERVER_URL}/auth/login`, options);
 
   if (!res.ok) {
     throw new Error("Failed to login");
   }
 
   const user = await res.json();
-  if (!user.token || user.id == null) {
-  throw new Error("Login response is missing token or id");
-}
+
   localStorage.setItem("token", user.token);
-  localStorage.setItem("userId", user.id)
+  localStorage.setItem("id", String(user.id));
+  localStorage.setItem("email", email);
+
+  const payload = JSON.parse(
+    atob(user.token.split(".")[1])
+  );
+
+  localStorage.setItem("role", payload.role);
+
+
+  return payload.role;
 }
 
 
@@ -56,6 +67,8 @@ export async function logIn({ email, password }: LogInPayload): Promise<void> {
 
 export function signOut(): void {
   localStorage.removeItem("token");
-  localStorage.removeItem("userId");
+  localStorage.removeItem("email");
+  localStorage.removeItem("id");
+  localStorage.removeItem("role");
 }
 

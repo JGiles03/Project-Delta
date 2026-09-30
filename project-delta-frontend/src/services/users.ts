@@ -1,7 +1,7 @@
 import type { Review, User } from "./types";
 
 export async function getUserById(id: string): Promise<User> {
-  const res = await fetch(`http://4.223.159.135/users/${id}`);
+  const res = await fetch(`${import.meta.env.VITE_BACK_END_SERVER_URL}/users/${id}`);
 
   if (!res.ok) throw new Error("Failed to fetch user");
   return res.json();
@@ -21,7 +21,7 @@ export async function savePreferences(preferences: string[]): Promise<void> {
   };
 
   const res = await fetch(
-    `http://4.223.159.135/users/${userId}/preferences`,
+    `${import.meta.env.VITE_BACK_END_SERVER_URL}/users/${userId}/preferences`,
     options,
   );
 
@@ -30,7 +30,7 @@ export async function savePreferences(preferences: string[]): Promise<void> {
 
 
 export async function fetchReviews(id: string): Promise<Review[]> {
-  const res = await fetch(`http://4.223.159.135/users/${id}/reviews`, {
+  const res = await fetch(`${import.meta.env.VITE_BACK_END_SERVER_URL}/users/${id}/reviews`, {
     headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
   });
 

@@ -58,11 +58,22 @@ describe("SignupPage page", () => {
         fireEvent.click(button)
 
         expect(signUp).toHaveBeenCalledWith({ email: "test1@mail.com", password: "password" })
-        // expect(logIn).toHaveBeenCalled()
+        //expect(logIn).toHaveBeenCalled()
+
+        //expect(window.location.href).toContain("/onboarding")
 
         // const onboarding = await screen.findByText("Welcome")
         // expect(onboarding).toBeInTheDocument()
     });
+
+    // it("has a back link that navigates back to the home page", async () => {
+    //     const link = screen.getByRole("link", {name: "Back"})
+
+    //     expect(link).toBeInTheDocument();
+    //     expect(link.innerHTML).toContain("Back")
+    //     expect(link).toHaveAttribute("href", "/");
+        
+    // });
 
     it("doesn't sign up if missing details", async () => {
         const button = screen.getByRole("button", {name: "Sign up"})
@@ -120,10 +131,8 @@ describe("SignupPage page", () => {
 
         expect(link).toBeInTheDocument();
         expect(link.innerHTML).toContain("Back")
-
-        // expect(window.location.href).toContain("/signup")
-        // await userEvent.click(link);
-        // expect(window.location.href).not.toContain("/signup")
+        expect(link).toHaveAttribute("href", "/");
+        
     });
 
 });

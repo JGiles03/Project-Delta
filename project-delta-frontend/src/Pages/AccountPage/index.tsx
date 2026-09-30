@@ -186,7 +186,7 @@ export default function AccountPage() {
 
           {user.preferences?.length ? (
             <div className="preferences-section">
-              <div className="preferences-list">
+              <div className="preferences-list" data-testid="preferences-list">
                 {user.preferences.map((preference: any) => (
                   <div key={preference} className="preference-item">
                     <span className="preference-icon">

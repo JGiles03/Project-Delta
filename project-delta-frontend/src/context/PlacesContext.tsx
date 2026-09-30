@@ -21,7 +21,7 @@ type placesContextType = {
   error: string;
 };
 
-const PlacesContext = createContext<placesContextType | null>(null);
+export const PlacesContext = createContext<placesContextType | null>(null);
 
 
 

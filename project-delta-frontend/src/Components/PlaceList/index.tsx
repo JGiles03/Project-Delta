@@ -28,7 +28,7 @@ export default function PlaceList() {
     setIndexByCategory({ cafe: 0, restaurant: 0, museum: 0, playground: 0 });
   }, [searchText, selectedAmenities, maxDistanceKm]);
 
-  if (error) return <div data-testid="list-message" className="list-message">{error}</div>
+  if (error) return <div className="list-message">{error}</div>
   if (isLoading) return <div className="list-message">Loading venues...</div>
 
   function toggleAmenity(amenity: string) {
@@ -59,7 +59,7 @@ export default function PlaceList() {
   }
 
   return (
-    <div className="list-wrapper">
+    <div className="list-wrapper" data-testid="list">
       <div className="list-toolbar">
         <input
           type="text"

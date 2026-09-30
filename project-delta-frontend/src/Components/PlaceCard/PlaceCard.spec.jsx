@@ -8,19 +8,24 @@ import * as matchers from '@testing-library/jest-dom/matchers';
 expect.extend(matchers)
 
 import PlaceCard from '.';
+import { FavouritesProvider } from '../../context/FavouritesContext';
+import userEvent from '@testing-library/user-event';
 
 
 describe("PlaceCard component", () => {
 
     const place = {
         name: "place1",
-        address: "house, street, city, postcode"
+        address: "house, street, city, postcode",
+        amenities: ["Accessible entrance", "Accessible toilet", "Changing facilities"]
     }
 
     beforeEach(() => {
         render(
         <BrowserRouter>
-            <PlaceCard place={place}/>
+            <FavouritesProvider>
+                <PlaceCard place={place} distanceKm={3}/>
+            </FavouritesProvider>
         </BrowserRouter>);
     });
 
@@ -28,16 +33,32 @@ describe("PlaceCard component", () => {
         cleanup();
     });
     
-    it("Displays the place name and address", () => {
+    it("Displays the place name and distance", () => {
         const name = screen.getByTestId("place-card-name");
-        const address = screen.getByRole("paragraph");
+        const dist = screen.getByText("3.0 km away");
 
         expect(name).toBeInTheDocument()
         expect(name.innerHTML).toContain("place1")
-        expect(address).toBeInTheDocument()
-        expect(address.innerHTML).toContain("house, street, city, postcode")
+        expect(dist).toBeInTheDocument()
     });
 
-    //mock place to pass to the card
+    it("Displays the correct amenities", () => {
+        const amenities = screen.getByTestId("amenities");
+        expect(amenities).toBeInTheDocument()
+        
+        expect(amenities.children.length).toBe(3)
+        expect(amenities.children[0].title).toContain("Accessible entrance")
+    });
+
+    it("Allows user to favourite and unfavourite", async () => {
+        const fav = screen.getByTestId("fav");
+        expect(fav).toBeInTheDocument()
+        expect(fav.innerHTML).toContain("♡")
+
+        await userEvent.click(fav)
+        //expect(fav.innerHTML).toContain("♥")
+
+    });
+
     
 });

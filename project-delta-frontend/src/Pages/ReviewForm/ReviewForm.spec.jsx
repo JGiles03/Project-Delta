@@ -76,13 +76,12 @@ describe("ReviewForm page", () => {
         const form = screen.getByTestId("form")
 
         expect(form).toBeInTheDocument();
-        expect(form.children.length).toBe(9)
+        expect(form.children.length).toBe(7)
 
         userEvent.click(form.children[1].children[1])
         userEvent.click(form.children[3].children[1])
-        userEvent.click(form.children[5].children[1])
-        fireEvent.change(form.children[7], { target: { value: "review" } });
-        userEvent.click(form.children[8])
+        fireEvent.change(form.children[5], { target: { value: "review" } });
+        userEvent.click(form.children[6])
         
         //expect(fetchMock).toHaveBeenCalled()
         expect(useNavigate).toHaveBeenCalled()
@@ -93,11 +92,11 @@ describe("ReviewForm page", () => {
         const form = screen.getByTestId("form")
 
         expect(form).toBeInTheDocument();
-        expect(form.children.length).toBe(9)
+        expect(form.children.length).toBe(7)
 
-        userEvent.click(form.children[8])
+        userEvent.click(form.children[6])
         
-        const error = await screen.findByText("Please select a rating.")
+        const error = await screen.findByText("Please rate both accessibility and service.")
         expect(error).toBeInTheDocument()
 
     });

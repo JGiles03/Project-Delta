@@ -17,6 +17,7 @@ export default function PlaceCard({ place, distanceKm }: cardProps) {
       <div className="place-card-thumb">
          <button
           type="button"
+          data-testid="fav"
           className={`place-card-heart ${favourited ? "active" : ""}`}
           onClick={handleHeartClick}
           aria-label={
@@ -38,18 +39,14 @@ export default function PlaceCard({ place, distanceKm }: cardProps) {
       </div>
 
       <div className="place-card-body">
-<<<<<<< HEAD
-        <h2 data-testid="place-card-name" className="place-card-name">{place.name}</h2>
-        <p className="place-card-address">{place.address}</p>
-=======
         
-        <h2 className="place-card-name">{place.name}</h2>
+        <h2 data-testid="place-card-name" className="place-card-name">{place.name}</h2>
         {distanceKm !== undefined && (
           <p className="place-card-distance">{distanceKm.toFixed(1)} km away</p>
         )}
 
         {place.amenities.length > 0 && (
-          <div className="place-card-amenities">
+          <div className="place-card-amenities" data-testid="amenities">
             {place.amenities.slice(0, 4).map((amenity) => (
               <span key={amenity} className="amenity-icon" title={amenity}>
                 {amenityIcons[amenity] ?? "•"}
@@ -62,7 +59,6 @@ export default function PlaceCard({ place, distanceKm }: cardProps) {
             )}
           </div>
         )}
->>>>>>> dev
       </div>
 
       <a

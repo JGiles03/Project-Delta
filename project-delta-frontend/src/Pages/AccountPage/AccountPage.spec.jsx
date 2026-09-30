@@ -9,6 +9,7 @@ expect.extend(matchers)
 import AccountPage from '.';
 import { getUserById } from '../../services/users';
 import { signOut } from '../../services/auth';
+import { FavouritesProvider } from '../../context/FavouritesContext';
 
 vi.mock(import("../../services/users"), () => ({
   getUserById: vi.fn(() => ({ 
@@ -52,7 +53,9 @@ describe("AccountPage page", () => {
     beforeEach(() => {
         render(
         <BrowserRouter>
-            <AccountPage />
+            <FavouritesProvider>
+                <AccountPage />
+            </FavouritesProvider>
         </BrowserRouter>);
     });
 

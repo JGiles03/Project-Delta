@@ -59,6 +59,7 @@ export function Placesprovider({ children }: { children: ReactNode }) {
 
         setPlaces(parsed);
       } catch (err) {
+        setUserLocation(FIXED_LOCATION)
         console.error(err);
         setError("Failed to load nearby cafes.");
       } finally {

@@ -1,10 +1,12 @@
-export {default as HomePage} from './HomePage'
-export {default as BusinessPage} from './BusinessPage'
-export {default as ListPage} from './ListPage'
-export {default as LoginPage} from './LoginPage'
-export {default as MapPage} from './MapPage'
-export {default as SignupPage} from './SignupPage'
-export {default as AccountPage} from './AccountPage'
-export {default as VenuePage} from './VenuePage'
-export {default as ReviewForm} from './ReviewForm'
-export {default as ReviewsPage} from './ReviewsPage'
+export { default as HomePage } from "./HomePage";
+export { default as BusinessPage } from "./BusinessPage";
+export { default as ListPage } from "./ListPage";
+export { default as LoginPage } from "./LoginPage";
+export { default as MapPage } from "./MapPage";
+export { default as SignupPage } from "./SignupPage";
+export { default as AccountPage } from "./AccountPage";
+export { default as VenuePage } from "./VenuePage";
+export { default as ReviewForm } from "./ReviewForm";
+export { default as ReviewsPage } from "./ReviewsPage";
+export { default as OnboardingPage } from "./OnboardingPage";
+export { default as PreferencesForm } from "./PreferencesForm";

@@ -36,7 +36,7 @@ type AnalyticsData = {
   opportunities: AmenityOpportunity[];
 };
 
-const API_URL = "http://4.223.159.135";
+
 
 export default function BusinessPage() {
   const [venue, setVenue] = useState<Venue | null>(null);
@@ -58,7 +58,7 @@ export default function BusinessPage() {
         }
 
         const [venueResponse, analyticsResponse] = await Promise.all([
-          fetch(`${API_URL}/venues/mine`, {
+          fetch(`${import.meta.env.VITE_BACK_END_SERVER_URL}/venues/mine`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },

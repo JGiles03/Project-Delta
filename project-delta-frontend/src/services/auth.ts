@@ -49,7 +49,7 @@ export async function logIn({
   const user = await res.json();
 
   localStorage.setItem("token", user.token);
-  localStorage.setItem("id", String(user.id));
+  localStorage.setItem("userId", String(user.id));
   localStorage.setItem("email", email);
 
   const payload = JSON.parse(
@@ -68,7 +68,7 @@ export async function logIn({
 export function signOut(): void {
   localStorage.removeItem("token");
   localStorage.removeItem("email");
-  localStorage.removeItem("id");
+  localStorage.removeItem("userId");
   localStorage.removeItem("role");
 }
 

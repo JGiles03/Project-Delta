@@ -16,6 +16,12 @@ export type LogInPayload = {
     password : string;
 }
 
+
+export type Amenity = {
+    id: number;
+    name: string;
+};
+
 export type Place = {
   id: string;
   name: string;
@@ -24,11 +30,6 @@ export type Place = {
   lng: number;
   category: CategoryKey | "other";
   amenities: string[];
-};
-
-export type Amenity = {
-id: number;
-name: string;
 };
 
 export type Venue = {

@@ -42,6 +42,11 @@ body,
   min-height: 100%;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 body {
   margin: 0;
   background: var(--color-white);
@@ -548,6 +553,27 @@ textarea:focus {
   .list-container {
     max-width: 62rem;
     margin: 0 auto;
+  }
+}
+
+@media (max-width: 390px) {
+  .place-card-amenities {
+    gap: 0.2rem;
+  }
+
+  .amenity-icon,
+  .amenity-icon-more {
+    width: 1.5rem;
+    height: 1.5rem;
+    min-width: 1.5rem;
+    min-height: 1.5rem;
+    flex-basis: 1.5rem;
+  }
+
+  .amenity-icon svg,
+  .amenity-icon-more svg {
+    width: 0.875rem;
+    height: 0.875rem;
   }
 }
 

@@ -8,13 +8,20 @@ import { TOUR_STEPS } from "../../services/tourConsts";
 import { getFavourites } from "../../services/favourites";
 import { useFavourites } from "../../context/FavouritesContext";
 import PlaceCard from "../../Components/PlaceCard";
-import type { Place, Review } from "../../services/types";
+
+import type { Place, Review, User } from "../../services/types";
+
 import "./index.css";
+
+
 
 export default function AccountPage() {
   const navigate = useNavigate();
-  const [user, setUser] = useState<any>(null);
+  const { favouriteIds } = useFavourites();
+
+  const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+
   const [favouriteVenues, setFavouriteVenues] = useState<Place[]>([]);
   const [favouritesLoading, setFavouritesLoading] = useState(true);
   const [userReviews, setUserReviews] = useState<Review[]>([]);
@@ -22,46 +29,54 @@ export default function AccountPage() {
   const [favouriteIndex, setFavouriteIndex] = useState(0);
   const [reviewIndex, setReviewIndex] = useState(0);
 
-  const { favouriteIds } = useFavourites();
-
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const id = localStorage.getItem("userId");
+    const userId = localStorage.getItem("userId");
 
-    if (!token || !id) {
+    if (!token || !userId) {
       setIsLoading(false);
+      setFavouritesLoading(false);
       return;
     }
 
     async function loadUser(id: string) {
       try {
-        const currentUser = await getUserById(id);
+        const currentUser = (await getUserById(id)) as User;
+
         setUser(currentUser);
 
-        const reviews = await fetchReviews(id);
-        setUserReviews(reviews);
+        if (currentUser.role === "venue_owner") {
+          return;
+        }
 
-        const venues = await getFavourites(id);
+        const [reviews, venues] = await Promise.all([
+          fetchReviews(id),
+          getFavourites(id),
+        ]);
+
+        setUserReviews(reviews);
         setFavouriteVenues(venues);
-      } catch (err) {
-        console.error(err);
+      } catch (error) {
+        console.error("Failed to load account:", error);
+        setUser(null);
       } finally {
         setIsLoading(false);
         setFavouritesLoading(false);
       }
     }
 
-    loadUser(id);
+    void loadUser(userId);
   }, []);
 
-  const visibleFavourites = favouriteVenues.filter((v) =>
-    favouriteIds.has(v.id),
+  const visibleFavourites = favouriteVenues.filter((venue) =>
+    favouriteIds.has(venue.id),
   );
 
   const clampedFavouriteIndex = Math.min(
     favouriteIndex,
     Math.max(visibleFavourites.length - 1, 0),
   );
+
   const clampedReviewIndex = Math.min(
     reviewIndex,
     Math.max(userReviews.length - 1, 0),
@@ -72,20 +87,25 @@ export default function AccountPage() {
     navigate("/home");
   }
 
-  if (isLoading) return <div className="account-message">Loading...</div>;
+  if (isLoading) {
+    return <div className="account-message">Loading...</div>;
+  }
 
   if (!user) {
     return (
       <div className="account-page">
         <div className="account-card">
           <h1>You're not signed in</h1>
+
           <p className="account-subtext">
             Log in to leave reviews and manage your account.
           </p>
+
           <div className="account-actions">
             <Link to="/login" className="btn-primary">
               Log in
             </Link>
+
             <Link to="/signup" className="btn-secondary">
               Create an account
             </Link>
@@ -95,23 +115,50 @@ export default function AccountPage() {
     );
   }
 
+  const emailInitial = user.email.charAt(0).toUpperCase();
+
+  if (user.role === "venue_owner") {
+    return (
+      <div className="account-page">
+        <div className="account-card">
+          <div className="account-avatar" aria-hidden="true">
+            {emailInitial}
+          </div>
+
+          <h1>{user.email}</h1>
+
+          <button
+            type="button"
+            onClick={handleSignOut}
+            className="btn-secondary"
+          >
+            Sign Out
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="account-page">
       <div className="account-card">
-        <div className="account-avatar">
-          {user.email.charAt(0).toUpperCase()}
+        <div className="account-avatar" aria-hidden="true">
+          {emailInitial}
         </div>
 
         <h1>{user.email}</h1>
-        <p className="account-member-since">
-          Member since{" "}
-          {new Date(user.created_at).toLocaleDateString("en-GB", {
-            month: "long",
-            year: "numeric",
-          })}
-        </p>
 
-        <div className="account-section">
+        {user.created_at && (
+          <p className="account-member-since">
+            Member since{" "}
+            {new Date(user.created_at).toLocaleDateString("en-GB", {
+              month: "long",
+              year: "numeric",
+            })}
+          </p>
+        )}
+
+        <section className="account-section">
           <h3>Your favourites</h3>
 
           {favouritesLoading ? (
@@ -119,6 +166,7 @@ export default function AccountPage() {
           ) : visibleFavourites.length === 0 ? (
             <div className="empty-favourites">
               <p>You haven't favourited any venues yet.</p>
+
               <Link to="/list" className="btn-accent">
                 Explore venues
               </Link>
@@ -127,8 +175,11 @@ export default function AccountPage() {
             <>
               <div className="account-carousel">
                 <button
+                  type="button"
                   className="carousel-arrow"
-                  onClick={() => setFavouriteIndex((i) => Math.max(i - 1, 0))}
+                  onClick={() =>
+                    setFavouriteIndex((index) => Math.max(index - 1, 0))
+                  }
                   disabled={clampedFavouriteIndex === 0}
                   aria-label="Previous favourite"
                 >
@@ -145,8 +196,15 @@ export default function AccountPage() {
                     {visibleFavourites.map((venue) => (
                       <div
                         key={venue.id}
-                        className="carousel-slide "
+                        className="carousel-slide"
+                        role="button"
+                        tabIndex={0}
                         onClick={() => navigate(`/venue/${venue.id}`)}
+                        onKeyDown={(event) => {
+                          if (event.key === "Enter" || event.key === " ") {
+                            navigate(`/venue/${venue.id}`);
+                          }
+                        }}
                       >
                         <PlaceCard place={venue} />
                       </div>
@@ -155,10 +213,11 @@ export default function AccountPage() {
                 </div>
 
                 <button
+                  type="button"
                   className="carousel-arrow"
                   onClick={() =>
-                    setFavouriteIndex((i) =>
-                      Math.min(i + 1, visibleFavourites.length - 1),
+                    setFavouriteIndex((index) =>
+                      Math.min(index + 1, visibleFavourites.length - 1),
                     )
                   }
                   disabled={
@@ -171,24 +230,26 @@ export default function AccountPage() {
               </div>
 
               <div className="carousel-dots">
-                {visibleFavourites.map((_, i) => (
+                {visibleFavourites.map((venue, index) => (
                   <span
-                    key={i}
-                    className={`carousel-dot ${i === clampedFavouriteIndex ? "active" : ""}`}
+                    key={venue.id}
+                    className={`carousel-dot ${
+                      index === clampedFavouriteIndex ? "active" : ""
+                    }`}
                   />
                 ))}
               </div>
             </>
           )}
-        </div>
+        </section>
 
-        <div className="account-section" data-tour={TOUR_STEPS.PREFERENCES}>
+        <section className="account-section" data-tour={TOUR_STEPS.PREFERENCES}>
           <h3>Your preferences</h3>
 
           {user.preferences?.length ? (
             <div className="preferences-section">
               <div className="preferences-list">
-                {user.preferences.map((preference: any) => (
+                {user.preferences.map((preference) => (
                   <div key={preference} className="preference-item">
                     <span className="preference-icon">
                       {amenityIcons[preference] ? (
@@ -197,10 +258,12 @@ export default function AccountPage() {
                         "•"
                       )}
                     </span>
+
                     <span>{preference}</span>
                   </div>
                 ))}
               </div>
+
               <Link to="/preferences" className="btn-accent">
                 Change your amenities
               </Link>
@@ -208,14 +271,15 @@ export default function AccountPage() {
           ) : (
             <div className="preference-section">
               <p>No preferences selected.</p>
+
               <Link to="/preferences" className="btn-accent">
                 Change your amenities
               </Link>
             </div>
           )}
-        </div>
+        </section>
 
-        <div className="account-section">
+        <section className="account-section">
           <h3>Your reviews</h3>
 
           {userReviews.length === 0 ? (
@@ -226,8 +290,11 @@ export default function AccountPage() {
             <>
               <div className="account-carousel">
                 <button
+                  type="button"
                   className="carousel-arrow"
-                  onClick={() => setReviewIndex((i) => Math.max(i - 1, 0))}
+                  onClick={() =>
+                    setReviewIndex((index) => Math.max(index - 1, 0))
+                  }
                   disabled={clampedReviewIndex === 0}
                   aria-label="Previous review"
                 >
@@ -251,6 +318,7 @@ export default function AccountPage() {
                           <p className="review-card-comment">
                             {review.comment}
                           </p>
+
                           <p className="review-card-date">
                             {new Date(review.created_at).toLocaleDateString(
                               "en-GB",
@@ -263,10 +331,11 @@ export default function AccountPage() {
                 </div>
 
                 <button
+                  type="button"
                   className="carousel-arrow"
                   onClick={() =>
-                    setReviewIndex((i) =>
-                      Math.min(i + 1, userReviews.length - 1),
+                    setReviewIndex((index) =>
+                      Math.min(index + 1, userReviews.length - 1),
                     )
                   }
                   disabled={clampedReviewIndex === userReviews.length - 1}
@@ -277,21 +346,24 @@ export default function AccountPage() {
               </div>
 
               <div className="carousel-dots">
-                {userReviews.map((_, i) => (
+                {userReviews.map((review, index) => (
                   <span
-                    key={i}
-                    className={`carousel-dot ${i === clampedReviewIndex ? "active" : ""}`}
+                    key={review.id}
+                    className={`carousel-dot ${
+                      index === clampedReviewIndex ? "active" : ""
+                    }`}
                   />
                 ))}
               </div>
             </>
           )}
-        </div>
+        </section>
 
         <div data-tour={TOUR_STEPS.TURRITOPSIS_DOHRNII}>
           <TourStart />
         </div>
-        <button onClick={handleSignOut} className="btn-secondary">
+
+        <button type="button" onClick={handleSignOut} className="btn-secondary">
           Sign Out
         </button>
       </div>

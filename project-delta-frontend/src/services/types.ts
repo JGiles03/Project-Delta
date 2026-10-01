@@ -1,10 +1,12 @@
 import type { CategoryKey } from "./categories";
 
 export type User = {
-    id : number;
-    email : string;
-    preferences: string[];
-}
+  id: string;
+  email: string;
+  role: string;
+  created_at?: string;
+  preferences?: string[];
+};
 
 export type SignUpPayload = {
     email : string;

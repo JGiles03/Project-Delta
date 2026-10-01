@@ -5,7 +5,11 @@ import list from '../../assets/list.png'
 import account from '../../assets/account.png'
 import { TOUR_STEPS } from '../../services/tourConsts'
 
+
+
 export default function Header() {
+
+
   return (
     <div className="app-shell">
       <div className="app-content">

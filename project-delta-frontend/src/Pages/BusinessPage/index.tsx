@@ -269,7 +269,7 @@ export default function BusinessPage() {
           {availableOpportunities.length > 0 ? (
             availableOpportunities.slice(0, 5).map((opportunity) => (
               <div
-                className="opportunity-row"
+                className="opportunity-row" data-testid="opportunity-row"
                 key={opportunity.amenity_id}
               >
                 <span>{opportunity.name}</span>

@@ -8,22 +8,18 @@ import { savePreferences } from "../../services/users";
 import * as matchers from "@testing-library/jest-dom/matchers";
 expect.extend(matchers)
 
-// 1. Mock the API service
 vi.mock("../../services/users", () => ({
   savePreferences: vi.fn(),
 }));
 
-// 2. Mock the Amenities array (keep it small for predictability in tests)
 vi.mock("../../services/amenities", () => ({
-  Amenities: ["High Chairs", "Pram Space", "Step-free Access"],
+  Amenities: ["Accessible entrance", "Accessible toilet", "Changing facilities"],
 }));
 
-// 3. Mock external components if necessary (like your Tour component)
 vi.mock("../../Components/Tour", () => ({
   default: () => <div data-testid="tour-start">Tour Start</div>,
 }));
 
-// A helper to wrap our component with React Router
 const renderWithRouter = () => {
   return render(
     <MemoryRouter initialEntries={["/onboarding"]}>
@@ -37,7 +33,7 @@ const renderWithRouter = () => {
   );
 };
 
-describe("OnboardingPage", () => {
+describe("OnboardingPage Page", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     localStorage.clear();
@@ -47,7 +43,7 @@ describe("OnboardingPage", () => {
     cleanup();
   })
 
-  it("redirects to /login if no token is present", () => {
+  it("redirects to /login if no token", () => {
     renderWithRouter();
     expect(screen.getByText("Login Page Redirect")).toBeInTheDocument();
   });
@@ -63,27 +59,21 @@ describe("OnboardingPage", () => {
   it("navigates to the 'preferences' step and handles amenity selections", async () => {
     localStorage.setItem("token", "fake-valid-token");
     renderWithRouter();
-
-    // Move to preferences step
     await userEvent.click(screen.getByRole("button", { name: "Continue" }));
     expect(screen.getByText("What matters most to you?")).toBeInTheDocument();
 
-    // Target an amenity chip
-    const highChairsChip = screen.getByRole("button", { name: "High Chairs" });
+    const highChairsChip = screen.getByRole("button", { name: "Accessible entrance" });
     const saveButton = screen.getByRole("button", { name: "Save preferences" });
 
-    // Initial assertions: Save button should be disabled because selected.length === 0
     expect(highChairsChip).not.toHaveClass("selected");
     expect(highChairsChip).toHaveAttribute("aria-pressed", "false");
     expect(saveButton).toBeDisabled();
 
-    // Click to select amenity (Class name change & state assertion)
     await userEvent.click(highChairsChip);
     expect(highChairsChip).toHaveClass("selected");
     expect(highChairsChip).toHaveAttribute("aria-pressed", "true");
     expect(saveButton).toBeEnabled();
 
-    // Click to deselect amenity
     await userEvent.click(highChairsChip);
     expect(highChairsChip).not.toHaveClass("selected");
     expect(saveButton).toBeDisabled();
@@ -106,11 +96,9 @@ describe("OnboardingPage", () => {
     renderWithRouter();
     await userEvent.click(screen.getByRole("button", { name: "Continue" }));
     
-    // Select an item and save
-    await userEvent.click(screen.getByRole("button", { name: "High Chairs" }));
+    await userEvent.click(screen.getByRole("button", { name: "Accessible entrance" }));
     await userEvent.click(screen.getByRole("button", { name: "Save preferences" }));
 
-    // Verify error box pops up
     const errorBox = await screen.findByText("We couldn't save your preferences. Please try again.");
     expect(errorBox).toBeInTheDocument();
   });
@@ -121,19 +109,16 @@ describe("OnboardingPage", () => {
 
     renderWithRouter();
     await userEvent.click(screen.getByRole("button", { name: "Continue" }));
-    await userEvent.click(screen.getByRole("button", { name: "High Chairs" }));
+    await userEvent.click(screen.getByRole("button", { name: "Accessible entrance" }));
     
     const saveButton = screen.getByRole("button", { name: "Save preferences" });
     await userEvent.click(saveButton);
 
-    // Verify loading state instantly triggers
     expect(saveButton.innerHTML).toContain("Saving...");
 
-    // Content changes to 'done' step
     expect(await screen.findByText("Thank you!")).toBeInTheDocument();
     expect(screen.getByText("✓")).toBeInTheDocument();
-
-    // Verify navigation paths exist for the tutorial links
+    
     const skipTutorialLink = screen.getByRole("link", { name: "Skip tutorial" });
     expect(skipTutorialLink).toHaveAttribute("href", "/map");
   });

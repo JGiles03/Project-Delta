@@ -51,10 +51,10 @@ export default defineConfig({
       enabled: true,
       exclude: [
       ...configDefaults.exclude,
-      "src/context/*",
-      "src/services/*",
+      //"src/context/*",
+      //"src/services/*",
       "src/assets/**",
-      "src/Stores/**",
+      //"src/Stores/**",
       "**.css"
     ],
     },

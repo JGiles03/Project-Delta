@@ -60,5 +60,13 @@ describe("PlaceCard component", () => {
 
     });
 
+    it("Has a link to the venue page", async () => {
+        const link = screen.getByRole("link");
+        expect(link).toBeInTheDocument()
+        expect(link).toHaveAttribute("href");
+        await userEvent.click(link)
+
+    });
+
     
 });

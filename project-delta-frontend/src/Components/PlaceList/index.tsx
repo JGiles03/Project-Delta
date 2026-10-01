@@ -108,7 +108,7 @@ export default function PlaceList() {
 
             <div className="filter-modal-body">
               <h3 className="filter-section-title">Amenities</h3>
-              <div className="filter-row filter-row-wrap">
+              <div className="filter-row filter-row-wrap" data-testid="amenities-filter">
                 {Amenities.map((amenity) => (
                   <button
                     type="button"
@@ -122,7 +122,7 @@ export default function PlaceList() {
               </div>
 
               <h3 className="filter-section-title">Distance</h3>
-              <div className="filter-row filter-row-wrap">
+              <div className="filter-row filter-row-wrap" data-testid="distance-filter">
                 {[1, 5, 10, null].map((km) => (
                   <button
                     type="button"
@@ -248,6 +248,7 @@ export default function PlaceList() {
                       <div
                         key={place.id}
                         className="carousel-slide"
+                        data-testid={`carousel-slide ${place.id}`}
                         onClick={() => navigate(`/venue/${place.id}`)}
                       >
                         <PlaceCard

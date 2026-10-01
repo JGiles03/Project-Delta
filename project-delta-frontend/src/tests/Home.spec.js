@@ -24,7 +24,7 @@ describe("Home page tests", () => {
     const form = new HomePage(page)
     await form.goto()
     await form.guest()
-    await form.expectMap()
+    await form.expectList()
   });
 
 })

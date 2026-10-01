@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1790795973428" clover="3.2.0">
-  <project timestamp="1790795973428" name="All files">
-    <metrics statements="497" coveredstatements="268" conditionals="255" coveredconditionals="102" methods="163" coveredmethods="60" elements="915" coveredelements="430" complexity="0" loc="497" ncloc="497" packages="24" files="60" classes="60"/>
+<coverage generated="1790840849043" clover="3.2.0">
+  <project timestamp="1790840849043" name="All files">
+    <metrics statements="357" coveredstatements="279" conditionals="209" coveredconditionals="140" methods="125" coveredmethods="87" elements="691" coveredelements="506" complexity="0" loc="357" ncloc="357" packages="19" files="19" classes="19"/>
     <package name="Components">
       <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="index.tsx" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\Components\index.tsx">
@@ -9,20 +9,14 @@
       </file>
     </package>
     <package name="Components.BusinessHeader">
-      <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="index.css" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\Components\BusinessHeader\index.css">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      </file>
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="index.tsx" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\Components\BusinessHeader\index.tsx">
-        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="10" count="0" type="stmt"/>
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="10" count="3" type="stmt"/>
       </file>
     </package>
     <package name="Components.Header">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="index.css" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\Components\Header\index.css">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      </file>
       <file name="index.tsx" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\Components\Header\index.tsx">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="9" count="3" type="stmt"/>
@@ -46,85 +40,79 @@
       </file>
     </package>
     <package name="Components.PlaceCard">
-      <metrics statements="8" coveredstatements="7" conditionals="14" coveredconditionals="9" methods="4" coveredmethods="3"/>
-      <file name="index.css" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\Components\PlaceCard\index.css">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      </file>
+      <metrics statements="8" coveredstatements="8" conditionals="14" coveredconditionals="9" methods="4" coveredmethods="4"/>
       <file name="index.tsx" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\Components\PlaceCard\index.tsx">
-        <metrics statements="8" coveredstatements="7" conditionals="14" coveredconditionals="9" methods="4" coveredmethods="3"/>
-        <line num="8" count="6" type="stmt"/>
-        <line num="9" count="6" type="stmt"/>
+        <metrics statements="8" coveredstatements="8" conditionals="14" coveredconditionals="9" methods="4" coveredmethods="4"/>
+        <line num="8" count="108" type="stmt"/>
+        <line num="9" count="108" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
         <line num="13" count="1" type="stmt"/>
-        <line num="15" count="6" type="stmt"/>
-        <line num="51" count="18" type="stmt"/>
-        <line num="74" count="0" type="stmt"/>
+        <line num="15" count="108" type="stmt"/>
+        <line num="51" count="124" type="stmt"/>
+        <line num="74" count="1" type="stmt"/>
       </file>
     </package>
     <package name="Components.PlaceList">
-      <metrics statements="56" coveredstatements="22" conditionals="40" coveredconditionals="12" methods="31" coveredmethods="3"/>
-      <file name="index.css" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\Components\PlaceList\index.css">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      </file>
+      <metrics statements="56" coveredstatements="46" conditionals="40" coveredconditionals="32" methods="31" coveredmethods="25"/>
       <file name="index.tsx" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\Components\PlaceList\index.tsx">
-        <metrics statements="56" coveredstatements="22" conditionals="40" coveredconditionals="12" methods="31" coveredmethods="3"/>
-        <line num="12" count="4" type="stmt"/>
-        <line num="13" count="4" type="stmt"/>
-        <line num="15" count="4" type="stmt"/>
-        <line num="16" count="4" type="stmt"/>
-        <line num="17" count="4" type="stmt"/>
-        <line num="18" count="4" type="stmt"/>
-        <line num="20" count="4" type="stmt"/>
-        <line num="29" count="4" type="stmt"/>
-        <line num="30" count="2" type="stmt"/>
-        <line num="33" count="4" type="cond" truecount="1" falsecount="1"/>
-        <line num="34" count="4" type="cond" truecount="2" falsecount="0"/>
-        <line num="37" count="0" type="stmt"/>
-        <line num="38" count="0" type="cond" truecount="0" falsecount="2"/>
+        <metrics statements="56" coveredstatements="46" conditionals="40" coveredconditionals="32" methods="31" coveredmethods="25"/>
+        <line num="12" count="29" type="stmt"/>
+        <line num="13" count="29" type="stmt"/>
+        <line num="15" count="29" type="stmt"/>
+        <line num="16" count="29" type="stmt"/>
+        <line num="17" count="29" type="stmt"/>
+        <line num="18" count="29" type="stmt"/>
+        <line num="20" count="29" type="stmt"/>
+        <line num="29" count="29" type="stmt"/>
+        <line num="30" count="12" type="stmt"/>
+        <line num="33" count="29" type="cond" truecount="1" falsecount="1"/>
+        <line num="34" count="29" type="cond" truecount="2" falsecount="0"/>
+        <line num="37" count="3" type="stmt"/>
+        <line num="38" count="3" type="cond" truecount="1" falsecount="1"/>
         <line num="39" count="0" type="stmt"/>
-        <line num="45" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="48" count="0" type="stmt"/>
-        <line num="49" count="0" type="stmt"/>
-        <line num="53" count="0" type="stmt"/>
-        <line num="60" count="0" type="stmt"/>
-        <line num="66" count="4" type="stmt"/>
-        <line num="73" count="0" type="stmt"/>
-        <line num="80" count="0" type="stmt"/>
+        <line num="45" count="27" type="cond" truecount="2" falsecount="0"/>
+        <line num="48" count="1" type="stmt"/>
+        <line num="49" count="1" type="stmt"/>
+        <line num="53" count="1" type="stmt"/>
+        <line num="60" count="1" type="stmt"/>
+        <line num="66" count="29" type="stmt"/>
+        <line num="73" count="1" type="stmt"/>
+        <line num="80" count="3" type="stmt"/>
         <line num="94" count="0" type="stmt"/>
-        <line num="96" count="0" type="stmt"/>
+        <line num="96" count="5" type="stmt"/>
         <line num="102" count="0" type="stmt"/>
-        <line num="113" count="0" type="stmt"/>
-        <line num="117" count="0" type="stmt"/>
-        <line num="127" count="0" type="stmt"/>
-        <line num="131" count="0" type="stmt"/>
-        <line num="155" count="8" type="stmt"/>
-        <line num="157" count="8" type="cond" truecount="1" falsecount="1"/>
-        <line num="158" count="0" type="stmt"/>
-        <line num="159" count="0" type="stmt"/>
-        <line num="163" count="8" type="cond" truecount="1" falsecount="1"/>
-        <line num="164" count="0" type="stmt"/>
-        <line num="165" count="0" type="stmt"/>
-        <line num="169" count="8" type="cond" truecount="3" falsecount="1"/>
-        <line num="170" count="0" type="stmt"/>
-        <line num="172" count="0" type="stmt"/>
-        <line num="181" count="8" type="cond" truecount="1" falsecount="1"/>
-        <line num="183" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="186" count="0" type="stmt"/>
-        <line num="201" count="8" type="stmt"/>
-        <line num="203" count="8" type="stmt"/>
-        <line num="208" count="8" type="stmt"/>
+        <line num="113" count="130" type="stmt"/>
+        <line num="117" count="3" type="stmt"/>
+        <line num="127" count="52" type="stmt"/>
+        <line num="131" count="1" type="stmt"/>
+        <line num="155" count="108" type="stmt"/>
+        <line num="157" count="108" type="cond" truecount="2" falsecount="0"/>
+        <line num="158" count="28" type="stmt"/>
+        <line num="159" count="35" type="stmt"/>
+        <line num="163" count="108" type="cond" truecount="2" falsecount="0"/>
+        <line num="164" count="24" type="stmt"/>
+        <line num="165" count="10" type="stmt"/>
+        <line num="169" count="108" type="cond" truecount="4" falsecount="0"/>
+        <line num="170" count="8" type="stmt"/>
+        <line num="172" count="10" type="stmt"/>
+        <line num="181" count="108" type="cond" truecount="2" falsecount="0"/>
+        <line num="183" count="80" type="cond" truecount="1" falsecount="1"/>
+        <line num="186" count="20" type="stmt"/>
+        <line num="201" count="108" type="stmt"/>
+        <line num="203" count="108" type="stmt"/>
+        <line num="208" count="108" type="stmt"/>
         <line num="211" count="0" type="stmt"/>
         <line num="215" count="0" type="stmt"/>
         <line num="216" count="0" type="stmt"/>
         <line num="218" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="219" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="220" count="0" type="stmt"/>
-        <line num="224" count="8" type="stmt"/>
-        <line num="231" count="0" type="stmt"/>
-        <line num="248" count="0" type="stmt"/>
-        <line num="251" count="0" type="stmt"/>
-        <line num="273" count="0" type="stmt"/>
+        <line num="224" count="108" type="stmt"/>
+        <line num="231" count="1" type="stmt"/>
+        <line num="248" count="100" type="stmt"/>
+        <line num="252" count="0" type="stmt"/>
+        <line num="274" count="1" type="stmt"/>
       </file>
     </package>
     <package name="Components.Tour">
@@ -142,9 +130,6 @@
     </package>
     <package name="Pages.AccountPage">
       <metrics statements="48" coveredstatements="33" conditionals="22" coveredconditionals="13" methods="19" coveredmethods="5"/>
-      <file name="index.css" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\Pages\AccountPage\index.css">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      </file>
       <file name="index.tsx" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\Pages\AccountPage\index.tsx">
         <metrics statements="48" coveredstatements="33" conditionals="22" coveredconditionals="13" methods="19" coveredmethods="5"/>
         <line num="15" count="19" type="stmt"/>
@@ -199,9 +184,6 @@
     </package>
     <package name="Pages.BusinessPage">
       <metrics statements="37" coveredstatements="17" conditionals="32" coveredconditionals="10" methods="11" coveredmethods="3"/>
-      <file name="index.css" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\Pages\BusinessPage\index.css">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      </file>
       <file name="index.tsx" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\Pages\BusinessPage\index.tsx">
         <metrics statements="37" coveredstatements="17" conditionals="32" coveredconditionals="10" methods="11" coveredmethods="3"/>
         <line num="39" count="1" type="stmt"/>
@@ -245,9 +227,6 @@
     </package>
     <package name="Pages.HomePage">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="index.css" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\Pages\HomePage\index.css">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      </file>
       <file name="index.tsx" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\Pages\HomePage\index.tsx">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="6" count="5" type="stmt"/>
@@ -255,18 +234,15 @@
     </package>
     <package name="Pages.ListPage">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="index.css" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\Pages\ListPage\index.css">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      </file>
       <file name="index.tsx" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\Pages\ListPage\index.tsx">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="6" count="1" type="stmt"/>
       </file>
     </package>
     <package name="Pages.LoginPage">
-      <metrics statements="16" coveredstatements="11" conditionals="4" coveredconditionals="2" methods="5" coveredmethods="4"/>
+      <metrics statements="16" coveredstatements="13" conditionals="4" coveredconditionals="2" methods="5" coveredmethods="4"/>
       <file name="index.tsx" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\Pages\LoginPage\index.tsx">
-        <metrics statements="16" coveredstatements="11" conditionals="4" coveredconditionals="2" methods="5" coveredmethods="4"/>
+        <metrics statements="16" coveredstatements="13" conditionals="4" coveredconditionals="2" methods="5" coveredmethods="4"/>
         <line num="8" count="19" type="stmt"/>
         <line num="9" count="19" type="stmt"/>
         <line num="10" count="19" type="stmt"/>
@@ -274,12 +250,12 @@
         <line num="14" count="4" type="stmt"/>
         <line num="16" count="4" type="stmt"/>
         <line num="17" count="4" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
         <line num="20" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="21" count="0" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
-        <line num="27" count="4" type="stmt"/>
+        <line num="27" count="3" type="stmt"/>
         <line num="32" count="19" type="stmt"/>
         <line num="44" count="3" type="stmt"/>
         <line num="51" count="3" type="stmt"/>
@@ -287,52 +263,43 @@
     </package>
     <package name="Pages.MapPage">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="index.css" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\Pages\MapPage\index.css">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      </file>
       <file name="index.tsx" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\Pages\MapPage\index.tsx">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="6" count="1" type="stmt"/>
       </file>
     </package>
     <package name="Pages.OnboardingPage">
-      <metrics statements="24" coveredstatements="7" conditionals="18" coveredconditionals="3" methods="9" coveredmethods="1"/>
-      <file name="index.css" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\Pages\OnboardingPage\index.css">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      </file>
+      <metrics statements="24" coveredstatements="24" conditionals="18" coveredconditionals="18" methods="9" coveredmethods="9"/>
       <file name="index.tsx" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\Pages\OnboardingPage\index.tsx">
-        <metrics statements="24" coveredstatements="7" conditionals="18" coveredconditionals="3" methods="9" coveredmethods="1"/>
-        <line num="11" count="3" type="stmt"/>
-        <line num="12" count="3" type="stmt"/>
-        <line num="14" count="3" type="stmt"/>
-        <line num="15" count="3" type="stmt"/>
-        <line num="16" count="3" type="stmt"/>
-        <line num="17" count="3" type="stmt"/>
-        <line num="19" count="3" type="cond" truecount="1" falsecount="1"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="23" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="30" count="0" type="stmt"/>
-        <line num="31" count="0" type="stmt"/>
-        <line num="33" count="0" type="stmt"/>
-        <line num="34" count="0" type="stmt"/>
-        <line num="35" count="0" type="stmt"/>
-        <line num="37" count="0" type="stmt"/>
-        <line num="38" count="0" type="stmt"/>
-        <line num="40" count="0" type="stmt"/>
-        <line num="44" count="0" type="stmt"/>
-        <line num="57" count="0" type="stmt"/>
-        <line num="70" count="0" type="stmt"/>
-        <line num="71" count="0" type="stmt"/>
-        <line num="77" count="0" type="stmt"/>
-        <line num="94" count="0" type="stmt"/>
+        <metrics statements="24" coveredstatements="24" conditionals="18" coveredconditionals="18" methods="9" coveredmethods="9"/>
+        <line num="11" count="18" type="stmt"/>
+        <line num="12" count="18" type="stmt"/>
+        <line num="14" count="18" type="stmt"/>
+        <line num="15" count="18" type="stmt"/>
+        <line num="16" count="18" type="stmt"/>
+        <line num="17" count="18" type="stmt"/>
+        <line num="19" count="18" type="cond" truecount="2" falsecount="0"/>
+        <line num="22" count="4" type="stmt"/>
+        <line num="23" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="30" count="2" type="stmt"/>
+        <line num="31" count="2" type="stmt"/>
+        <line num="33" count="2" type="stmt"/>
+        <line num="34" count="2" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="38" count="1" type="stmt"/>
+        <line num="40" count="2" type="stmt"/>
+        <line num="44" count="17" type="stmt"/>
+        <line num="57" count="4" type="stmt"/>
+        <line num="70" count="33" type="stmt"/>
+        <line num="71" count="33" type="stmt"/>
+        <line num="77" count="4" type="stmt"/>
+        <line num="94" count="1" type="stmt"/>
       </file>
     </package>
     <package name="Pages.PreferencesForm">
       <metrics statements="34" coveredstatements="20" conditionals="14" coveredconditionals="7" methods="9" coveredmethods="4"/>
-      <file name="index.css" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\Pages\PreferencesForm\index.css">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      </file>
       <file name="index.tsx" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\Pages\PreferencesForm\index.tsx">
         <metrics statements="34" coveredstatements="20" conditionals="14" coveredconditionals="7" methods="9" coveredmethods="4"/>
         <line num="8" count="2" type="stmt"/>
@@ -373,9 +340,6 @@
     </package>
     <package name="Pages.ReviewForm">
       <metrics statements="31" coveredstatements="20" conditionals="19" coveredconditionals="10" methods="7" coveredmethods="5"/>
-      <file name="index.css" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\Pages\ReviewForm\index.css">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      </file>
       <file name="index.tsx" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\Pages\ReviewForm\index.tsx">
         <metrics statements="31" coveredstatements="20" conditionals="19" coveredconditionals="10" methods="7" coveredmethods="5"/>
         <line num="6" count="6" type="stmt"/>
@@ -412,48 +376,45 @@
       </file>
     </package>
     <package name="Pages.ReviewsPage">
-      <metrics statements="36" coveredstatements="19" conditionals="16" coveredconditionals="4" methods="11" coveredmethods="3"/>
-      <file name="index.css" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\Pages\ReviewsPage\index.css">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      </file>
+      <metrics statements="36" coveredstatements="36" conditionals="16" coveredconditionals="14" methods="11" coveredmethods="11"/>
       <file name="index.tsx" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\Pages\ReviewsPage\index.tsx">
-        <metrics statements="36" coveredstatements="19" conditionals="16" coveredconditionals="4" methods="11" coveredmethods="3"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="10" count="1" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
-        <line num="14" count="1" type="stmt"/>
-        <line num="15" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="18" count="1" type="stmt"/>
-        <line num="19" count="1" type="stmt"/>
-        <line num="20" count="1" type="stmt"/>
-        <line num="21" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="22" count="1" type="stmt"/>
-        <line num="23" count="0" type="stmt"/>
+        <metrics statements="36" coveredstatements="36" conditionals="16" coveredconditionals="14" methods="11" coveredmethods="11"/>
+        <line num="7" count="20" type="stmt"/>
+        <line num="9" count="20" type="stmt"/>
+        <line num="10" count="20" type="stmt"/>
+        <line num="11" count="20" type="stmt"/>
+        <line num="12" count="20" type="stmt"/>
+        <line num="14" count="20" type="stmt"/>
+        <line num="15" count="7" type="cond" truecount="1" falsecount="1"/>
+        <line num="18" count="7" type="stmt"/>
+        <line num="19" count="7" type="stmt"/>
+        <line num="20" count="7" type="stmt"/>
+        <line num="21" count="6" type="cond" truecount="1" falsecount="1"/>
+        <line num="22" count="6" type="stmt"/>
+        <line num="23" count="6" type="stmt"/>
         <line num="25" count="1" type="stmt"/>
         <line num="26" count="1" type="stmt"/>
-        <line num="28" count="1" type="stmt"/>
-        <line num="32" count="1" type="stmt"/>
-        <line num="35" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="36" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="37" count="1" type="stmt"/>
-        <line num="39" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="40" count="0" type="stmt"/>
-        <line num="56" count="0" type="stmt"/>
-        <line num="58" count="0" type="stmt"/>
-        <line num="61" count="0" type="stmt"/>
-        <line num="65" count="0" type="stmt"/>
-        <line num="68" count="0" type="stmt"/>
-        <line num="71" count="0" type="stmt"/>
-        <line num="75" count="0" type="stmt"/>
-        <line num="76" count="0" type="stmt"/>
-        <line num="78" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="79" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="80" count="0" type="stmt"/>
-        <line num="84" count="0" type="stmt"/>
-        <line num="108" count="0" type="stmt"/>
-        <line num="134" count="0" type="stmt"/>
+        <line num="28" count="7" type="stmt"/>
+        <line num="32" count="7" type="stmt"/>
+        <line num="35" count="20" type="cond" truecount="2" falsecount="0"/>
+        <line num="36" count="19" type="cond" truecount="2" falsecount="0"/>
+        <line num="37" count="7" type="stmt"/>
+        <line num="39" count="12" type="cond" truecount="2" falsecount="0"/>
+        <line num="40" count="1" type="stmt"/>
+        <line num="56" count="11" type="stmt"/>
+        <line num="58" count="11" type="stmt"/>
+        <line num="61" count="5" type="stmt"/>
+        <line num="65" count="1" type="stmt"/>
+        <line num="68" count="11" type="stmt"/>
+        <line num="71" count="3" type="stmt"/>
+        <line num="75" count="3" type="stmt"/>
+        <line num="76" count="3" type="stmt"/>
+        <line num="78" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="79" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="80" count="1" type="stmt"/>
+        <line num="84" count="11" type="stmt"/>
+        <line num="108" count="33" type="stmt"/>
+        <line num="134" count="33" type="stmt"/>
       </file>
     </package>
     <package name="Pages.SignupPage">
@@ -486,9 +447,6 @@
     </package>
     <package name="Pages.VenuePage">
       <metrics statements="22" coveredstatements="22" conditionals="20" coveredconditionals="15" methods="4" coveredmethods="4"/>
-      <file name="index.css" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\Pages\VenuePage\index.css">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      </file>
       <file name="index.tsx" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\Pages\VenuePage\index.tsx">
         <metrics statements="22" coveredstatements="22" conditionals="20" coveredconditionals="15" methods="4" coveredmethods="4"/>
         <line num="10" count="11" type="stmt"/>
@@ -513,242 +471,6 @@
         <line num="42" count="4" type="cond" truecount="1" falsecount="1"/>
         <line num="44" count="4" type="stmt"/>
         <line num="75" count="8" type="stmt"/>
-      </file>
-    </package>
-    <package name="Stores">
-      <metrics statements="5" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="1"/>
-      <file name="tourStore.tsx" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\Stores\tourStore.tsx">
-        <metrics statements="5" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="1"/>
-        <line num="12" count="2" type="stmt"/>
-        <line num="14" count="2" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="27" count="0" type="stmt"/>
-      </file>
-    </package>
-    <package name="assets">
-      <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="account.png" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\assets\account.png">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      </file>
-      <file name="home.png" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\assets\home.png">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      </file>
-      <file name="list.png" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\assets\list.png">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      </file>
-      <file name="placePin.png" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\assets\placePin.png">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      </file>
-      <file name="userPin.png" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\assets\userPin.png">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      </file>
-    </package>
-    <package name="assets.amenities">
-      <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="accessible-entrance.svg" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\assets\amenities\accessible-entrance.svg">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      </file>
-      <file name="accessible-toilet.svg" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\assets\amenities\accessible-toilet.svg">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      </file>
-      <file name="breastfeeding-friendly.svg" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\assets\amenities\breastfeeding-friendly.svg">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      </file>
-      <file name="changing-facilities.svg" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\assets\amenities\changing-facilities.svg">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      </file>
-      <file name="child-and-me-logo.svg" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\assets\amenities\child-and-me-logo.svg">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      </file>
-      <file name="childrens-activities.svg" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\assets\amenities\childrens-activities.svg">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      </file>
-      <file name="high-chairs.svg" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\assets\amenities\high-chairs.svg">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      </file>
-      <file name="parking.svg" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\assets\amenities\parking.svg">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      </file>
-      <file name="pram-storage.svg" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\assets\amenities\pram-storage.svg">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      </file>
-      <file name="prams-allowed.svg" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\assets\amenities\prams-allowed.svg">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      </file>
-      <file name="table-reservation.svg" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\assets\amenities\table-reservation.svg">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      </file>
-    </package>
-    <package name="context">
-      <metrics statements="79" coveredstatements="39" conditionals="28" coveredconditionals="6" methods="18" coveredmethods="10"/>
-      <file name="FavouritesContext.tsx" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\context\FavouritesContext.tsx">
-        <metrics statements="38" coveredstatements="15" conditionals="12" coveredconditionals="3" methods="10" coveredmethods="5"/>
-        <line num="21" count="4" type="stmt"/>
-        <line num="28" count="18" type="stmt"/>
-        <line num="32" count="18" type="stmt"/>
-        <line num="34" count="18" type="stmt"/>
-        <line num="35" count="9" type="cond" truecount="1" falsecount="1"/>
-        <line num="36" count="9" type="stmt"/>
-        <line num="37" count="9" type="stmt"/>
-        <line num="40" count="0" type="stmt"/>
-        <line num="42" count="0" type="stmt"/>
-        <line num="45" count="0" type="stmt"/>
-        <line num="46" count="0" type="stmt"/>
-        <line num="50" count="18" type="stmt"/>
-        <line num="51" count="6" type="stmt"/>
-        <line num="54" count="18" type="stmt"/>
-        <line num="55" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="57" count="0" type="stmt"/>
-        <line num="59" count="0" type="stmt"/>
-        <line num="60" count="0" type="stmt"/>
-        <line num="62" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="63" count="0" type="stmt"/>
-        <line num="65" count="0" type="stmt"/>
-        <line num="68" count="0" type="stmt"/>
-        <line num="71" count="0" type="stmt"/>
-        <line num="72" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="73" count="0" type="stmt"/>
-        <line num="75" count="0" type="stmt"/>
-        <line num="78" count="0" type="stmt"/>
-        <line num="81" count="0" type="stmt"/>
-        <line num="82" count="0" type="stmt"/>
-        <line num="84" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="85" count="0" type="stmt"/>
-        <line num="87" count="0" type="stmt"/>
-        <line num="90" count="0" type="stmt"/>
-        <line num="95" count="18" type="stmt"/>
-        <line num="109" count="25" type="stmt"/>
-        <line num="111" count="25" type="cond" truecount="1" falsecount="1"/>
-        <line num="112" count="0" type="stmt"/>
-        <line num="117" count="25" type="stmt"/>
-      </file>
-      <file name="PlacesContext.tsx" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\context\PlacesContext.tsx">
-        <metrics statements="41" coveredstatements="24" conditionals="16" coveredconditionals="3" methods="8" coveredmethods="5"/>
-        <line num="7" count="4" type="stmt"/>
-        <line num="8" count="4" type="stmt"/>
-        <line num="9" count="4" type="stmt"/>
-        <line num="11" count="4" type="stmt"/>
-        <line num="24" count="4" type="stmt"/>
-        <line num="30" count="3" type="stmt"/>
-        <line num="31" count="3" type="stmt"/>
-        <line num="32" count="3" type="stmt"/>
-        <line num="33" count="3" type="stmt"/>
-        <line num="36" count="3" type="stmt"/>
-        <line num="37" count="2" type="stmt"/>
-        <line num="39" count="2" type="cond" truecount="2" falsecount="0"/>
-        <line num="41" count="1" type="stmt"/>
-        <line num="49" count="1" type="stmt"/>
-        <line num="51" count="1" type="stmt"/>
-        <line num="52" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="53" count="0" type="stmt"/>
-        <line num="56" count="0" type="stmt"/>
-        <line num="57" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="58" count="0" type="stmt"/>
-        <line num="60" count="0" type="stmt"/>
-        <line num="61" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="64" count="0" type="stmt"/>
-        <line num="65" count="0" type="stmt"/>
-        <line num="66" count="0" type="stmt"/>
-        <line num="75" count="0" type="stmt"/>
-        <line num="77" count="0" type="stmt"/>
-        <line num="78" count="0" type="stmt"/>
-        <line num="80" count="0" type="stmt"/>
-        <line num="83" count="2" type="stmt"/>
-        <line num="86" count="3" type="stmt"/>
-        <line num="87" count="1" type="stmt"/>
-        <line num="94" count="1" type="stmt"/>
-        <line num="95" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="96" count="0" type="stmt"/>
-        <line num="100" count="1" type="stmt"/>
-        <line num="103" count="3" type="stmt"/>
-        <line num="111" count="8" type="stmt"/>
-        <line num="113" count="8" type="cond" truecount="1" falsecount="1"/>
-        <line num="114" count="0" type="stmt"/>
-        <line num="116" count="8" type="stmt"/>
-      </file>
-    </package>
-    <package name="services">
-      <metrics statements="56" coveredstatements="10" conditionals="18" coveredconditionals="1" methods="15" coveredmethods="2"/>
-      <file name="amenities.ts" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\services\amenities.ts">
-        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="13" count="7" type="stmt"/>
-        <line num="27" count="7" type="stmt"/>
-      </file>
-      <file name="auth.ts" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\services\auth.ts">
-        <metrics statements="20" coveredstatements="4" conditionals="4" coveredconditionals="1" methods="3" coveredmethods="1"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="20" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="21" count="0" type="stmt"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="32" count="4" type="stmt"/>
-        <line num="43" count="4" type="stmt"/>
-        <line num="45" count="4" type="cond" truecount="1" falsecount="1"/>
-        <line num="46" count="4" type="stmt"/>
-        <line num="49" count="0" type="stmt"/>
-        <line num="51" count="0" type="stmt"/>
-        <line num="52" count="0" type="stmt"/>
-        <line num="53" count="0" type="stmt"/>
-        <line num="55" count="0" type="stmt"/>
-        <line num="59" count="0" type="stmt"/>
-        <line num="62" count="0" type="stmt"/>
-        <line num="69" count="0" type="stmt"/>
-        <line num="70" count="0" type="stmt"/>
-        <line num="71" count="0" type="stmt"/>
-        <line num="72" count="0" type="stmt"/>
-      </file>
-      <file name="categories.ts" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\services\categories.ts">
-        <metrics statements="6" coveredstatements="2" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="1"/>
-        <line num="3" count="6" type="stmt"/>
-        <line num="11" count="24" type="stmt"/>
-        <line num="14" count="0" type="stmt"/>
-        <line num="15" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
-      </file>
-      <file name="distance.ts" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\services\distance.ts">
-        <metrics statements="7" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="4" count="0" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="14" count="0" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
-        <line num="20" count="0" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
-      </file>
-      <file name="favourites.ts" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\services\favourites.ts">
-        <metrics statements="8" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="3" coveredmethods="0"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="9" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="20" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="28" count="0" type="cond" truecount="0" falsecount="2"/>
-      </file>
-      <file name="tourConsts.ts" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\services\tourConsts.ts">
-        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="7" type="stmt"/>
-      </file>
-      <file name="users.ts" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\services\users.ts">
-        <metrics statements="11" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="3" coveredmethods="0"/>
-        <line num="4" count="0" type="stmt"/>
-        <line num="6" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="14" count="0" type="stmt"/>
-        <line num="23" count="0" type="stmt"/>
-        <line num="28" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="33" count="0" type="stmt"/>
-        <line num="37" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="39" count="0" type="stmt"/>
-      </file>
-      <file name="venueToPlace.ts" path="C:\Users\josep\Documents\Programming\LaFosse\project-delta\Project-Delta\project-delta-frontend\src\services\venueToPlace.ts">
-        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="5" count="0" type="stmt"/>
       </file>
     </package>
   </project>

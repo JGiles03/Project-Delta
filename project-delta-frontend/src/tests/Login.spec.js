@@ -18,7 +18,7 @@ describe("Login page tests", () => {
     await page.waitForURL("**/login")
 
     const form = new LoginPage(page)
-    //await form.goto()
+    await form.goto()
 
     await form.fillRequiredFields({
       username: "user1",

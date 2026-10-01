@@ -9,10 +9,9 @@ class LoginPage {
     }
 
     async goto() {
-        await this.page.goto("https://tiny-lolly-77a880.netlify.app/login", { waitUntil: 'domcontentloaded' })
-        // const login = this.page.getByText("Log in")
-        // await login.click()
-        // await this.page.goto("https://project-delta-m6ba.onrender.com/login", { waitUntil: 'domcontentloaded' })
+        await this.page.goto("https://tiny-lolly-77a880.netlify.app", { waitUntil: 'domcontentloaded' })
+        const login = this.page.getByText("Log in")
+        await login.click()
     }
 
     async fillRequiredFields({ username, password }){

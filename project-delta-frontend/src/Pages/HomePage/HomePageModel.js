@@ -6,9 +6,6 @@ class HomePage {
         this.loginButton = page.getByText("Log in")
         this.signupButton = page.getByText("Sign up")
         this.guestButton = page.getByText("Continue as a guest")
-        this.map = page.getByAltText("homepage")
-        this.list = page.getByAltText("listpage")
-        this.account = page.getByAltText("accountpage")
     }
 
     async goto() {
@@ -27,18 +24,6 @@ class HomePage {
         await this.guestButton.click()
     }
 
-    async clickMap() {
-        await this.map.click()
-    }
-
-    async clickList() {
-        await this.list.click()
-    }
-
-    async clickAccount() {
-        await this.account.click()
-    }
-
     async expectLogin() {
         await expect(this.page).toHaveURL("https://tiny-lolly-77a880.netlify.app/login")
     }
@@ -48,16 +33,8 @@ class HomePage {
         //await expect(this.page.getByRole("alert")).toBeVisible()
     }
 
-    async expectMap() {
-        await expect(this.page).toHaveURL("https://tiny-lolly-77a880.netlify.app/map")
-    }
-
     async expectList() {
         await expect(this.page).toHaveURL("https://tiny-lolly-77a880.netlify.app/list")
-    }
-
-    async expectAccount() {
-        await expect(this.page).toHaveURL("https://tiny-lolly-77a880.netlify.app/account")
     }
 
     async expectFailure() {

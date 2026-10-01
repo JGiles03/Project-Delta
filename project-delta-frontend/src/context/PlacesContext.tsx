@@ -28,7 +28,7 @@ const PlacesContext = createContext<placesContextType | null>(null);
 
 export function Placesprovider({ children }: { children: ReactNode }) {
   const [places, setPlaces] = useState<Place[]>([]);
-  const [userLocation, _setUserLocation] = useState<UserLocation | null>(null);
+  const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 

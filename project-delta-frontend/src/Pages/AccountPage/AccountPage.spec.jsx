@@ -32,7 +32,7 @@ describe("AccountPage page", () => {
     beforeAll(() => {
         mockStorage = {
             store: {
-                id: 1,
+                userid: 1,
                 token: "becusbc78eg8g38"
             },
             setStore(newStore) {
@@ -67,7 +67,7 @@ describe("AccountPage page", () => {
         cleanup();
         vi.clearAllMocks();
         mockStorage.setStore({
-            id: 1,
+            userid: 1,
             token: "becusbc78eg8g38"
         })
     });

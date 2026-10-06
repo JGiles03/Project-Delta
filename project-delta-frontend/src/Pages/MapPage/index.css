@@ -1,0 +1,30 @@
+.map-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  background: var(--color-white);
+  padding: 1.5rem 1rem;
+  gap: 1rem;
+}
+
+.search-bar-overlay {
+  top: 1rem;
+  z-index: 1000;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+
+
+.map-container {
+  position: absolute;
+  top: 4rem;
+  bottom: 1.5rem;
+  left: 2rem;
+  right: 2rem;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
